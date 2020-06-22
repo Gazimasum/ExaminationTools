@@ -9,6 +9,7 @@ use App\Models\Country;
 use App\Models\Subject;
 use App\Models\Chat;
 use App\Models\EducationLevel;
+use Auth;
 
 class WriterController extends Controller
 {
@@ -90,15 +91,68 @@ class WriterController extends Controller
   public function messageview($id)
   {
 
-    $data = Chat::where('writer_id',$id)->first();
-    if ($data==null) {
+      $data = Chat::where('writer_id',$id)->get();
+      foreach ($data as $d) {
+        $d->is_seen = 0;
+      $d->update();
+      
+      }
 
-      return view('backend.pages.messages.messageview',compact('id'));
+      return view('backend.pages.messages.messageview',compact('data','id'));
+  }
+  public function messagesend(Request $r,$id)
+  {
+    $data = Chat::where('writer_id',$id)->orderby('id','desc')->first();
+
+    if ($data==null) {
+      $chat = new Chat();
+      $chat->writer_id = $id;
+      $chat->message = $r->message;
+      $chat->admin_id = Auth::id();
+      $chat->is_send_by = Auth::id();
+      $chat->save();
     }
     else {
-      return view('backend.pages.messages.messageview',compact('data'));
+      if ($data->reply==null) {
+        if ($data->is_send_by!=Auth::id()) {
+          $chat = Chat::orderby('id','desc')->first();
+          $chat->reply = $r->message;
+          $chat->update();
+        }
+        else {
+          $chat = new Chat();
+          $chat->writer_id = $id;
+          $chat->message = $r->message;
+          $chat->admin_id = Auth::id();
+          $chat->is_send_by = Auth::id();
+          $chat->save();
+        }
+
+      }
+      else {
+        $chat = new Chat();
+        $chat->writer_id = $id;
+        $chat->message = $r->message;
+        $chat->admin_id = Auth::id();
+        $chat->is_send_by = Auth::id();
+        $chat->save();
+      }
+
     }
-
-
+    session()->flash('success', 'Message Send Successfully');
+      return back();
   }
+
+  public function updateInbox(Request $request){
+     $mId = $request->msgId;
+
+     $update = DB::table('chat')
+     ->where('id',$mId)
+     ->update([
+       'is_seen' => 0
+     ]);
+     if($update){
+       echo "Status Update successfully";
+     }
+   }
 }

@@ -4,12 +4,21 @@
       <!-- Content Header (Page header) -->
       <section class="content-header">
           <h1>
+            @if (Route::is('admin.writer.message'))
               Writer
+              @else
+                Student
+              @endif
               <small>Control panel</small>
           </h1>
           <ol class="breadcrumb">
               <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-              <li class="active">Writer</li>
+
+              @if (Route::is('admin.writer.message'))
+                  <li class="active">Writer</li>
+                @else
+                  <li class="active">Student</li>
+                @endif
           </ol>
       </section>
       <!-- Main content -->
@@ -20,7 +29,13 @@
                   <div class="box">
 
                       <div class="box-header">
-                          <h3 class="box-title">Data Table of Writer</h3>
+                        @if (Route::is('admin.writer.message'))
+                              <h3 class="box-title">Data Table of Writer</h3>
+                          @else
+                            <h3 class="box-title">Data Table of Student</h3>
+                          @endif
+
+
                       </div><!-- /.box-header -->
                       <div class="box-body table-responsive">
                           <table id="myTable" class="table table-bordered table-striped">
@@ -30,21 +45,34 @@
                                     <th>Email</th>
                                     <th>Phone</th>
                                     <th>Country & City </th>
+                                     @if (Route::is('admin.writer.message'))
                                     <th>Education Level</th>
-                                    <th>Subject</th>
+                                    <th>Subject</th>@endif
                                     <th>Message</th>
                                   </tr>
                               </thead>
                               <tbody>
                                 @foreach ($data as $d)
                                   <tr>
-                                      <td>{{$d->name}}</td>
+                                      <td>
+                                         @if($d->isOnline())
+                                           <b>user is online!!</b>
+                                          @endif
+                                          {{$d->name}}</td>
                                       <td>{{$d->email}}</td>
                                       <td>{{$d->phone_no}}</td>
                                       <td>{{$d->country->name}} , {{$d->city}}</td>
-                                      <td>{{$d->educationlevel()}}</td>
+                                      @if (Route::is('admin.writer.message'))
+                                        <td>{{$d->educationlevel()}}</td>
                                       <td>{{$d->subjects}}</td>
-                                      <td>  <a class="btn btn-primary" href="{!! route('admin.writer.messageview',$d->id) !!}">Message</a> </td>
+                                      <td>  <a class="btn btn-primary" href="{!! route('admin.writer.messageview',$d->id) !!}">Message</a>
+                                        @if (App\Models\Order::where('status',1)->first())
+                                            <a href="{!! route('admin.writer.deal',$d->id) !!}"class="btn btn-warning">Deal</a>
+                                        @endif
+                                      </td>
+                                      @else
+                                          <td>  <a class="btn btn-primary" href="{!! route('admin.student.messageview',$d->id) !!}">Message</a> </td>
+                                       @endif
                                   </tr>
                                 @endforeach
 
@@ -56,8 +84,9 @@
                                     <th>Email</th>
                                     <th>Phone</th>
                                     <th>Country & City </th>
+                                       @if (Route::is('admin.writer.message'))
                                     <th>Education Level</th>
-                                    <th>Subject</th>
+                                    <th>Subject</th>@endif
                                     <th>Message</th>
                                   </tr>
                               </tfoot>

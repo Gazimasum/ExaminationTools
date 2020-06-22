@@ -1,8 +1,10 @@
 <footer class="footer-section bg-white">
+@include('frontend.partials.advertising.bottom')
   <div class="container">
-    <div class="row">
+    {{-- <div class="row">
+
       <div class="col-md-4">
-        <h3>About OneSchool</h3>
+        <h3>About Examinationtools</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro consectetur ut hic ipsum et veritatis corrupti. Itaque eius soluta optio dolorum temporibus in, atque, quos fugit sunt sit quaerat dicta.</p>
       </div>
 
@@ -27,14 +29,14 @@
         </form>
       </div>
 
-    </div>
+    </div> --}}
 
-    <div class="row pt-5 mt-5 text-center">
+    <div class=" text-center">
       <div class="col-md-12">
-        <div class="border-top pt-5">
+        <div class="border-top">
         <p>
     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
+    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
   </p>
         </div>

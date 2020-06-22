@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend\Writer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
+use App\Models\Chat;
 
 class PagesController extends Controller
 {
@@ -15,13 +16,15 @@ class PagesController extends Controller
     }
 
     public function index(){
-      $writter = Auth::user();
-      return view('frontend.pages.writer.index', compact('writter'));
+      $writer = Auth::user();
+      return view('frontend.pages.writer.index', compact('writer'));
 
     }
     public function dashboard(){
-      $writter = Auth::user();
-      return view('frontend.pages.writer.dashboard', compact('writter'));
+      $writer = Auth::user();
+      return view('frontend.pages.writer.dashboard', compact('writer'));
 
     }
+
+
 }

@@ -14,18 +14,7 @@ class ChatController extends Controller
     $this->middleware('auth:admin');
   }
 
-  public function updateInbox(Request $request){
-     $mId = $request->msgId;
 
-     $update = DB::table('chat')
-     ->where('id',$mId)
-     ->update([
-       'is_seen' => 0
-     ]);
-     if($update){
-       echo "Status Update successfully";
-     }
-   }
     /**
      * Display a listing of the resource.
      *

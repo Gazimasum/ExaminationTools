@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use App\Models\EducationLevel;;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Cache;
 
 class Freelancer extends Authenticatable
 {
@@ -39,8 +40,12 @@ class Freelancer extends Authenticatable
     }
 
 
-    public function totalWriter()
+    public static function totalWriter()
     {
       return Freelancer::count();
+    }
+    public function isOnline()
+    {
+       return Cache::has('user-is-online-' . $this->id);
     }
 }

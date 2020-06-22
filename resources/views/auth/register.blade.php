@@ -20,14 +20,15 @@
                   </div>
                 </div>
               </div>
+
                 <div class="container">
                   <div class="row">
                     <div class="col-md-12">
                       <div class="col-lg-12 ml-auto" data-aos="fade-up" data-aos-delay="500">
                           <form method="POST" action="{{ route('student.register') }}" class="form-box" aria-label="{{ __('Register') }}">
                               @csrf
-                              <center>  <h3 class="h4 text-black mb-6">Sign Up</h3></center>
-                                @include('backend.partials.messages')
+                              <center>  <h3 class="h4 text-black mb-6">Student Sign Up</h3></center>
+                                @include('frontend.partials.messages')
                               <div class="form-group row">
 
                                 <label for="name" class="col-md-4 col-form-label text-md-right"class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>

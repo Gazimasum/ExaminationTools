@@ -1,110 +1,139 @@
 
-  <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+<style media="screen">
+  .nav-link{
+    color: #000;
+    font-weight: bold;
+  }
+</style>
+  <nav class="navbar fixed-top navbar-expand-md navbar-light bg-light" style="background-color: #e3f2fd;">
+      <a class="navbar-brand" href="#" style="font-size:30px;font-weight:bold;">ExaminationTools</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mr-auto">
 
-    <div class="container-fluid">
-      <div class="d-flex align-items-center">
-        <div class="site-logo mr-auto w-25"><a href="index.html">OneSchool</a></div>
-
-        <div class="mx-auto text-center">
-          <nav class="site-navigation position-relative text-right" role="navigation">
-            <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
-              <li><a href="{!! route('index') !!}" class="nav-link {{Route::is('index') ? 'active': ''}}"
-                onclick="event.preventDefault();
-                document.getElementById('index-form').submit();">Home</a></li>
-
-
-                  <li><a href="#courses-section" class="nav-link">Courses</a></li>
-
+          </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{!! route('index') !!}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{!! route('service') !!}">Service</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{!! route('about') !!}">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{!! route('contact') !!}">Contact</a>
+            </li>
             @guest
-              <li><a href="{!! route('login') !!}" class="nav-link">Login</a></li>
-              <li><a href="{!! route('student.registrationForm') !!}" class="nav-link">Register</a></li>
-              @else
-                  @if(Auth::guard('web')->check())
-                <li class="nav-item dropdown">
-                  <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{-- <img src="{{ App\Helpers\ImageHelper::getUserImage(Auth::user()->id) }}" class="img rounded-circle" style="width:40px"> --}}
-                    {{ Auth::user()->name }}
-                    <span class="caret"></span>
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li class="nav-item" style="padding-left:20px;padding-right:20px">  <a  class="nav-link btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+               <span style="color:#fff;">Choose Your Portal</span>
+             </a></li>
+           @else
+             @if (Auth::guard('web')->check())
+             <li class="nav-item dropdown">
+               <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                 <img src="{{ App\Helpers\ImageHelper::getUserImage(Auth::user()->id) }}" class="img rounded-circle" style="width:40px">
+                 {{ Auth::user()->name }}
+                 <span class="caret"></span>
+               </a>
+               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                    <a class="dropdown-item" href="{!! route('student.dashboard') !!}"
-                    onclick="event.preventDefault();
-                    document.getElementById('dashboard-form').submit();">
-                      My dashboard
-                    </a>
+                 <a class="dropdown-item" href="#"
+                 onclick="event.preventDefault();
+                 document.getElementById('dashboard-form').submit();">
+                   My dashboard
+                 </a>
+                 <a class="dropdown-item" href="#"
+                 onclick="event.preventDefault();
+                 document.getElementById('assingment-request-form').submit();">
+                   Assingment Request
+                 </a>
+                 <a class="dropdown-item" href="#"
+                 onclick="event.preventDefault();
+                 document.getElementById('student-message-form').submit();">
+                  Message
+                 </a>
 
-                    <a class="dropdown-item" href="{!! route('student.assingment.request.view') !!}"
-                    onclick="event.preventDefault();
-                    document.getElementById('assingment-request-form').submit();">
-                      Assingment Request
-                    </a>
-                    <a class="dropdown-item" href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">  Logout</a>
 
-
-                  @elseif(Auth::guard('writer')->check())
-                    <li class="nav-item dropdown">
+                 <a class="dropdown-item" href="#"
+                 onclick="event.preventDefault();
+                 document.getElementById('logout-form').submit();">  Logout</a>
+               </div>
+             </li>
+             @else
+                 <li class="nav-item dropdown">
                       <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{-- <img src="{{ App\Helpers\ImageHelper::getUserImage(Auth::user()->id) }}" class="img rounded-circle" style="width:40px"> --}}
+                        <img src="{{ App\Helpers\ImageHelper::getUserImage(Auth::user()->id) }}" class="img rounded-circle" style="width:40px">
                         {{ Auth::user()->name }}
                         <span class="caret"></span>
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                      <a class="dropdown-item" href="{!! route('writer.dashboard') !!}">
-                        My dashboard
-                      </a>
-                    <a class="dropdown-item" href="#">
-                      Ordered List
-                    </a>
-                    <a class="dropdown-item" href="{{ route('writer.logout') }}"
-                    onclick="event.preventDefault();
-                    document.getElementById('writer-logout-form').submit();">
-                    Logout
-                  </a>
-                        @endif
-
-                </div>
-              </li>
+                        <a class="dropdown-item" href="#"
+                        onclick="event.preventDefault();
+                        document.getElementById('writer-dashboard-form').submit();">
+                            My dashboard
+                          </a>
+                          <a class="dropdown-item" href="#"
+                          onclick="event.preventDefault();
+                          document.getElementById('writer-message-form').submit();">
+                           Message
+                          </a>
+                          <a class="dropdown-item" href="#"
+                          onclick="event.preventDefault();
+                          document.getElementById('order-logout-form').submit();">
+                              Ordered List
+                            </a>
+                            <a class="dropdown-item" href="#"
+                            onclick="event.preventDefault();
+                            document.getElementById('writer-logout-form').submit();">
+                            Logout
+                           </a>
+                      </div>
+               </li>
+              @endif
             @endguest
-            </ul>
-          </nav>
-        </div>
 
-        <div class="ml-auto w-25">
-          <nav class="site-navigation position-relative text-right" role="navigation">
-            <ul class="site-menu main-menu site-menu-dark js-clone-nav mr-auto d-none d-lg-block m-0 p-0">
-              @guest
-                <li class="cta"><a href="{!! route('writer.login') !!}" class="nav-link"><span>Join</span></a></li>
-              @endguest
-            </ul>
-          </nav>
-          <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a>
-        </div>
+          </ul>
       </div>
-    </div>
+  </nav>
+  {{-- <form id="index-form" action="{{ route('index') }}" method="GET" style="display: none;">
+       @csrf
+     </form>
+  <form id="about-form" action="{{ route('about') }}" method="GET" style="display: none;">
+       @csrf
+     </form>
+  <form id="service-form" action="{{ route('service') }}" method="GET" style="display: none;">
+       @csrf
+     </form>
+  <form id="contact-form" action="{{ route('contact') }}" method="GET" style="display: none;">
+       @csrf
+     </form> --}}
 
+     <form id="dashboard-form" action="{{ route('student.dashboard') }}" method="GET" style="display: none;">
+       @csrf
+     </form>
+     <form id="writer-dashboard-form" action="{{ route('writer.dashboard') }}" method="GET" style="display: none;">
+       @csrf
+     </form>
+     <form id="student-message-form" action="{{ route('student.message.view') }}" method="GET" style="display: none;">
+       @csrf
+     </form>
+     <form id="writer-message-form" action="{{ route('writer.message.view') }}" method="GET" style="display: none;">
+       @csrf
+     </form>
 
+     <form id="assingment-request-form" action="{{ route('student.assingment.request.view') }}" method="GET" style="display: none;">
+       @csrf
+     </form>
 
-    <form id="index-form" action="{{ route('index') }}" method="GET" style="display: none;">
-      @csrf
-    </form>
+     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+       @csrf
+     </form>
 
-    <form id="dashboard-form" action="{{ route('student.dashboard') }}" method="GET" style="display: none;">
-      @csrf
-    </form>
-
-    <form id="assingment-request-form" action="{{ route('student.assingment.request.view') }}" method="GET" style="display: none;">
-      @csrf
-    </form>
-
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-      @csrf
-    </form>
-
-    <form id="writer-logout-form" action="{{ route('writer.logout') }}" method="POST" style="display: none;">
-      @csrf
-    </form>
-  </header>
+     <form id="writer-logout-form" action="{{ route('writer.logout') }}" method="POST" style="display: none;">
+       @csrf
+     </form>

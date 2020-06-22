@@ -41,9 +41,10 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                  <li><a href="pages/charts/flot.html"><i class="fa fa-angle-double-right"></i> New Assingment <small class="badge pull-right bg-red">3</small></a></li>
-                  <li><a href="pages/charts/inline.html"><i class="fa fa-angle-double-right"></i> Complete Assingment <small class="badge pull-right bg-green">3</small></a></li>
-                    <li><a href="pages/charts/morris.html"><i class="fa fa-angle-double-right"></i> Manage Assingment</a></li>
+                  <li><a href="{!! route('admin.assingment.index') !!}"><i class="fa fa-angle-double-right"></i> View Assingment <small class="badge pull-right bg-red">{{App\Models\Order::newOrder()}}</small></a></li>
+                    <li><a href="#"><i class="fa fa-angle-double-right"></i> Manage Assingment</a></li>
+                  <li><a href="pages/charts/inline.html"><i class="fa fa-angle-double-right"></i> Complete Assingment <small class="badge pull-right bg-green">{{App\Models\Order::completeOrder()}}</small></a></li>
+
 
                 </ul>
             </li>
@@ -55,7 +56,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{!! route('admin.writer.index') !!}"><i class="fa fa-angle-double-right"></i> Manage Writer</a></li>
-                    <li><a href="{!! route('admin.writer.request') !!}"><i class="fa fa-angle-double-right"></i> Writer Request <small class="badge pull-right bg-red">{{App\Models\Freelancer::writerRequest()}}</small></a></li>
+                    <li><a href="{!! route('admin.writer.request') !!}"><i class="fa fa-angle-double-right"></i> Writer Request</a></li>
                     <li><a href="{!! route('admin.writer.message') !!}"><i class="fa fa-angle-double-right"></i> Writer Message </a></li>
                     {{-- <li><a href="pages/UI/buttons.html"><i class="fa fa-angle-double-right"></i> Buttons</a></li>
                     <li><a href="pages/UI/sliders.html"><i class="fa fa-angle-double-right"></i> Sliders</a></li>
@@ -68,9 +69,9 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="pages/forms/general.html"><i class="fa fa-angle-double-right"></i> Manage Student</a></li>
-                    {{-- <li><a href="pages/forms/advanced.html"><i class="fa fa-angle-double-right"></i> Advanced Elements</a></li>
-                    <li><a href="pages/forms/editors.html"><i class="fa fa-angle-double-right"></i> Editors</a></li> --}}
+                  <li><a href="{!! route('admin.student.index') !!}"><i class="fa fa-angle-double-right"></i> Manage Student</a></li>
+                  {{-- <li><a href="{!! route('admin.student.request') !!}"><i class="fa fa-angle-double-right"></i> Student Request <small class="badge pull-right bg-red">{{App\Models\Freelancer::studentRequest()}}</small></a></li> --}}
+                  <li><a href="{!! route('admin.student.message') !!}"><i class="fa fa-angle-double-right"></i> Student Message  <small class="badge pull-right bg-green">{{App\Models\Chat::newStudentMessage()}}</small></a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -79,51 +80,20 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="pages/tables/simple.html"><i class="fa fa-angle-double-right"></i> Checkout Order</a></li>
+                    <li><a href="{!! route('admin.order.index') !!}"><i class="fa fa-angle-double-right"></i> View Order</a></li>
                     {{-- <li><a href="pages/tables/data.html"><i class="fa fa-angle-double-right"></i> Data tables</a></li> --}}
                 </ul>
             </li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-table"></i> <span>Country</span>
+                    <i class="fa fa-table"></i> <span>General</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{!! route('admin.country.index') !!}"><i class="fa fa-angle-double-right"></i> Manage Country</a></li>
-                    <li><a href="{!! route('admin.country.create') !!}"><i class="fa fa-angle-double-right"></i> Create Country</a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-table"></i> <span>Education Level</span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
                     <li><a href="{!! route('admin.educationlevel.index') !!}"><i class="fa fa-angle-double-right"></i>Manage Education Level</a></li>
-                    <li><a href="{!! route('admin.educationlevel.create') !!}"><i class="fa fa-angle-double-right"></i>Create Education Level</a></li>
-
-                </ul>
-            </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-table"></i> <span>Subject</span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="{!! route('admin.subject.index') !!}"><i class="fa fa-angle-double-right"></i>Manage Subject</a></li>
-                    <li><a href="{!! route('admin.subject.create') !!}"><i class="fa fa-angle-double-right"></i>Create Subject</a></li>
-
-                </ul>
-            </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-table"></i> <span>Assingment Type</span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="{!! route('admin.assingmenttype.index') !!}"><i class="fa fa-angle-double-right"></i>Manage Subject</a></li>
-                    <li><a href="{!! route('admin.assingmenttype.create') !!}"><i class="fa fa-angle-double-right"></i>Create Subject</a></li>
-                    {{-- <li><a href="pages/tables/data.html"><i class="fa fa-angle-double-right"></i> Data tables</a></li> --}}
+                      <li><a href="{!! route('admin.subject.index') !!}"><i class="fa fa-angle-double-right"></i>Manage Subject</a></li>
+                      <li><a href="{!! route('admin.assingmenttype.index') !!}"><i class="fa fa-angle-double-right"></i>Manage Assingment Type</a></li>
                 </ul>
             </li>
             <li>

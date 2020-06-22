@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="intro-section" id="home-section">
+<div class="intro-section" id="home-section" >
 
   <div class="slide-1" style="background-image: url('home-asset/images/hero_1.jpg');" data-stellar-background-ratio="0.5">
     <div class="container">
@@ -10,9 +10,9 @@
         <div class="col-12">
           <div class="row align-items-center">
             <div class="col-lg-6 mb-4">
-              <h1  data-aos="fade-up" data-aos-delay="100">Learn From The Expert</h1>
-              <p class="mb-4"  data-aos="fade-up" data-aos-delay="200">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime ipsa nulla sed quis rerum amet natus quas necessitatibus.</p>
-              <p data-aos="fade-up" data-aos-delay="300"><a href="#" class="btn btn-primary py-3 px-5 btn-pill">Admission Now</a></p>
+              <h1  data-aos="fade-up" data-aos-delay="100">Student Portal</h1>
+              <p class="mb-4"  data-aos="fade-up" data-aos-delay="200">Choose Student Portal If you are a student and if you want to done your assingment by our virtual assistent.</p>
+              <p data-aos="fade-up" data-aos-delay="300"><a href="{!! route('student.registrationForm') !!}" class="btn btn-primary py-3 px-5 btn-pill">Register Now</a></p>
 
             </div>
 

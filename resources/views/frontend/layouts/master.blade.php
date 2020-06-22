@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>OneSchool &mdash; Website by Colorlib</title>
+    <title>Examinationtools</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
@@ -26,6 +26,8 @@
 
 {{-- @if (Route::is('writer.register'))
 @else --}}
+
+@include('frontend.partials.loginmodel')
 @include('frontend.partials.footer')
 {{-- @endif --}}
   {{-- @include('frontend.partials.footer') --}}

@@ -10,8 +10,8 @@
         <div class="col-12">
           <div class="row align-items-center">
             <div class="col-lg-6 mb-4">
-              <h1  data-aos="fade-up" data-aos-delay="100">New Writer</h1>
-              <p class="mb-4"  data-aos="fade-up" data-aos-delay="200">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime ipsa nulla sed quis rerum amet natus quas necessitatibus.</p>
+              <h1  data-aos="fade-up" data-aos-delay="100">Writer Portal</h1>
+              <p class="mb-4"  data-aos="fade-up" data-aos-delay="200">Choose Writer Portal If you are a good Writer and if you want to assist our virtual assistent. </p>
               <p data-aos="fade-up" data-aos-delay="300"><a href="{!! route('writer.register') !!}" class="btn btn-primary py-3 px-5 btn-pill">Join Now</a></p>
 
             </div>

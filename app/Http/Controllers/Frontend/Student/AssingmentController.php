@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Frontend\Student;
 use App\Http\Controllers\Controller;
 use App\Models\Assingment;
+use App\Models\Order;
 use App\Models\AssingmentImage;
 use App\Models\AssingmentFile;
 use Illuminate\Http\Request;
+use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Str;
 use Auth;
 use Image;
 use File;
@@ -52,6 +55,7 @@ class AssingmentController extends Controller
          'education_level' => 'required',
          'subject'=>'required',
          'details' =>'required',
+
          // 'images' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
          // 'files' => 'max:2048|mimes:pdf,docx,doc',
        ],
@@ -68,6 +72,7 @@ class AssingmentController extends Controller
      $a->assingment_subject_id = $request->subject;
      $a->assingment_details = $request->details;
      $a->deadline_date = $request->deadline_date;
+     $a->remember_token = Str::random(40);
      $a->save();
 
      if($request->hasfile('images'))
@@ -94,10 +99,18 @@ class AssingmentController extends Controller
            $a_image->save();
          }
 
-         session()->flash('success', 'Request Sent successfully');
-         return back();
+
       }
 
+      $order = new Order();
+      $str = chr(rand(65,90));
+      $digit = rand(10,100);
+      $order->order_trace_id = '#'.$str.$digit.$a->id;
+      $order->assingments_id = $a->id;
+      $order->client_id = $student->id;
+      $order->save();
+      session()->flash('success', 'Request Sent successfully');
+      return back();
 
 
     }
@@ -108,9 +121,13 @@ class AssingmentController extends Controller
      * @param  \App\Models\Assingment  $assingment
      * @return \Illuminate\Http\Response
      */
-    public function show(Assingment $assingment)
+    public function show($id)
     {
-        //
+        $assingment = Assingment::where('id',$id)->first();
+        if ($assingment!=null) {
+          Toastr::success('Messages in here', 'Title', ["positionClass" => "toast-top-right","closeButton"=> true,"progressBar"=> true,]);
+         return view('frontend.pages.student.assingmentView',compact('assingment'));
+        }
     }
 
     /**

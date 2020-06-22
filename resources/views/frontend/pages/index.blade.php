@@ -3,13 +3,33 @@
   <!--================ Start Home Banner Area =================-->
     @include('frontend.partials.banner')
   <!--================ End Home Banner Area =================-->
+<div class="site-section">
+  <div class="container">
+    <div class="row mb-5 justify-content-center">
+        <div class="col-md-7 text-center" data-aos="fade-up" data-aos-delay="">
+          <h2 class="section-title"> TRACK YOUR ORDER </h2>
+          @include('frontend.partials.messages')
+          <form class="form-box" action="{!! route('track.order') !!}" method="post">
+            @csrf
+            <div class="form-group">
+            <input type="text" name="order_id" class="form-control" value="" placeholder="#I123" required>
+          </div>
+            <div class="form-group  mb-0">
+              <button type="submit" class="btn btn-primary">TRACK</button>
+              <div>
+          </form>
+        </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
 
-
-  <div class="site-section courses-title" id="courses-section">
+  <div class="site-section courses-title" id="courses-section">@include('frontend.partials.advertising.top')
     <div class="container">
       <div class="row mb-5 justify-content-center">
         <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="">
-          <h2 class="section-title">Courses</h2>
+          <h2 class="section-title">HOW ONLINE ASSIGNMENT WRITING SERVICE WORKS</h2>
         </div>
       </div>
     </div>
@@ -22,101 +42,58 @@
 
           <div class="course bg-white h-100 align-self-stretch">
             <figure class="m-0">
-              <a href="course-single.html"><img src="{!! asset('home-asset/images/img_1.jpg')!!}" alt="Image" class="img-fluid"></a>
+              <a href="course-single.html"><img src="{!! asset('home-asset/images/documents.png')!!}" alt="Image" class="img-fluid"></a>
             </figure>
             <div class="course-inner-text py-4 px-4">
-              <span class="course-price">$20</span>
-              <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
-              <h3><a href="#">Study Law of Physics</a></h3>
-              <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
+              {{-- <span class="course-price">$20</span> --}}
+              {{-- <div class="meta"><span class="icon-clock-o"></span></div> --}}
+              <h3><a href="#">1st Step</a></h3>
+              <p>Upload your assignment for a quote. </p>
             </div>
-            <div class="d-flex border-top stats">
-              <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
+            {{-- <div class="d-flex border-top stats">
+              <div class="py-3 px-4"><span class="icon-users"></span> </div>
               <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
-            </div>
-          </div>
-
-          <div class="course bg-white h-100 align-self-stretch">
-            <figure class="m-0">
-              <a href="course-single.html"><img src="{!! asset('home-asset/images/img_2.jpg')!!}" alt="Image" class="img-fluid"></a>
-            </figure>
-            <div class="course-inner-text py-4 px-4">
-              <span class="course-price">$99</span>
-              <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
-              <h3><a href="#">Logo Design Course</a></h3>
-              <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
-            </div>
-            <div class="d-flex border-top stats">
-              <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
-              <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
-            </div>
-          </div>
-
-          <div class="course bg-white h-100 align-self-stretch">
-            <figure class="m-0">
-              <a href="course-single.html"><img src="{!! asset('home-asset/images/img_3.jpg')!!}" alt="Image" class="img-fluid"></a>
-            </figure>
-            <div class="course-inner-text py-4 px-4">
-              <span class="course-price">$99</span>
-              <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
-              <h3><a href="#">JS Programming Language</a></h3>
-              <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
-            </div>
-            <div class="d-flex border-top stats">
-              <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
-              <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
-            </div>
+            </div> --}}
           </div>
 
 
 
           <div class="course bg-white h-100 align-self-stretch">
             <figure class="m-0">
-              <a href="course-single.html"><img src="{!! asset('home-asset/images/img_4.jpg')!!}" alt="Image" class="img-fluid"></a>
+              <a href="course-single.html"><img src="{!! asset('home-asset/images/buy.png')!!}" alt="Image" width="300" height="500" class="img-fluid"></a>
             </figure>
             <div class="course-inner-text py-4 px-4">
-              <span class="course-price">$20</span>
-              <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
-              <h3><a href="#">Study Law of Physics</a></h3>
-              <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
+              {{-- <span class="course-price">$99</span> --}}
+              {{-- <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div> --}}
+              <h3><a href="#">2nd Step</a></h3>
+              <p>Make payment or talk to us for options. </p>
             </div>
-            <div class="d-flex border-top stats">
+            {{-- <div class="d-flex border-top stats">
               <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
               <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
-            </div>
+            </div> --}}
           </div>
+
+
 
           <div class="course bg-white h-100 align-self-stretch">
             <figure class="m-0">
-              <a href="course-single.html"><img src="{!! asset('home-asset/images/img_5.jpg')!!}" alt="Image" class="img-fluid"></a>
+              <a href="course-single.html"><img src="{!! asset('home-asset/images/shield.png')!!}" width="100" height="100" alt="Image" class="img-fluid"></a>
             </figure>
             <div class="course-inner-text py-4 px-4">
-              <span class="course-price">$99</span>
-              <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
-              <h3><a href="#">Logo Design Course</a></h3>
-              <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
+              {{-- <span class="course-price">$20</span> --}}
+              {{-- <div class="meta"><span class="icon-clock-o"></span></div> --}}
+              <h3><a href="#">3rd Step</a></h3>
+              <p>Get your work by deadline..
+              </p>
             </div>
-            <div class="d-flex border-top stats">
+            {{-- <div class="d-flex border-top stats">
               <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
               <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
-            </div>
+            </div> --}}
           </div>
 
-          <div class="course bg-white h-100 align-self-stretch">
-            <figure class="m-0">
-              <a href="course-single.html"><img src="{!! asset('home-asset/images/img_6.jpg')!!}" alt="Image" class="img-fluid"></a>
-            </figure>
-            <div class="course-inner-text py-4 px-4">
-              <span class="course-price">$99</span>
-              <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
-              <h3><a href="#">JS Programming Language</a></h3>
-              <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
-            </div>
-            <div class="d-flex border-top stats">
-              <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
-              <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
-            </div>
-          </div>
+
 
         </div>
 
@@ -146,10 +123,13 @@
           <img src="{!! asset('home-asset/images/undraw_youtube_tutorial.svg')!!}" alt="Image" class="img-fluid">
         </div>
         <div class="col-lg-4 ml-auto" data-aos="fade-up" data-aos-delay="200">
-          <h2 class="text-black mb-4">We Are Excellent In Education</h2>
-          <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem maxime nam porro possimus fugiat quo molestiae illo.</p>
+          <h2 class="text-black mb-4">Tell Us What You Need</h2>
+          <p class="mb-4">
+Visit our website and provide all the details by filling up the order form. If you want customized assignment solutions, you can talk to our support team and mention your requirements.
 
-          <div class="d-flex align-items-center custom-icon-wrap mb-3">
+.</p>
+
+          {{-- <div class="d-flex align-items-center custom-icon-wrap mb-3">
             <span class="custom-icon-inner mr-3"><span class="icon icon-graduation-cap"></span></span>
             <div><h3 class="m-0">22,931 Yearly Graduates</h3></div>
           </div>
@@ -157,7 +137,7 @@
           <div class="d-flex align-items-center custom-icon-wrap">
             <span class="custom-icon-inner mr-3"><span class="icon icon-university"></span></span>
             <div><h3 class="m-0">150 Universities Worldwide</h3></div>
-          </div>
+          </div> --}}
 
         </div>
       </div>
@@ -167,10 +147,11 @@
           <img src="{!! asset('home-asset/images/undraw_teaching.svg')!!}" alt="Image" class="img-fluid">
         </div>
         <div class="col-lg-4 mr-auto order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
-          <h2 class="text-black mb-4">Strive for Excellent</h2>
-          <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem maxime nam porro possimus fugiat quo molestiae illo.</p>
+          <h2 class="text-black mb-4">Pay For Assignment</h2>
+          <p class="mb-4">
+Once you submit the order form, you will receive a quote for your assignment. You can choose to pay for your order via PayPal, debit/credit cards or net banking. Following the completion of the payment, you will get an email or text that will confirm your order.</p>
 
-          <div class="d-flex align-items-center custom-icon-wrap mb-3">
+          {{-- <div class="d-flex align-items-center custom-icon-wrap mb-3">
             <span class="custom-icon-inner mr-3"><span class="icon icon-graduation-cap"></span></span>
             <div><h3 class="m-0">22,931 Yearly Graduates</h3></div>
           </div>
@@ -178,7 +159,7 @@
           <div class="d-flex align-items-center custom-icon-wrap">
             <span class="custom-icon-inner mr-3"><span class="icon icon-university"></span></span>
             <div><h3 class="m-0">150 Universities Worldwide</h3></div>
-          </div>
+          </div> --}}
 
         </div>
       </div>
@@ -188,10 +169,11 @@
           <img src="{!! asset('home-asset/images/undraw_teacher.svg')!!}" alt="Image" class="img-fluid">
         </div>
         <div class="col-lg-4 ml-auto" data-aos="fade-up" data-aos-delay="200">
-          <h2 class="text-black mb-4">Education is life</h2>
-          <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem maxime nam porro possimus fugiat quo molestiae illo.</p>
+          <h2 class="text-black mb-4">Receive Completed Solution</h2>
+          <p class="mb-4">
+Our assignment help experts start writing the papers as soon as the payment is done. The writers work fast to complete the task within the deadline. You will receive your assignment in your registered account prior to the submission deadline.</p>
 
-          <div class="d-flex align-items-center custom-icon-wrap mb-3">
+          {{-- <div class="d-flex align-items-center custom-icon-wrap mb-3">
             <span class="custom-icon-inner mr-3"><span class="icon icon-graduation-cap"></span></span>
             <div><h3 class="m-0">22,931 Yearly Graduates</h3></div>
           </div>
@@ -199,7 +181,7 @@
           <div class="d-flex align-items-center custom-icon-wrap">
             <span class="custom-icon-inner mr-3"><span class="icon icon-university"></span></span>
             <div><h3 class="m-0">150 Universities Worldwide</h3></div>
-          </div>
+          </div> --}}
 
         </div>
       </div>
@@ -207,7 +189,7 @@
     </div>
   </div>
 
-  <div class="site-section" id="teachers-section">
+  {{-- <div class="site-section" id="teachers-section">
     <div class="container">
 
       <div class="row mb-5 justify-content-center">
@@ -384,6 +366,6 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
 
 @endsection

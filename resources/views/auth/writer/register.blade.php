@@ -12,7 +12,6 @@
                             {{-- <p data-aos="fade-up" data-aos-delay="100">4 Lessons / 12 Week &bullet; 2,193 students &bullet; <a href="#" class="text-white">6 comments</a></p> --}}
                           </div>
 
-
                         </div>
                       </div>
 
@@ -26,8 +25,8 @@
                       <div class="col-lg-12 ml-auto" data-aos="fade-up" data-aos-delay="500">
                           <form method="POST" action="{{ route('writer.register.submit') }}" class="form-box" aria-label="{{ __('Register') }}">
                               @csrf
-                              <center>  <h2 class="h2 text-black mb-6">Sign Up</h2></center>
-                                @include('backend.partials.messages')
+                              <center>  <h2 class="h2 text-black mb-6">Writer Sign Up</h2></center>
+                                @include('frontend.partials.messages')
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 

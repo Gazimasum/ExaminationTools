@@ -18,10 +18,10 @@
                 <li class="dropdown messages-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-envelope"></i>
-                        <span class="label label-success">4</span>
+                        <span class="label label-success">{{App\Models\Chat::newMessage()}}</span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="header">You have 4 messages</li>
+                        <li class="header">You have {{App\Models\Chat::newMessage()}} messages</li>
                         <li>
                             <!-- inner menu: contains the actual data -->
                             <ul class="menu">

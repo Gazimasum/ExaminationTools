@@ -5,6 +5,51 @@ body {
   font-weight: 300;
   font-size: 1.1rem; }
 
+/* Models */
+
+.modal-dialog{
+  max-width: 600px;
+  /* background-color:#7971ea; */
+}
+.modal-header{
+
+  text-align: center !important;
+  align-items: center;
+
+}
+.modal-title{
+  font-size: 30px;
+  text-align: center !important;
+
+}
+
+.student-login{
+  padding: 30px;
+  align-items: center;
+  background-color:#7971EA;
+}
+.writer-login{
+  padding: 30px;
+ background-color:#4630EB;
+}
+@media (min-width: 768px)
+{
+.student-login{
+
+  height: 320px;
+  border-radius: 10px 0 0 10px;
+
+}
+
+.writer-login{
+
+  height: 320px;
+  border-radius: 0 10px 10px 0;
+
+}
+}
+
+/* Models */
   /* sidebar */
   .sidebar {
     margin: 0;
@@ -405,7 +450,7 @@ h1, h2, h3, h4, h5,
     .site-navbar .site-navigation .site-menu > li {
       display: inline-block; }
       .site-navbar .site-navigation .site-menu > li > a {
-        padding: 5px 20px;
+        padding: 3px 10px;
         color: #fff;
         display: inline-block;
         text-decoration: none !important; }
@@ -502,7 +547,7 @@ h1, h2, h3, h4, h5,
           visibility: visible;
           opacity: 1; }
     .site-navbar .site-navigation .site-menu.site-menu-dark > li > a {
-      color: #000; }
+      color: #fff; }
 
 .site-mobile-menu {
   width: 300px;
@@ -676,7 +721,7 @@ h1, h2, h3, h4, h5,
     .sticky-wrapper.is-sticky .site-navbar .site-menu > li {
       display: inline-block; }
       .sticky-wrapper.is-sticky .site-navbar .site-menu > li > a {
-        padding: 5px 20px;
+        padding: 3px 10px;
         color: #000;
         display: inline-block;
         text-decoration: none !important; }
@@ -692,11 +737,14 @@ h1, h2, h3, h4, h5,
 .intro-section {
   position: relative; }
   .intro-section, .intro-section .container > .row {
-    height: 100vh;
+    height: 80vh;
     min-height: 900px; }
   .intro-section.single-cover, .intro-section.single-cover .container > .row {
-    height: 50vh;
+    height: 80vh;
     min-height: 400px; }
+  .intro-section.index-cover, .intro-section.index-cover .container > .row {
+    height: 80vh;
+    min-height: 500px; }
   .intro-section h1 {
     font-size: 2.5rem;
     font-weight: 700;
@@ -945,7 +993,7 @@ h1, h2, h3, h4, h5,
       background-color: #7971ea; }
 
 .footer-section {
-  padding: 7em 0;
+  padding: 2em 0;
   background-color: #fafafa; }
   .footer-section p {
     font-size: 1rem; }

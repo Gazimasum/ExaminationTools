@@ -12,7 +12,7 @@
                             <p data-aos="fade-up" data-aos-delay="100">4 Lessons / 12 Week &bullet; 2,193 students &bullet; <a href="#" class="text-white">6 comments</a></p>
                           </div>
 
-
+                            {{-- @include('frontend.partials.messages') --}}
                         </div>
                       </div>
 
@@ -21,16 +21,28 @@
                 </div>
               </div>
                 @include('frontend.partials.messages')
-                <div class="container">
+                <div class="container" style="margin-top:20px">
                   <div class="row">
                     <div class="col-md-12">
                       <div class="col-lg-12 ml-auto" data-aos="fade-up" data-aos-delay="500">
-
+                        <div class="row">
+                      @include('frontend.pages.writer.partials.sidebar')
+                          <div class="col-md-9">
+                          <h2>  {{$writer->name}}</h2>
+                          <h2>  {{$writer->name}}</h2>
+                          <h2>  {{$writer->name}}</h2>
+                          <h2>  {{$writer->name}}</h2>
+                          <h2>  {{$writer->name}}</h2>
+                          <h2>  {{$writer->name}}</h2>
+                          <h2>  {{$writer->name}}</h2>
+                          <h2>  {{$writer->name}}</h2>
+                          <h2>  {{$writer->name}}</h2>
+                          </div>
+                        </div>
                   </div>
                 </div>
               </div>
 
             </div>
-
 
 @endsection

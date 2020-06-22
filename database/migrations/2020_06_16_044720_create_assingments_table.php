@@ -23,6 +23,7 @@ class CreateAssingmentsTable extends Migration
             $table->unsignedInteger('paper_length_id')->nullable();
             $table->date('deadline_date');
             $table->text('assingment_details');
+            $table->rememberToken();
             $table->timestamps();
 
             $table->foreign('student_id')

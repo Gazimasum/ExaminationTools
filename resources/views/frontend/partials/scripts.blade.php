@@ -11,7 +11,12 @@
 <script src="{!! asset('home-asset/js/aos.js')!!}"></script>
 <script src="{!! asset('home-asset/js/jquery.fancybox.min.js')!!}"></script>
 <script src="{!! asset('home-asset/js/jquery.sticky.js')!!}"></script>
-
+<script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+{{-- <script src="{!! asset('admin-asset/js/plugins/datatables/jquery.dataTables.js')!!}" type="text/javascript"></script>
+<script src="{!! asset('admin-asset/js/plugins/datatables/dataTables.bootstrap.js')!!}" type="text/javascript"></script> --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+        {!! Toastr::message() !!}
 
 <script src="{!! asset('home-asset/js/main.js')!!}"></script>
 <script type="text/javascript">
@@ -22,4 +27,9 @@ $(".js-example-basic-multiple-limit").select2(
   maximumSelectionLength: 2
 });
 });
+</script>
+<script type="text/javascript">
+$(document).ready( function () {
+  $('#myTable').DataTable();
+} );
 </script>

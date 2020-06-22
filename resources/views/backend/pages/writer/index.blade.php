@@ -34,6 +34,7 @@
                                       <th>Subject</th>
                                       <th>Email Verified</th>
                                       <th>Status</th>
+                                      {{-- <th>Deal</th> --}}
                                       <th>Action</th>
                                   </tr>
                               </thead>
@@ -89,6 +90,7 @@
                                       </div>
 
                                         </td>
+                                        {{-- <td> <a href="#" class="btn btn-primary">Deal</a> </td> --}}
                                         <td>
 
                                           <a href="{!! route('admin.writer.edit',$w->id) !!}" class="btn btn-success">Edit</a>

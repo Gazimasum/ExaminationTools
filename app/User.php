@@ -5,11 +5,14 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Country;
+use App\Models\Order;
+use Cache;
 
 class User extends Authenticatable
 {
     use Notifiable;
-
+protected $table = 'users';
     /**
      * The attributes that are mass assignable.
      *
@@ -40,5 +43,18 @@ class User extends Authenticatable
     public static function totalStudent()
     {
       return User::count();
+    }
+
+    public function country(){
+      return $this->belongsTo(Country::class);
+    }
+
+    public function isOnline()
+    {
+       return Cache::has('user-is-online-' . $this->id);
+    }
+
+    public function order(){
+      return $this->hasMany(Order::class);
     }
 }

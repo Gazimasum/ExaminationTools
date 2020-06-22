@@ -32,7 +32,7 @@
                           <form method="POST" action="{{ route('student.assingment.request.post') }}" class="form-box" aria-label="{{ __('Register') }}" enctype="multipart/form-data">
                               @csrf
                               <div class="form-group row">
-                                  <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                                  <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Assingment Name') }}</label>
 
                                   <div class="col-md-6">
                                       <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus >
@@ -89,7 +89,7 @@
                               </div>
 
                               <div class="form-group row">
-                                  <label for="subject" class="col-md-4 col-form-label text-md-right">{{ __('Subject') }}</label>
+                                  <label for="subject" class="col-md-4 col-form-label text-md-right">{{ __('Assingment Subject') }}</label>
 
                                   <div class="col-md-6">
                                       {{-- <input id="subjects" type="text" class="form-control @error('subjects') is-invalid @enderror" name="subjects" value="{{ old('subjects') }}" required autocomplete="subjects" autofocus> --}}
@@ -108,7 +108,7 @@
                                   </div>
                               </div>
                               <div class="form-group row">
-                                  <label for="details" class="col-md-4 col-form-label text-md-right">{{ __('Details') }}</label>
+                                  <label for="details" class="col-md-4 col-form-label text-md-right">{{ __('Assingment Details') }}</label>
 
                                   <div class="col-md-6">
                                       <textarea id="details" type="text" class="form-control @error('details') is-invalid @enderror" name="details" value="{{ old('details') }}" required >

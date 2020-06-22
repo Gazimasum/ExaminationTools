@@ -13,9 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.pages.index');
-})->name('index');
+Route::get('/', 'Frontend\PagesController@index')->name('index');
+Route::get('/about', 'Frontend\PagesController@about')->name('about');
+Route::get('/service', 'Frontend\PagesController@service')->name('service');
+Route::get('/contact', 'Frontend\PagesController@contact')->name('contact');
+Route::post('/track/order', 'Frontend\PagesController@trackOrder')->name('track.order');
+
 
 Auth::routes();
 
@@ -32,26 +35,42 @@ Route::group(['prefix' => 'student'],function ()
 
   Route::group(['prefix' => 'assingment'],function ()
   {
+
     Route::get('/request', 'Frontend\Student\PagesController@assingmentView')->name('student.assingment.request.view');
     Route::post('/request', 'Frontend\Student\AssingmentController@store')->name('student.assingment.request.post');
+    Route::get('/{id}','Frontend\Student\AssingmentController@show')->name('student.assingment.view');
   });
+  Route::group(['prefix' => 'message'],function ()
+  {
+    Route::get('/','Frontend\Student\ChatController@messageview')->name('student.message.view');
+    Route::post('/message','Frontend\Student\ChatController@messagesend')->name('student.message.send');
+    });
 
 });
 
 //Writter Route
   Route::group(['prefix' => 'writer'],function(){
-  Route::get('/', 'Frontend\writer\PagesController@index')->name('writer.index');
-  Route::get('/dashboard', 'Frontend\writer\PagesController@dashboard')->name('writer.dashboard');
-  Route::get('/login', 'Auth\writer\LoginController@showLoginForm')->name('writer.login');
-  Route::get('/register', 'Auth\writer\RegisterController@showRegistrationForm')->name('writer.register');
-  Route::post('/login/submit', 'Auth\writer\LoginController@login')->name('writer.login.submit');
-  Route::post('/register/submit', 'Auth\writer\RegisterController@register')->name('writer.register.submit');
-  Route::post('/logout/submit', 'Auth\writer\LoginController@logout')->name('writer.logout');
-  Route::get('/token/{token}', 'Frontend\writer\VerficationController@verify')->name('writer.verification');
+  Route::get('/', 'Frontend\Writer\PagesController@index')->name('writer.index');
+  Route::get('/dashboard', 'Frontend\Writer\PagesController@dashboard')->name('writer.dashboard');
+  Route::get('/login', 'Auth\Writer\LoginController@showLoginForm')->name('writer.login');
+  Route::get('/register', 'Auth\Writer\RegisterController@showRegistrationForm')->name('writer.register');
+  Route::post('/login/submit', 'Auth\Writer\LoginController@login')->name('writer.login.submit');
+  Route::post('/register/submit', 'Auth\Writer\RegisterController@register')->name('writer.register.submit');
+  Route::post('/logout/submit', 'Auth\Writer\LoginController@logout')->name('writer.logout');
+  Route::get('/token/{token}', 'Frontend\Writer\VerficationController@verify')->name('writer.verification');
 
 
+  Route::group(['prefix' => 'assingment'],function ()
+  {
+    // Route::get('/request', 'Frontend\Student\PagesController@assingmentView')->name('student.assingment.request.view');
+    // Route::post('/request', 'Frontend\Student\AssingmentController@store')->name('student.assingment.request.post');
+  });
 
-
+  Route::group(['prefix' => 'message'],function ()
+  {
+    Route::get('/','Frontend\Writer\ChatController@messageview')->name('writer.message.view');
+    Route::post('/message','Frontend\Writer\ChatController@messagesend')->name('writer.message.send');
+    });
 });
 
 //Admin Route
@@ -69,26 +88,54 @@ Route::group(['prefix' => 'student'],function ()
     Route::get('/edit/{id}','Backend\WriterController@edit')->name('admin.writer.edit');
     Route::post('/edit/{id}','Backend\WriterController@update')->name('admin.writer.update');
     Route::post('/delete/{id}','Backend\WriterController@delete')->name('admin.writer.delete');
+// message
+    Route::get('/request','Backend\WriterController@request')->name('admin.writer.request');
+    Route::get('/message','Backend\WriterController@message')->name('admin.writer.message');
+    Route::get('/message/{id}','Backend\WriterController@messageview')->name('admin.writer.messageview');
+    Route::post('/message/{id}','Backend\WriterController@messagesend')->name('admin.writer.message.send');
+    Route::get('/updateInbox','Backend\WriterController@updateInbox')->name('admin.message.updateInbox');
 
-      Route::get('/request','Backend\WriterController@request')->name('admin.writer.request');
-      Route::get('/message','Backend\WriterController@message')->name('admin.writer.message');
-      Route::get('/message/{id}','Backend\WriterController@messageview')->name('admin.writer.messageview');
+    // Deal
 
-
+    Route::get('/deal/{id}','Backend\DealController@index')->name('admin.writer.deal');
+    Route::post('/deal/done','Backend\DealController@store')->name('admin.writer.deal.done');
 });
 
 
 
-      // Chat Routes
-Route::group(['prefix' => 'chat'],function(){
-  Route::get('/','Backend\PagesController@chat')->name('chat');
-  Route::get('/message/{id}','Backend\ChatController@messageview')->name('admin.message.view');
-  Route::get('/updateInbox','Backend\ChatController@updateInbox')->name('admin.message.updateInbox');
-});
+
   //Student Route
+  Route::group(['prefix' => 'student'],function(){
+    Route::get('/','Backend\StudentController@index')->name('admin.student.index');
+    Route::post('/status/{id}','Backend\StudentController@status')->name('admin.student.status');
+    Route::get('/edit/{id}','Backend\StudentController@edit')->name('admin.student.edit');
+    Route::post('/edit/{id}','Backend\StudentController@update')->name('admin.student.update');
+    Route::post('/delete/{id}','Backend\StudentController@delete')->name('admin.student.delete');
 
+    Route::get('/message','Backend\StudentController@message')->name('admin.student.message');
+    Route::get('/message/{id}','Backend\StudentController@messageview')->name('admin.student.messageview');
+    Route::post('/message/{id}','Backend\StudentController@messagesend')->name('admin.student.message.send');
+    Route::get('/updateInbox','Backend\StudentController@updateInbox')->name('admin.message.updateInbox');
+
+});
   //Assingment Route
+  Route::group(['prefix' => 'assingment'],function(){
+    Route::get('/','Backend\AssingmentController@index')->name('admin.assingment.index');
+    Route::get('/view/{id}','Backend\AssingmentController@view')->name('admin.assingment.view');
 
+    Route::get('/edit/{id}','Backend\AssingmentController@edit')->name('admin.assingment.edit');
+    Route::post('/edit/{id}','Backend\AssingmentController@update')->name('admin.assingment.update');
+    Route::post('/delete/{id}','Backend\AssingmentController@delete')->name('admin.assingment.delete');
+  });
+  //Order Route
+  Route::group(['prefix' => 'order'],function(){
+    Route::get('/','Backend\OrderController@index')->name('admin.order.index');
+    Route::get('/view/{id}','Backend\OrderController@view')->name('admin.order.view');
+
+    Route::get('/edit/{id}','Backend\OrderController@edit')->name('admin.order.edit');
+    Route::post('/edit/{id}','Backend\OrderController@update')->name('admin.order.update');
+    Route::post('/delete/{id}','Backend\OrderController@delete')->name('admin.order.delete');
+  });
 //Country Routes
 Route::group(['prefix' => 'country'],function(){
   Route::get('/','Backend\CountryController@index')->name('admin.country.index');
@@ -126,6 +173,12 @@ Route::group(['prefix' => 'assingmenttype'],function(){
   Route::post('/delete/{id}','Backend\AssingmentTypeController@delete')->name('admin.assingmenttype.delete');
 });
 
+
+
+// API routes
+Route::get('/get-order/{id}', function($id){
+  return json_encode(App\Models\Order::where('assingment_id', $id)->first());
+});
 });
 
 
