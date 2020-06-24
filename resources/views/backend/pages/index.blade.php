@@ -25,16 +25,16 @@
                   <div class="small-box bg-aqua">
                       <div class="inner">
                           <h3>
-                              150
+                              {{App\Models\Order::where('status',0)->count()}}
                           </h3>
                           <p>
-                              New Orders
+                              New Assingment
                           </p>
                       </div>
                       <div class="icon">
-                          <i class="ion ion-bag"></i>
+                          <i class="fa fa-file"></i>
                       </div>
-                      <a href="#" class="small-box-footer">
+                      <a href="{!! route('admin.assingment.index') !!}" class="small-box-footer">
                           More info <i class="fa fa-arrow-circle-right"></i>
                       </a>
                   </div>
@@ -44,16 +44,16 @@
                   <div class="small-box bg-green">
                       <div class="inner">
                           <h3>
-                              53<sup style="font-size: 20px">%</sup>
+                              {{App\Models\Freelancer::writerReq()}}
                           </h3>
                           <p>
-                              Bounce Rate
+                              Writer Request
                           </p>
                       </div>
                       <div class="icon">
                           <i class="ion ion-stats-bars"></i>
                       </div>
-                      <a href="#" class="small-box-footer">
+                      <a href="{!! route('admin.writer.request') !!}" class="small-box-footer">
                           More info <i class="fa fa-arrow-circle-right"></i>
                       </a>
                   </div>
@@ -82,16 +82,16 @@
                   <div class="small-box bg-red">
                       <div class="inner">
                           <h3>
-                              65
+                                {{App\Models\Freelancer::totalWriter()}}
                           </h3>
                           <p>
-                              Unique Visitors
+                               Writer Registrations
                           </p>
                       </div>
                       <div class="icon">
                           <i class="ion ion-pie-graph"></i>
                       </div>
-                      <a href="#" class="small-box-footer">
+                      <a href="{!! route('admin.writer.index') !!}" class="small-box-footer">
                           More info <i class="fa fa-arrow-circle-right"></i>
                       </a>
                   </div>

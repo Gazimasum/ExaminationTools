@@ -2,8 +2,8 @@
 
 @section('content')
   @php
-    $assingment_no = App\Models\Order::where('client_id',$student->id)->count();
-    $assingment = App\Models\Order::where('client_id',$student->id)->get();
+    $assingment_no = App\Models\Order::where('student_id',$student->id)->count();
+    $assingment = App\Models\Order::where('student_id',$student->id)->get();
   @endphp
   <div class="intro-section single-cover" id="home-section">
                 <div class="slide-1 " style="background-image: url({!! asset('home-asset/images/img_2.jpg') !!});" data-stellar-background-ratio="0.5">
@@ -44,10 +44,8 @@
                             <tr>
                               <th>No</th>
                               <th>Assingment Name</th>
-                              <th>Assingment Price</th>
                               <th>Assingment Status</th>
                               <th>Deadline Date</th>
-                              <th>Payment</th>
                             </tr>
                           </thead>
                         <tbody>
@@ -57,7 +55,6 @@
                               <td>{{$key+1}}</td>
                               <td>  <a href="{!! route('student.assingment.view',$a->assingments_id) !!}">{{$a->assingment->assingment_name}}</a></td>
 
-                              <td>{{$a->price}}</td>
                               <td>@if ($a->status==0)
                                 Unseen
                               @elseif ($a->status==1)
@@ -67,14 +64,7 @@
                                 @else
                                   Complete
                               @endif</td>
-                              <td>{{$a->assingment->deadline_date}}</td>
-                              <td>
-                                @if ($a->is_paid==0)
-                                  Not Paid
-                                  @else
-                                    Paid
-                                @endif
-                              </td>
+                              <td>{{$a->assingment->deadline_date}}</td>                            
 
                             </tr>
                           @endforeach

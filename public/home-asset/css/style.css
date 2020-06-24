@@ -36,18 +36,49 @@ body {
 {
 .student-login{
 
-  height: 320px;
+  height: 235px;
+  width: 354px;
   border-radius: 10px 0 0 10px;
 
 }
 
 .writer-login{
 
-  height: 320px;
+  height: 235px;
+  width: 354px;
   border-radius: 0 10px 10px 0;
 
 }
 }
+@media (min-width: 768px){
+#exampleModalCenter .modal-dialog .modal-title {
+    font-size: 37px;
+    width: 447px;
+    position: relative;
+    top: 80px;
+}
+}
+#exampleModalCenter .modal-dialog .modal-title {
+    margin-bottom: -25px;
+    z-index: 999999;
+    position: relative;
+    font-weight: 900;
+    text-align: center;
+    color: #7971ea;
+    font-size: 22px;
+    background: #fff;
+    margin: auto;
+    width: 280px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    box-shadow: 0 4px 0 0 rgba(0,0,0,0.1);
+}
+
+.modal-title {
+    margin: 0;
+    line-height: 1.42857;
+}
+
 
 /* Models */
   /* sidebar */

@@ -131,7 +131,7 @@
                                   <label for="images" class="col-md-4 col-form-label text-md-right">{{ __('Image') }}</label>
 
                                   <div class="col-md-6">
-                                      <input id="fileupload" type="file" multiple class="form-control @error('images') is-invalid @enderror" name="images[]" value="{{ old('images') }}" required autocomplete="images"  accept="image/*">
+                                      <input id="fileupload" type="file" multiple class="form-control @error('images') is-invalid @enderror" name="images[]" value="{{ old('images') }}"  autocomplete="images"  accept="image/*">
 
                                       @error('images')
                                           <span class="invalid-feedback" role="alert">
@@ -144,7 +144,7 @@
                                   <label for="files" class="col-md-4 col-form-label text-md-right">{{ __('File') }}</label>
 
                                   <div class="col-md-6">
-                                      <input id="files" type="file" multiple class="form-control @error('files') is-invalid @enderror" name="files[]" value="{{ old('files') }}" required autocomplete="files" accept=".pdf,.doc,.docs,.txt" >
+                                      <input id="files" type="file" multiple class="form-control @error('files') is-invalid @enderror" name="files[]" value="{{ old('files') }}"  autocomplete="files" accept=".pdf,.doc,.docs,.txt" >
 
                                       @error('files')
                                           <span class="invalid-feedback" role="alert">

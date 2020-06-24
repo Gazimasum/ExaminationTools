@@ -12,26 +12,23 @@ class Order extends Model
 {
 protected $table = 'orders';
     public $fillable = [
-        'client_id',
+        'student_id',
         'order_trace_id',
         'assingments_id',
-        'ip_address',
-        'price',
-        'is_paid',
+
         'status',
-        'payment_date',
-        'transection_id',
+
       ];
 
-      public function user()
+      public function student()
       {
-        return $this->belongsTo('App\User','client_id');
-        // return user::where('id',$this->client_id)->first()->name;
+        return $this->belongsTo('App\User','student_id');
+        // return user::where('id',$this->student_id)->first()->name;
       }
       public function writer()
       {
-        return $this->belongsTo('App\Models\Freelancer','client_id');
-        // return user::where('id',$this->client_id)->first()->name;
+        return $this->belongsTo('App\Models\Freelancer','student_id');
+        // return user::where('id',$this->student_id)->first()->name;
       }
       public function assingment()
       {

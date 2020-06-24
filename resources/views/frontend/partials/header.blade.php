@@ -1,12 +1,27 @@
 
 <style media="screen">
-  .nav-link{
-    color: #000;
+.nav-item  .nav-link{
+    color: #000 !important;
     font-weight: bold;
   }
+ .nav-link:hover{
+    color: #fff !important;
+  }
+  a.nav-link.active{
+    color: #fff !important;
+    border-bottom: 3px solid #fff !important;
+  }
+
+.navbar-light{
+  background-color: #7971ea !important;
+}
+.navbar-light .navbar-toggler {
+  color: rgb(0, 0, 0);
+  border-color: rgb(0, 0, 0);
+}
 </style>
-  <nav class="navbar fixed-top navbar-expand-md navbar-light bg-light" style="background-color: #e3f2fd;">
-      <a class="navbar-brand" href="#" style="font-size:30px;font-weight:bold;">ExaminationTools</a>
+  <nav class="navbar fixed-top navbar-expand-md navbar-light bg-light" style="">
+      <a class="navbar-brand" href="#" style="font-size:30px;font-weight:bold;color:#fff">ExaminationTools</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
           <span class="navbar-toggler-icon"></span>
       </button>
@@ -15,21 +30,21 @@
 
           </ul>
           <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="{!! route('index') !!}">Home</a>
+            <li class="nav-item ">
+                <a class="nav-link {{Route::is('index') ? 'active' : '' }}" href="{!! route('index') !!}">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{!! route('service') !!}">Service</a>
+                <a class="nav-link  {{Route::is('service') ? 'active' : '' }}" href="{!! route('service') !!}">Service</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link  {{Route::is('about') ? 'active' : '' }}" href="{!! route('about') !!}">About</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{!! route('about') !!}">About</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{!! route('contact') !!}">Contact</a>
+                <a class="nav-link  {{Route::is('contact') ? 'active' : '' }}" href="{!! route('contact') !!}">Contact</a>
             </li>
             @guest
-              <li class="nav-item" style="padding-left:20px;padding-right:20px">  <a  class="nav-link btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-               <span style="color:#fff;">Choose Your Portal</span>
+              <li class="nav-item" style="padding-left:20px;padding-right:20px">  <a  class="nav-link btn btn-warning" data-toggle="modal" data-target="#exampleModalCenter">
+               <span style="color:#fff; font-weight:bold;">Choose Your Portal</span>
              </a></li>
            @else
              @if (Auth::guard('web')->check())

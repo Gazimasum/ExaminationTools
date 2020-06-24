@@ -34,4 +34,10 @@ class PagesController extends Controller
       return view('frontend.pages.student.assingmentpost',compact('assingmenttype','subject','education_level'));
   }
 
+  public function order()
+  {
+    $student = Auth::user();
+    return view('frontend.pages.student.order', compact('student'));
+  }
+
 }

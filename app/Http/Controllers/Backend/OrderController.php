@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Deal;
 use App\Models\Assingment;
+use App\Models\DealWithWriter;
 
 
 class OrderController extends Controller
@@ -25,13 +26,14 @@ class OrderController extends Controller
   {
     // $assingment = Assingment::where('id',$id)->first();
     $order = Order::find($id)->first();
+    $deal = DealWithWriter::where('order_id',$order->id)->first();
     $assingment = Assingment::where('id',$order->assingments_id)->first();
 
     if ($order->status==0) {
       $order->status = 1;
     }
     $order->update();
-    $deal = Deal::where('order_id',$order->id)->first();
+
     if ($deal) {
       $data=$deal;
         return view('backend.pages.order.view',compact('assingment','order','data'));

@@ -28,7 +28,7 @@ class ResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/writter';
+    protected $redirectTo = '/writer';
 
     /**
      * Create a new controller instance.
@@ -37,7 +37,7 @@ class ResetPasswordController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest:writter');
+        $this->middleware('guest:writer');
     }
 
 
@@ -52,7 +52,7 @@ class ResetPasswordController extends Controller
          */
         public function showResetForm(Request $request, $token = null)
         {
-            return view('auth.admin.passwords.reset')->with(
+            return view('auth.writer.passwords.reset')->with(
                 ['token' => $token, 'email' => $request->email]
             );
         }
@@ -64,6 +64,6 @@ class ResetPasswordController extends Controller
          */
         public function broker()
         {
-            return Password::broker('admins');
+            return Password::broker('writers');
         }
 }

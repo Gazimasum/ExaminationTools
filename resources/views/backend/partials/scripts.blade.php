@@ -3,10 +3,19 @@ $(document).ready( function () {
 $('#myTable').DataTable();
 } );
 </script>
+<script type="text/javascript">
+    $(function() {
+        // Replace the <textarea id="editor1"> with a CKEditor
+        // instance, using default configuration.
+        CKEDITOR.replace('editor1');
+        //bootstrap WYSIHTML5 - text editor
+        $(".textarea").wysihtml5();
+    });
+</script>
         <!-- jQuery 2.0.2 -->
-
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
         <!-- jQuery UI 1.10.3 -->
-
+        <script src="{!! asset('admin-asset/js/jquery-ui-1.10.3.min.js')!!}" type="text/javascript"></script>
         <!-- Bootstrap -->
         <script src="{!! asset('admin-asset/js/bootstrap.min.js')!!}" type="text/javascript"></script>
         <!-- Morris.js charts -->
@@ -39,4 +48,8 @@ $('#myTable').DataTable();
 
         <script src="{!! asset('admin-asset/js/plugins/datatables/jquery.dataTables.js')!!}" type="text/javascript"></script>
         <script src="{!! asset('admin-asset/js/plugins/datatables/dataTables.bootstrap.js')!!}" type="text/javascript"></script>
-  
+
+        <!-- CK Editor -->
+        <script src="{!! asset('admin-asset/js/plugins/ckeditor/ckeditor.js')!!}" type="text/javascript"></script>
+        <!-- Bootstrap WYSIHTML5 -->
+        <script src="{!! asset('admin-asset/js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')!!}" type="text/javascript"></script>

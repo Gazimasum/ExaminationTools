@@ -17,6 +17,7 @@ Route::get('/', 'Frontend\PagesController@index')->name('index');
 Route::get('/about', 'Frontend\PagesController@about')->name('about');
 Route::get('/service', 'Frontend\PagesController@service')->name('service');
 Route::get('/contact', 'Frontend\PagesController@contact')->name('contact');
+Route::post('/contact', 'Frontend\ContactMessageController@store')->name('contact.message');
 Route::post('/track/order', 'Frontend\PagesController@trackOrder')->name('track.order');
 
 
@@ -33,9 +34,10 @@ Route::group(['prefix' => 'student'],function ()
   Route::post('/register/submit','Auth\RegisterController@register')->name('student.register');
   Route::get('/token/{token}', 'Frontend\Student\VerficationController@verify')->name('student.verification');
 
+  Route::get('order','Frontend\Student\PagesController@order')->name('student.order');
+  
   Route::group(['prefix' => 'assingment'],function ()
   {
-
     Route::get('/request', 'Frontend\Student\PagesController@assingmentView')->name('student.assingment.request.view');
     Route::post('/request', 'Frontend\Student\AssingmentController@store')->name('student.assingment.request.post');
     Route::get('/{id}','Frontend\Student\AssingmentController@show')->name('student.assingment.view');
@@ -45,6 +47,7 @@ Route::group(['prefix' => 'student'],function ()
     Route::get('/','Frontend\Student\ChatController@messageview')->name('student.message.view');
     Route::post('/message','Frontend\Student\ChatController@messagesend')->name('student.message.send');
     });
+
 
 });
 
@@ -58,6 +61,12 @@ Route::group(['prefix' => 'student'],function ()
   Route::post('/register/submit', 'Auth\Writer\RegisterController@register')->name('writer.register.submit');
   Route::post('/logout/submit', 'Auth\Writer\LoginController@logout')->name('writer.logout');
   Route::get('/token/{token}', 'Frontend\Writer\VerficationController@verify')->name('writer.verification');
+
+
+  Route::post('password/email','Auth\Writer\ForgotPasswordController@sendResetLinkEmail')->name('writer.password.email');
+  Route::get('password/reset','Auth\Writer\ForgotPasswordController@showLinkRequestForm')->name('writer.password.request');
+  Route::post('password/reset','Auth\Writer\ResetPasswordController@reset')->name('writer.password.update');
+  Route::get('password/reset/{token}','Auth\Writer\ResetPasswordController@showResetForm')->name('writer.password.reset');
 
 
   Route::group(['prefix' => 'assingment'],function ()
@@ -81,6 +90,16 @@ Route::group(['prefix' => 'student'],function ()
   Route::post('/logout/submit', 'Auth\Admin\LoginController@logout')->name('admin.logout');
   Route::get('/token/{token}', 'Backend\VerficationController@verify')->name('admin.verification');
 
+  // Password Email Send
+    Route::get('/password/reset', 'Auth\Admin\ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
+    Route::post('/password/resetPost', 'Auth\Admin\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
+
+    // Password Reset
+    Route::get('/password/reset/{token}', 'Auth\Admin\ResetPasswordController@showResetForm')->name('admin.password.reset');
+    Route::post('/password/reset', 'Auth\Admin\ResetPasswordController@reset')->name('admin.password.reset.post');
+
+
+
   //Writer Route
   Route::group(['prefix' => 'writer'],function(){
     Route::get('/','Backend\WriterController@index')->name('admin.writer.index');
@@ -96,9 +115,13 @@ Route::group(['prefix' => 'student'],function ()
     Route::get('/updateInbox','Backend\WriterController@updateInbox')->name('admin.message.updateInbox');
 
     // Deal
+    Route::get('deal','Backend\DealWithWriterController@index')->name('admin.writer.deal.index');
+    Route::get('deal/all','Backend\DealWithWriterController@all')->name('admin.writer.deal.all');
+    Route::get('/deal/{id}','Backend\DealWithWriterController@deal')->name('admin.writer.deal');
+    Route::post('/deal/done','Backend\DealWithWriterController@store')->name('admin.writer.deal.done');
 
-    Route::get('/deal/{id}','Backend\DealController@index')->name('admin.writer.deal');
-    Route::post('/deal/done','Backend\DealController@store')->name('admin.writer.deal.done');
+    Route::get('deal/inovice/{id}','Backend\DealWithWriterController@inovice')->name('admin.writer.deal.inovice');
+
 });
 
 
@@ -112,11 +135,19 @@ Route::group(['prefix' => 'student'],function ()
     Route::post('/edit/{id}','Backend\StudentController@update')->name('admin.student.update');
     Route::post('/delete/{id}','Backend\StudentController@delete')->name('admin.student.delete');
 
+    // message
     Route::get('/message','Backend\StudentController@message')->name('admin.student.message');
     Route::get('/message/{id}','Backend\StudentController@messageview')->name('admin.student.messageview');
     Route::post('/message/{id}','Backend\StudentController@messagesend')->name('admin.student.message.send');
     Route::get('/updateInbox','Backend\StudentController@updateInbox')->name('admin.message.updateInbox');
 
+    // deal DealWithStudent
+    Route::get('deal','Backend\DealWithStudentController@index')->name('admin.student.deal.index');
+    Route::get('deal/all','Backend\DealWithStudentController@all')->name('admin.student.deal.all');
+    Route::get('/deal/{id}/{o_id}','Backend\DealWithStudentController@deal')->name('admin.student.deal');
+    Route::post('/deal/done','Backend\DealWithStudentController@store')->name('admin.student.deal.done');
+
+    Route::get('/deal/inovice/{id}','Backend\DealWithStudentController@inovice')->name('admin.student.deal.inovice');
 });
   //Assingment Route
   Route::group(['prefix' => 'assingment'],function(){
@@ -136,6 +167,25 @@ Route::group(['prefix' => 'student'],function ()
     Route::post('/edit/{id}','Backend\OrderController@update')->name('admin.order.update');
     Route::post('/delete/{id}','Backend\OrderController@delete')->name('admin.order.delete');
   });
+
+// Advertising
+
+Route::group(['prefix'=>'advertising'],function()
+{
+  Route::get('/', 'Backend\AdvertisingController@index')->name('admin.advertising.index');
+  Route::get('/edit/{id}', 'Backend\AdvertisingController@edit')->name('admin.advertising.edit');
+  Route::post('/edit/{id}', 'Backend\AdvertisingController@update')->name('admin.advertising.update');
+});
+
+  // pages Routes
+  Route::group(['prefix' => 'pages'],function(){
+    Route::get('/', 'Backend\PagesController@pagesContent')->name('admin.pages.index');
+    Route::get('/{id}', 'Backend\PagesController@pagesContentShow')->name('admin.pages.show');
+    Route::post('/{id}', 'Backend\PagesController@pageupdate')->name('admin.pages.update');
+
+  });
+
+
 //Country Routes
 Route::group(['prefix' => 'country'],function(){
   Route::get('/','Backend\CountryController@index')->name('admin.country.index');

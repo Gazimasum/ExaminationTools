@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
+use App\Notifications\WriterPasswordResetNotification;
 use App\Models\EducationLevel;;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Cache;
@@ -21,6 +22,11 @@ class Freelancer extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function sendPasswordResetNotification($token)
+    {
+      $this->notify(new WriterPasswordResetNotification($token));
+    }
 
     public function country(){
       return $this->belongsTo(Country::class);
@@ -40,9 +46,13 @@ class Freelancer extends Authenticatable
     }
 
 
+    public static function writerReq()
+    {
+      return Freelancer::where('status',0)->count();
+    }
     public static function totalWriter()
     {
-      return Freelancer::count();
+      return Freelancer::where('status',1)->count();
     }
     public function isOnline()
     {

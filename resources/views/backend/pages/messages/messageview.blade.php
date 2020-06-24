@@ -42,52 +42,37 @@
               <!-- row -->
               <div class="row">
 
-                          <!-- timeline time label -->
-                          {{-- <li class="time-label">
-                              <span class="bg-red">
-                                  <script>document.write(new Date().getFullYear()/new Date().getDate());</script>
-                              </span>
-                          </li> --}}
-                          <!-- /.timeline-label -->
-                          <!-- timeline item -->
                       @if ($data!=null)
                         <div class="col-md-6" style="overflow:scroll;max-height:400px;">
                             <!-- The time line -->
                             <ul class="timeline">
                         @foreach($data as $msg)
-                            {{-- <input type="hidden" value="{{$msg->id}}" id="mId{{$msg->id}}"> --}}
-                            @php
-                            if ($msg->is_send_by==Auth::id()) {
-                              $sender = Auth::user()->name;
 
-                            }else {
-                              $sender = DB::table('freelancers')->where('id',$msg->is_send_by)->first()->name ;
-                            }
-
-                            @endphp
                       <li>
                           <i class="fa fa-envelope bg-blue"></i>
                           <div class="timeline-item">
-
-                              {{-- <h3 class="timeline-header"><a href="#" data-toggle="collapse"
-                              data-target="#d{{$msg->id}}">Support Team</a> sent you and email</h3> --}}
-
-
                                <div class="timeline-body"
                                style="background:#ccc; font-weight:bold;
                                 border:1px solid #efefef" id="msg{{$msg->id}}">
 
                                {{-- <div class="timeline-body"> --}}
+                               @if ($msg->is_send_by==Auth::id())
+                                 <p style="color:#3C8DBC">Admin</p>
+                                 @else
+                                  <p style="color:#3C8DBC">Student</p>
+                               @endif
 
-                                <p style="color:#3C8DBC">{{$sender}}</p>
                                 <br>
                                 {{$msg->message}}<br>
                                 <p style="align:right;"><span class="time"><i class="fa fa-clock-o"></i> {{ date('d, F, Y', strtotime($msg->created_at))}}</span></p>
                               </div>
                             @if ($msg->reply!=null)
-                              <div class='timeline-footer'>
-                                  {{-- <a class="btn btn-primary btn-xs">Read more</a>
-                                  <a class="btn btn-danger btn-xs">Delete</a> --}}
+                              <div class='timeline-footer'>                                
+                                  @if ($msg->is_send_by==Auth::id())
+                                    <p style="color:#3C8DBC">Student</p>
+                                    @else
+                                     <p style="color:#3C8DBC">Admin</p>
+                                  @endif
                                   {{$msg->reply}}<br>
                                 <p>  <span class="time"><i class="fa fa-clock-o"></i> {{ date('d, F, Y', strtotime($msg->updated_at))}}</span></p>
                               </div>
@@ -122,10 +107,11 @@
                                 </div>
                                 <div class="box-footer">
                                     <button type="submit" class="btn btn-primary">Send</button>
+                                  @if (Route::is('admin.writer.messageview'))
                                     @if (App\Models\Order::where('status',1)->first())
                                         <a href="{!! route('admin.writer.deal',$id) !!}"class="btn btn-warning">Deal</a>
                                     @endif
-
+                                    @endif
                                 </div>
                             </form>
                           </div>

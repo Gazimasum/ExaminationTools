@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
+use App\Models\Page;
 
 use Illuminate\Support\Facades\DB;
 
@@ -32,5 +33,24 @@ class PagesController extends Controller
     function jsonResponse(){
         $user = DB::table('chats')->get();
         return response()->json($user);
+    }
+
+    public function pagesContent()
+    {
+      $pages = Page::get();
+      return view('backend.pages.contentpage.index', compact('pages'));
+    }
+    public function pagesContentShow($id)
+    {
+      $page = Page::find($id)->first();
+      return view('backend.pages.contentpage.edit', compact('page'));
+    }
+    public function pageupdate(Request $r,$id)
+    {
+      $page = Page::find($id)->first();
+      $page->content = $r->content;
+      $page->update();
+
+      return view('backend.pages.contentpage.edit', compact('page'));
     }
 }

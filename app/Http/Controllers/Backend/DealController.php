@@ -58,6 +58,8 @@ class DealController extends Controller
 
         $order->update();
         $deal->save();
+        // Notifications
+        
         session()->flash('success', 'Deal Done successfully');
         return back();
 

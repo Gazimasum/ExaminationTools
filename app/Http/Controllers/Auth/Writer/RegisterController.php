@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth\Writer;
 
-use App\Models\Freelancer;
+
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
@@ -10,11 +10,15 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Str;
+
+use App\Models\Freelancer;
 use App\Models\Country;
 use App\Models\EducationLevel;
 use App\Models\Subject;
+use App\Models\Admin;
 
 use App\Notifications\WriterVerification;
+use App\Notifications\WriterRequest;
 
 class RegisterController extends Controller
 {
@@ -113,6 +117,10 @@ class RegisterController extends Controller
     ]);
     $writer->notify(new WriterVerification($writer));
 
+    $admin = Admin::get();
+    foreach ($admin as $a) {
+      $a->notify(new WriterRequest);
+    }
    session()->flash('success', 'A confirmation email has sent to you.. Please check and confirm your email');
    return redirect('/writer/register');
   }

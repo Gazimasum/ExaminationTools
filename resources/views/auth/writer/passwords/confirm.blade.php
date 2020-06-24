@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('frontend.layouts.master')
 
 @section('content')
-<div class="container">
+<div class="container" style="margin-top:120px;">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -10,7 +10,7 @@
                 <div class="card-body">
                     {{ __('Please confirm your password before continuing.') }}
 
-                    <form method="POST" action="{{ route('password.confirm') }}">
+                    <form method="POST" action="{{ route('writer.password.confirm') }}">
                         @csrf
 
                         <div class="form-group row">

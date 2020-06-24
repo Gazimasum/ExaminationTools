@@ -20,12 +20,20 @@ class ChatController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function messageview($id)
+    public function studentmessageview($id)
     {
 
       $data = Chat::where('user_id',$id)->get();
 
-        return view('backend.pages.messages.messageview',compact('data'));
+        return view('backend.pages.messages.studentmessageview',compact('data'));
+    }
+
+    public function writermessageview($id)
+    {
+
+      $data = Chat::where('writer_id',$id)->get();
+
+        return view('backend.pages.messages.writermessageview',compact('data'));
     }
 
     /**

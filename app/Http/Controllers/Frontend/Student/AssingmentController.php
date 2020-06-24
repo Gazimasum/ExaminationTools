@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Frontend\Student;
 use App\Http\Controllers\Controller;
+use App\Notifications\AssingmentRequest;
 use App\Models\Assingment;
+use App\Models\Admin;
 use App\Models\Order;
 use App\Models\AssingmentImage;
 use App\Models\AssingmentFile;
@@ -105,10 +107,16 @@ class AssingmentController extends Controller
       $order = new Order();
       $str = chr(rand(65,90));
       $digit = rand(10,100);
-      $order->order_trace_id = '#'.$str.$digit.$a->id;
+      $order->order_track_id = '#'.$str.$digit.$a->id;
       $order->assingments_id = $a->id;
-      $order->client_id = $student->id;
+      $order->student_id = $student->id;
       $order->save();
+
+      $admin = Admin::get();
+      foreach ($admin as $a) {
+        $a->notify(new AssingmentRequest);
+      }
+      Toastr::success('Request Sent successfully', 'Title', ["positionClass" => "toast-top-right","closeButton"=> true,"progressBar"=> true,]);
       session()->flash('success', 'Request Sent successfully');
       return back();
 
@@ -125,7 +133,7 @@ class AssingmentController extends Controller
     {
         $assingment = Assingment::where('id',$id)->first();
         if ($assingment!=null) {
-          Toastr::success('Messages in here', 'Title', ["positionClass" => "toast-top-right","closeButton"=> true,"progressBar"=> true,]);
+          // Toastr::success('Messages in here', 'Title', ["positionClass" => "toast-top-right","closeButton"=> true,"progressBar"=> true,]);
          return view('frontend.pages.student.assingmentView',compact('assingment'));
         }
     }

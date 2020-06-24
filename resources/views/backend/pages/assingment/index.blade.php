@@ -41,7 +41,7 @@
                               <tbody>
                                 @foreach ($order as $a)
                                   <tr>
-                                      <td>{{$a->user->name}}</td>
+                                      <td>{{$a->student->name}}</td>
                                       <td>{{$a->assingment->assingment_name}}</td>
                                       <td>{{$a->assingmentSubject()}}</td>
                                       <td>{{$a->assingmentType()}}</td>

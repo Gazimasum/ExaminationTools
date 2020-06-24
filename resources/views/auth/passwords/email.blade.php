@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('frontend.layouts.master')
 
 @section('content')
-<div class="container">
+<div class="container" style="margin-top:120px;">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -14,9 +14,10 @@
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ route('password.email') }}">
+                    <form method="POST" class="box-form" action="{{ route('password.email') }}">
                         @csrf
 
+                        @include('frontend.partials.messages')
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 

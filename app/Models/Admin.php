@@ -3,9 +3,9 @@
 namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
+use App\Notifications\AdminPasswordResetNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-use App\Notifications\AdminPasswordResetNotification;
 
 
 class Admin extends Authenticatable
@@ -32,15 +32,15 @@ class Admin extends Authenticatable
         'password', 'remember_token',
     ];
 
-    // public function sendPasswordResetNotification($token)
-    // {
-    //   $this->notify(new AdminPasswordResetNotification($token));
-    // }
-    //
-    // public static function totalAdmin(){
-    //
-    //
-    //   $adminno=Admin::where('type','super Admin')->orwhere('type','Admin')->count();
-    //   return $adminno;
-    // }
+    public function sendPasswordResetNotification($token)
+    {
+      $this->notify(new AdminPasswordResetNotification($token));
+    }
+
+    public static function totalAdmin(){
+
+
+      $adminno=Admin::where('type','super Admin')->orwhere('type','Admin')->count();
+      return $adminno;
+    }
 }

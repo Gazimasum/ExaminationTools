@@ -61,11 +61,11 @@
 
                   </div><!-- /.col -->
                   <div class="col-sm-4 invoice-col">
-                      <b>Invoice {{$order->order_trace_id}}</b><br/>
+                      <b>Invoice {{$order->order_track_id}}</b><br/>
                       <br/>
                       <b>Order ID:</b> {{$order->id}}<br/>
                       <b>Deadline Date:</b>{{$assingment->deadline_date}}<br/>
-                      <b>Price:</b> {{$order->price}}
+                      {{-- <b>Price:</b> {{$order->price}} --}}
                   </div><!-- /.col -->
               </div><!-- /.row -->
 
@@ -134,8 +134,8 @@
               <div class="row no-print">
                   <div class="col-xs-12">
                       <button class="btn btn-default" onclick="window.print();"><i class="fa fa-print"></i> Print</button>
-                      <button class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment</button>
-                      <button class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Generate PDF</button>
+                      {{-- <button class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment</button> --}}
+                      {{-- <button class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Generate PDF</button> --}}
                   </div>
               </div>
           </section><!-- /.content -->

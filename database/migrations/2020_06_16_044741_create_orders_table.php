@@ -15,22 +15,19 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('order_trace_id');
+            $table->string('order_track_id');
             $table->bigInteger('assingments_id')->unsigned()->index();
-            $table->bigInteger('client_id')->unsigned()->index();
-            $table->decimal('price',12,2)->unsigned()->nullable();
+            $table->bigInteger('student_id')->unsigned()->index();
             $table->unsignedTinyInteger('status')->default(0)->comment('0=Unseen|1=Seen|2=Running|3=Complete');
-            $table->unsignedTinyInteger('is_paid')->default(0);
-            $table->string('transection_id')->nullable();
-            $table->date('payment_date')->nullable();
-            $table->string('ip_address')->nullable();
+            $table->unsignedTinyInteger('deal_std')->default(0)->comment('0=Not Done|1=Done');
+            $table->unsignedTinyInteger('deal_wrt')->default(0)->comment('0=Not Done|1=Done');
             $table->timestamps();
 
             $table->foreign('assingments_id')
             ->references('id')->on('assingments')
             ->onDelete('cascade');
 
-            $table->foreign('client_id')
+            $table->foreign('student_id')
             ->references('id')->on('users')
             ->onDelete('cascade');
         });
