@@ -40,8 +40,8 @@
                       Student Info
                       <address>
                           <strong>{{$assingment->user->name}}</strong><br>
-                        {{$assingment->user->country['name']}}<br>
-                          {{$assingment->user->city}}<br>
+                        {{$assingment->user->details->country['name']}}<br>
+                          {{$assingment->user->details->city}}<br>
                           Phone: {{$assingment->user->phone_no}}<br/>
                           Email: {{$assingment->user->email}}
                       </address>
@@ -57,11 +57,17 @@
                       </address> --}}
                   </div><!-- /.col -->
                   <div class="col-sm-4 invoice-col">
-                      <b>Invoice {{$order->order_trace_id}}</b><br/>
+                      <b>Invoice {{$order->order_track_id}}</b><br/>
                       <br/>
                       <b>Order ID:</b> {{$order->id}}<br/>
                       <b>Deadline Date:</b>{{$assingment->deadline_date}}<br/>
-                      <b>Price:</b> {{$order->price}}
+                      <b>Status:</b> @if ($order->status==1)
+                        Seen
+                      @elseif ($order->status==2)
+                        Running
+                        @else
+                          Complete
+                      @endif
                   </div><!-- /.col -->
               </div><!-- /.row -->
 
@@ -82,7 +88,7 @@
                               <tr>
                                   <td>{{$assingment->type->name}}</td>
                                   <td>{{$assingment->subject->name}}</td>
-                                  <td>455-981-221</td>
+                                  <td>{{$assingment->education_level->name}}</td>
                                   <td>{{$assingment->assingment_details}}</td>
 
                               </tr>

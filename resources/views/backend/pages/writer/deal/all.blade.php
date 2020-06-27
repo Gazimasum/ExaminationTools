@@ -36,7 +36,7 @@
                                       <th>Payment Date</th>
                                       {{-- <th>Inovice</th> --}}
 
-                                      {{-- <th>Action</th> --}}
+                                      <th>Action</th>
                                   </tr>
                               </thead>
                               <tbody>
@@ -54,7 +54,11 @@
                                         @endif</td>
                                         <td>{{$d->transection_id}}</td>
                                         <td>{{$d->payment_date}}</td>
-                                          {{-- <td> <a href="{!! route('admin.writer.deal',$d->student->id,$d->id) !!}" class="btn btn-success">Deal</a></td> --}}
+                                          <td> @if ($d->is_paid==0)
+                                            <a href="{!! route('admin.writer.deal.checkout',$d->id) !!}" class="btn btn-success">Checkout</a>
+                                          @else
+                                            <a href="{!! route('admin.writer.deal.paidinovice',$d->id) !!}">Inovice</a>
+                                          @endif</td>
                                           {{-- <td> <a href="{!! route('admin.writer.deal.inovice',$d->id) !!}">Inovice</a></td> --}}
                                     </tr>
                                   @endforeach
@@ -72,7 +76,7 @@
                                       <th>Paid</th>
                                       <th>Transection Id</th>
                                       <th>Payment Date</th>
-                                      {{-- <th>Inovice</th> --}}
+                                      <th>Action</th>
                                   </tr>
                               </tfoot>
                           </table>

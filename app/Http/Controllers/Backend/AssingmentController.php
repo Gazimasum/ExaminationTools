@@ -19,6 +19,11 @@ class AssingmentController extends Controller
     $order = Order::get();
     return view('backend.pages.assingment.index',compact('order'));
   }
+  public function complete()
+  {
+    $order = Order::where('status',3)->get();
+    return view('backend.pages.assingment.complete',compact('order'));
+  }
 
   public function view($id)
   {

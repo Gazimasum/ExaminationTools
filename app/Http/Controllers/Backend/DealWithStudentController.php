@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Notifications\DealNotification;
+use App\Notifications\PaidNotification;
 use App\Models\DealWithStudent;
 use App\User;
 use App\Models\Order;
@@ -31,6 +32,25 @@ class DealWithStudentController extends Controller
     {
         $deal = DealWithStudent::get();
           return view('backend.pages.student.deal.all',compact('deal'));
+
+    }
+    public function action($id)
+    {
+        $deal = DealWithStudent::find($id)->first();
+        $student = User::where('id',$deal->student_id)->first();
+        if($deal->is_paid==0)
+          {
+            $deal->is_paid=1;
+            $deal->update();
+            $pdf = PDF::loadview('backend.pages.student.deal.paidInovice', compact('deal'))->setPaper('a4');
+            $student->notify(new PaidNotification($pdf));
+            return back();
+          }
+          else {
+            $deal->is_paid=0;
+            $deal->update();
+            return back();
+          }
 
     }
 
@@ -69,7 +89,8 @@ class DealWithStudentController extends Controller
       $pdf = PDF::loadview('backend.pages.student.deal.inovice', compact('deal'))->setPaper('a4');
       $student->notify(new DealNotification($pdf));
       session()->flash('success', 'Deal Done successfully');
-      return veiw('backend.pages.index');
+      $admin = Auth::user();
+      return view('backend.pages.index', compact('admin'));
 
     }
 
@@ -88,6 +109,12 @@ class DealWithStudentController extends Controller
     {
         $deal = DealWithStudent::where('id',$id)->first();
         return view('backend.pages.student.deal.inovice',compact('deal'));
+    }
+
+    public function paidinvoice($id)
+    {
+        $deal = DealWithStudent::where('id',$id)->first();
+        return view('backend.pages.student.deal.paidInovice',compact('deal'));
     }
 
     public function deal($id,$o_id)

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend\Student;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Brian2694\Toastr\Facades\Toastr;
 use Auth;
 use App\Models\Chat;
 
@@ -29,7 +30,9 @@ class ChatController extends Controller
       return view('frontend.pages.student.message',compact('student','chat'));
     }
     else {
-      session()->flash('sticky_error', 'You cant send a message Untill admin send a message to you ');
+      Toastr::error('You cant send a message untill admin send a message to you', 'Error', ["positionClass" => "toast-top-right","closeButton"=> true,"progressBar"=> true,]);
+
+      // session()->flash('sticky_error', 'You cant send a message Untill admin send a message to you ');
         return back();
     }
   }
@@ -78,6 +81,8 @@ class ChatController extends Controller
 
     }
     session()->flash('success', 'Message Send Successfully');
+    Toastr::success('Message Send Successfully', 'Success', ["positionClass" => "toast-top-right","closeButton"=> true,"progressBar"=> true,]);
+
       return back();
   }
 

@@ -21,7 +21,7 @@ class DealWithWriter extends Model
   public static function newDeal()
   {
 
-  return Order::where('deal_std',0)->count();
+  return Order::where('deal_wrt',0)->count();
 
   }
 }

@@ -13,10 +13,10 @@ class Freelancer extends Authenticatable
 {
     use Notifiable;
 
- protected $guard = 'worker';
+ protected $guard = 'writer';
 
     protected $fillable = [
-        'name', 'phone_no', 'country_id','city', 'ip_address', 'remember_token', 'email', 'password','education_level','subjects',
+        'name', 'phone_no' , 'ip_address', 'remember_token', 'email', 'password',
     ];
 
     protected $hidden = [
@@ -28,17 +28,18 @@ class Freelancer extends Authenticatable
       $this->notify(new WriterPasswordResetNotification($token));
     }
 
-    public function country(){
-      return $this->belongsTo(Country::class);
-    }
-    public  function educationlevel(){
-      return EducationLevel::where('id',$this->education_level)->first()->name;
-      // return $this->belongsTo(EducationLevel::class);
-    }
-    public  function educationlevelid(){
-      return EducationLevel::where('id',$this->education_level)->first()->id;
-      // return $this->belongsTo(EducationLevel::class);
-    }
+    public function details()
+   {
+       return $this->hasOne('App\Models\WriterDetails','writer_id');
+   }
+    // public  function educationlevel(){
+    //   return EducationLevel::where('id',$this->education_level)->first()->name;
+    //   // return $this->belongsTo(EducationLevel::class);
+    // }
+    // public  function educationlevelid(){
+    //   return EducationLevel::where('id',$this->education_level)->first()->id;
+    //   // return $this->belongsTo(EducationLevel::class);
+    // }
 
     public static function writerRequest()
     {
@@ -54,8 +55,5 @@ class Freelancer extends Authenticatable
     {
       return Freelancer::where('status',1)->count();
     }
-    public function isOnline()
-    {
-       return Cache::has('user-is-online-' . $this->id);
-    }
+
 }

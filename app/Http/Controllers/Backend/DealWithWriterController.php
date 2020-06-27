@@ -5,6 +5,8 @@ use App\Http\Controllers\Controller;
 
 use App\Notifications\DealNotification;
 use App\Models\DealWithWriter;
+use App\Notifications\PaidNotification;
+use App\Notifications\PaymentRecivedNotification;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Freelancer;
@@ -82,6 +84,30 @@ class DealWithWriterController extends Controller
     {
         $deal = DealWithWriter::find($id)->first();
         return view('backend.pages.writer.deal.inovice',compact('deal'));
+    }
+    public function paidInovice($id)
+    {
+        $deal = DealWithWriter::find($id)->first();
+        return view('backend.pages.writer.deal.paidInovice',compact('deal'));
+    }
+    public function checkoutView($id)
+    {
+        $deal = DealWithWriter::find($id)->first();
+        return view('backend.pages.writer.deal.checkout',compact('deal'));
+    }
+    public function checkoutDone(Request $request,$id)
+    {
+        $deal = DealWithWriter::find($id)->first();
+        $writer = Freelancer::where('id',$deal->client_id)->first();
+        $deal->is_paid = 1;
+        $deal->transection_id = $request->transection_id;
+        $deal->payment_date = $request->payment_date;
+        $deal->update();
+
+        $pdf = PDF::loadview('backend.pages.writer.deal.paidInovice', compact('deal'))->setPaper('a4');
+        $writer->notify(new PaymentRecivedNotification($pdf));
+        session()->flash('success', 'Payment Done successfully');
+        return back();
     }
 
     /**

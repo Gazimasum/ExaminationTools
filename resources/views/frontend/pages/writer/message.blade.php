@@ -9,7 +9,7 @@
                         <div class="row justify-content-center align-items-center text-center">
                           <div class="col-lg-6">
                             <h1 data-aos="fade-up" data-aos-delay="0">Writer Chat</h1>
-                            <p data-aos="fade-up" data-aos-delay="100">4 Lessons / 12 Week &bullet; 2,193 students &bullet; <a href="#" class="text-white">6 comments</a></p>
+                            {{-- <p data-aos="fade-up" data-aos-delay="100">4 Lessons / 12 Week &bullet; 2,193 students &bullet; <a href="#" class="text-white">6 comments</a></p> --}}
                           </div>
 
                             @include('frontend.partials.messages')
@@ -26,9 +26,11 @@
                     <div class="col-md-12">
                       <div class="col-lg-12 ml-auto" data-aos="fade-up" data-aos-delay="500">
                         <div class="row">
-                          <div class="col-md-9">  <h2>Chat</h2>
+                          @include('frontend.pages.writer.partials.sidebar')
+                          <div class="col-md-9">
+                            <h2>Chat</h2>
                               @include('frontend.partials.messages')
-                            <ul class="list-group" style="width: auto; height: 350px; overflow: auto">
+                            <ul  class="list-group" id="scroll" style="width: auto; height: 300px; overflow: auto">
                             @foreach ($chat as $c)
                               @if ($c->is_send_by==$writer->id)
                                   <li class="list-group-item list-group-item-primary">Me -> {{$c->message}}</li>
@@ -70,5 +72,6 @@
               </div>
 
             </div>
+
 
 @endsection

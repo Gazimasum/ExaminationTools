@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth\Writer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Brian2694\Toastr\Facades\Toastr;
 use App\Notifications\WriterVerification;
 use App\Models\Freelancer;
 use Illuminate\Http\Request;
@@ -67,8 +67,8 @@ class LoginController extends Controller
 
           if (Auth::guard('writer')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
             // Log Him Now
-            // Toastr::success('Successfully Login..', 'Success', ["positionClass" => "toast-top-center"]);
-            session()->flash('success','Successfully Login....');
+            Toastr::success('Successfully Login..', 'Success', ["positionClass" => "toast-top-right"]);
+            // session()->flash('success','Successfully Login....');
             return redirect()->intended(route('writer.dashboard'));
           }else {
             // Toastr::error('Wrong Password!!', 'Error', ["positionClass" => "toast-top-center"]);
@@ -110,5 +110,6 @@ class LoginController extends Controller
 
     return redirect()->route('writer.login');
   }
+
 
 }

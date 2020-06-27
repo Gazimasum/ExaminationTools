@@ -35,7 +35,10 @@
                                       <th>Transection Id</th>
                                       <th>Payment Date</th>
 
-                                      {{-- <th>Invoice</th> --}}
+                                      <th>Change Action</th>
+
+                                    <td> Paid Inovice</a> </td>
+
                                   </tr>
                               </thead>
                               <tbody>
@@ -49,12 +52,20 @@
                                         <td>@if ($d->is_paid==1)
                                           Paid
                                           @else
-                                            Not Paid
+                                          Not Paid
                                         @endif</td>
                                         <td>{{$d->transection_id}}</td>
                                         <td>{{$d->payment_date}}</td>
-                                        {{-- <td> <a href="{!! route('admin.student.deal.inovice',$d->id) !!}">Inovice</a></td> --}}
-
+                                        <td> <a href="{!! route('admin.student.deal.action',$d->id) !!}" class="btn btn-primary">
+                                          @if ($d->is_paid==1)
+                                            Paid
+                                            @else
+                                              Not Paid
+                                          @endif
+                                        </a></td>
+                                            <td> @if ($d->is_paid==1)
+                                      <a href="{!! route('admin.student.paid.inovice',$d->id) !!}">Paid Inovice</a>
+                                    @endif</td>
                                     </tr>
                                   @endforeach
 
@@ -71,7 +82,8 @@
                                       <th>Paid</th>
                                       <th>Transection Id</th>
                                       <th>Payment Date</th>
-                                        {{-- <th>Invoice</th> --}}
+                                      <th>Change Action</th>
+                                      <th>Paid Inovice</th>
                                   </tr>
                               </tfoot>
                           </table>

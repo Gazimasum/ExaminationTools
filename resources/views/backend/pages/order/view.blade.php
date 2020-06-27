@@ -40,8 +40,8 @@
                       Student Info
                       <address>
                           <strong>{{$assingment->user->name}}</strong><br>
-                        {{$assingment->user->country['name']}}<br>
-                          {{$assingment->user->city}}<br>
+                        {{$assingment->user->details->country['name']}}<br>
+                          {{$assingment->user->details->city}}<br>
                           Phone: {{$assingment->user->phone_no}}<br/>
                           Email: {{$assingment->user->email}}
                       </address>
@@ -52,7 +52,7 @@
                         Writer Info
                         <address>
                         <strong>Name : {{$data->writer->name}}</strong><br>
-                        Location : {{$data->writer->country['name']}} , {{$data->writer->city}}<br>
+                        Location : {{$data->writer->details->country['name']}} , {{$data->writer->details->city}}<br>
 
                         Phone: {{$data->writer->phone_no}}<br/>
                         Email: {{$data->writer->email}}
@@ -86,7 +86,7 @@
                               <tr>
                                   <td>{{$assingment->type->name}}</td>
                                   <td>{{$assingment->subject->name}}</td>
-                                  <td>455-981-221</td>
+                                  <td>{{$assingment->education_level->name}}</td>
                                   <td>{{$assingment->assingment_details}}</td>
 
                               </tr>

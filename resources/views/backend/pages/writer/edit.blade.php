@@ -1,5 +1,10 @@
 @extends('backend.layouts.master')
 @section('content')
+  @php
+    $education_level = App\Models\EducationLevel::get();
+    $country = App\Models\Country::get();
+    $subject = App\Models\Subject::get();
+  @endphp
 <aside class="right-side">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -33,7 +38,7 @@
                               <label for="name">{{ __('Name') }}</label>
 
 
-                                  <input id="name" type="text" value="{{$writer->name}}" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                  <input id="name" type="text" value="{{$writer->name}}" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}"  autocomplete="name" autofocus>
 
                                   @error('name')
                                       <span class="invalid-feedback" role="alert">
@@ -46,7 +51,7 @@
                               <label for="email">{{ __('E-Mail Address') }}</label>
 
 
-                                  <input id="email" type="email" value="{{$writer->email}}" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                  <input id="email" type="email" value="{{$writer->email}}" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email">
 
                                   @error('email')
                                       <span class="invalid-feedback" role="alert">
@@ -60,7 +65,7 @@
                               <label for="phone_no">{{ __('Phone') }}</label>
 
 
-                                  <input id="phone_no" type="phone" value="{{$writer->phone_no}}" class="form-control @error('phone_no') is-invalid @enderror" name="phone_no" value="{{ old('phone_no') }}" required autocomplete="phone_no">
+                                  <input id="phone_no" type="phone" value="{{$writer->phone_no}}" class="form-control @error('phone_no') is-invalid @enderror" name="phone_no" value="{{ old('phone_no') }}"  autocomplete="phone_no">
 
                                   @error('phone_no')
                                       <span class="invalid-feedback" role="alert">
@@ -76,7 +81,7 @@
 
                                   {{-- <input id="country_id" type="text" class="form-control @error('country_id') is-invalid @enderror" name="country_id" value="{{ old('country_id') }}" required autocomplete="country_id" autofocus> --}}
                                     <select class="form-control" name="country_id" id="country_id">
-                                      <option value="{{$writer->country->id}}">{{$writer->country->name}}</option>
+                                      <option value="{{$writer->details->country->id}}">{{$writer->details->country->name}}</option>
                                       @foreach ($country as $c)
                                         <option value="{{ $c->id }}">{{ $c->name }}</option>
                                       @endforeach
@@ -92,7 +97,7 @@
                               <label for="city">{{ __('City') }}</label>
 
 
-                                  <input id="city" type="text" value="{{$writer->city}}" class="form-control @error('city') is-invalid @enderror" name="city" value="{{ old('city') }}" required autocomplete="city" autofocus>
+                                  <input id="city" type="text" value="{{$writer->details->city}}" class="form-control @error('city') is-invalid @enderror" name="city" value="{{ old('city') }}"  autocomplete="city" autofocus>
 
                                   @error('city')
                                       <span class="invalid-feedback" role="alert">
@@ -107,7 +112,7 @@
 
 
                                     <select class="form-control" name="education_level" id="education_level">
-                                      <option value="{{$writer->educationlevelid()}}">{{$writer->educationlevel()}}</option>
+                                      <option value="{{$writer->details->educationlevel->id}}">{{$writer->details->educationlevel->name}}</option>
 
 
                                       @foreach ($education_level as $e)
@@ -127,7 +132,7 @@
 
 
                                   {{-- <input id="subjects" type="text" class="form-control @error('subjects') is-invalid @enderror" name="subjects" value="{{ old('subjects') }}" required autocomplete="subjects" autofocus> --}}
-                                  <textarea class="form-control" name="subjects" rows="2" cols="80" readonly>{{$writer->subjects}}</textarea><br>
+                                  <textarea class="form-control" name="subjects" rows="2" cols="80" readonly>{{$writer->details->subjects}}</textarea><br>
 
                                       <label>Select Multiple</label>
                                       <select multiple class="form-control" name="subjects[]">

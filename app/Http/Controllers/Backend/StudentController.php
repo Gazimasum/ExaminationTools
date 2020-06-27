@@ -9,6 +9,7 @@ use App\Models\Country;
 use App\Models\Subject;
 use App\Models\Chat;
 use App\Models\EducationLevel;
+use App\Models\StudentDetails;
 use Auth;
 
 class StudentController extends Controller
@@ -20,6 +21,7 @@ class StudentController extends Controller
   public function index()
   {
     $student = User::get();
+
     return view('backend.pages.student.index',compact('student'));
   }
 
@@ -56,11 +58,15 @@ class StudentController extends Controller
       $student->name = $request->name;
       $student->phone_no = $request->phone_no;
       $student->email = $request->email;
-      $student->country_id = $request->country_id;
-      $student->city = $request->city;
+
       $student->status = $request->status;
 
       $student->update();
+
+      $student_details = StudentDetails::where('student_id',$id)->first();
+      $student_details->country_id = $request->country_id;
+      $student_details->city = $request->city;
+      $student_details->update();
       session()->flash('success', 'Update Successfully');
       return back();
   }

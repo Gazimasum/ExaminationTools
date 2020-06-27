@@ -30,12 +30,16 @@ Route::group(['prefix' => 'student'],function ()
   // Route::get('/home', 'HomeController@index')->name('home');
   Route::get('/', 'Frontend\Student\PagesController@index')->name('student.index');
   Route::get('/dashboard', 'Frontend\Student\PagesController@dashboard')->name('student.dashboard');
+  Route::get('/profile', 'Frontend\Student\PagesController@profile')->name('student.profile');
+  Route::get('/profile/edit', 'Frontend\Student\PagesController@profileEdit')->name('student.profile.edit');
+  Route::post('/profile', 'Frontend\Student\PagesController@profileUpdate')->name('student.profile.update');
   Route::get('/registration', 'Auth\RegisterController@index')->name('student.registrationForm');
   Route::post('/register/submit','Auth\RegisterController@register')->name('student.register');
   Route::get('/token/{token}', 'Frontend\Student\VerficationController@verify')->name('student.verification');
 
-  Route::get('order','Frontend\Student\PagesController@order')->name('student.order');
-  
+  Route::get('order','Frontend\Student\OrderController@index')->name('student.order');
+  Route::get('order/checkout/{id}','Frontend\Student\OrderController@checkoutview')->name('student.checkout');
+
   Route::group(['prefix' => 'assingment'],function ()
   {
     Route::get('/request', 'Frontend\Student\PagesController@assingmentView')->name('student.assingment.request.view');
@@ -55,6 +59,9 @@ Route::group(['prefix' => 'student'],function ()
   Route::group(['prefix' => 'writer'],function(){
   Route::get('/', 'Frontend\Writer\PagesController@index')->name('writer.index');
   Route::get('/dashboard', 'Frontend\Writer\PagesController@dashboard')->name('writer.dashboard');
+  Route::get('/profile', 'Frontend\Writer\PagesController@profile')->name('writer.profile');
+  Route::get('/profile/Edit', 'Frontend\Writer\PagesController@profileEdit')->name('writer.profile.edit');
+  Route::post('/profile', 'Frontend\Writer\PagesController@profileUpdate')->name('writer.profile.update');
   Route::get('/login', 'Auth\Writer\LoginController@showLoginForm')->name('writer.login');
   Route::get('/register', 'Auth\Writer\RegisterController@showRegistrationForm')->name('writer.register');
   Route::post('/login/submit', 'Auth\Writer\LoginController@login')->name('writer.login.submit');
@@ -68,6 +75,8 @@ Route::group(['prefix' => 'student'],function ()
   Route::post('password/reset','Auth\Writer\ResetPasswordController@reset')->name('writer.password.update');
   Route::get('password/reset/{token}','Auth\Writer\ResetPasswordController@showResetForm')->name('writer.password.reset');
 
+  Route::get('order','Frontend\Writer\PagesController@order')->name('writer.order');
+  Route::get('order/{id}','Frontend\Writer\PagesController@ordershow')->name('writer.order.view');
 
   Route::group(['prefix' => 'assingment'],function ()
   {
@@ -122,6 +131,11 @@ Route::group(['prefix' => 'student'],function ()
 
     Route::get('deal/inovice/{id}','Backend\DealWithWriterController@inovice')->name('admin.writer.deal.inovice');
 
+    // checkoutview
+    Route::get('deal/checkout/{id}','Backend\DealWithWriterController@checkoutView')->name('admin.writer.deal.checkout');
+    Route::post('deal/checkout/{id}','Backend\DealWithWriterController@checkoutDone')->name('admin.writer.deal.checkout.done');
+    Route::get('deal/paid-inovice/{id}','Backend\DealWithWriterController@paidInovice')->name('admin.writer.deal.paidinovice');
+
 });
 
 
@@ -144,6 +158,8 @@ Route::group(['prefix' => 'student'],function ()
     // deal DealWithStudent
     Route::get('deal','Backend\DealWithStudentController@index')->name('admin.student.deal.index');
     Route::get('deal/all','Backend\DealWithStudentController@all')->name('admin.student.deal.all');
+    Route::get('deal/action/{id}','Backend\DealWithStudentController@action')->name('admin.student.deal.action');
+    Route::get('deal/paidInovice/{id}','Backend\DealWithStudentController@paidinvoice')->name('admin.student.paid.inovice');
     Route::get('/deal/{id}/{o_id}','Backend\DealWithStudentController@deal')->name('admin.student.deal');
     Route::post('/deal/done','Backend\DealWithStudentController@store')->name('admin.student.deal.done');
 
@@ -153,6 +169,7 @@ Route::group(['prefix' => 'student'],function ()
   Route::group(['prefix' => 'assingment'],function(){
     Route::get('/','Backend\AssingmentController@index')->name('admin.assingment.index');
     Route::get('/view/{id}','Backend\AssingmentController@view')->name('admin.assingment.view');
+    Route::get('/complete','Backend\AssingmentController@complete')->name('admin.assingment.complete');
 
     Route::get('/edit/{id}','Backend\AssingmentController@edit')->name('admin.assingment.edit');
     Route::post('/edit/{id}','Backend\AssingmentController@update')->name('admin.assingment.update');

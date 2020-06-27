@@ -42,9 +42,9 @@
                                       <td>{{$w->name}}</td>
                                       <td>{{$w->email}}</td>
                                       <td>{{$w->phone_no}}</td>
-                                      <td>{{$w->country->name}} , {{$w->city}}</td>
-                                      <td>{{$w->educationlevel()}}</td>
-                                      <td>{{$w->subjects}}</td>
+                                      <td>{{$w->details->country->name}} , {{$w->city}}</td>
+                                      <td>{{$w->details->educationlevel->name}}</td>
+                                      <td>{{$w->details->subjects}}</td>
                                           {{-- <td> <a href="{!! route('admin.student.deal',$w->student->id,$w->id) !!}" class="btn btn-success">Deal</a></td> --}}
                                           <td><a href="{{ url('admin/writer/deal/'.$w->id)}}" class="btn btn-success">Deal</a></td>
                                     </tr>

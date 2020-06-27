@@ -5,12 +5,13 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Models\StudentDetails;
 use Illuminate\Support\Str;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Notifications\VerifyRegistration;
-use App\Models\Country;
+
 
 class RegisterController extends Controller
 {
@@ -47,8 +48,8 @@ class RegisterController extends Controller
     }
     public function index()
     {
-      $country = Country::orderBy('priority','asc')->get();
-      return view('auth.register',compact('country'));
+
+      return view('auth.register');
     }
 
     /**
@@ -63,9 +64,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'phone_no'=>['required','number','min:11'],
-            'country_id'=>['required'],
-            'city'=>['required'],
+            'phone_no'=>['number','min:11'],
 
         ]);
     }
@@ -91,31 +90,36 @@ class RegisterController extends Controller
     // }
     protected function register(Request $request)
     {
-      $user = User::where('email', $request->email)->first();
-        if (is_null($user)) {
+      $this->validate($request,
+         ['name' => 'required|string|max:255',
+         'email' => 'required|email|unique:users',
+         'password' => 'required|confirmed|min:6',
+
+       ],
+       [
+       'name.required'=>"Please Provide a Full Name.",
+
+     ]);
+
+
+
       $user = User::create([
         'name' => $request->name,
         'phone_no' => $request->phone_no,
         'email' => $request->email,
         'password' => Hash::make($request->password),
         'remember_token'  =>Str::random(50),
-        'country_id' => $request->country_id,
-        'city' => $request->city,
         'ip_address' => request()->ip(),
-        'avater' =>Null,
+
       ]);
+      $student_details = new StudentDetails();
+      $student_details->student_id = $user->id;
+      $student_details->country_id = $request->country_id;
+      $student_details->save();
       $user->notify(new VerifyRegistration($user));
 
      session()->flash('success', 'A confirmation email has sent to you.. Please check and confirm your email');
      return redirect('student/registration');
-    }
-
-    else {
-    session()->flash('warning', 'This Email is Allready Registered');
-    return redirect('student/registration');
-    }
-
-
     }
 
 

@@ -12,9 +12,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Str;
 
 use App\Models\Freelancer;
-use App\Models\Country;
-use App\Models\EducationLevel;
-use App\Models\Subject;
+use App\Models\WriterDetails;
 use App\Models\Admin;
 
 use App\Notifications\WriterVerification;
@@ -64,10 +62,7 @@ class RegisterController extends Controller
   public function showRegistrationForm()
   {
 
-    $country = Country::orderBy('priority','asc')->get();
-    $education_level = EducationLevel::orderBy('priority','asc')->get();
-    $subject = Subject::orderBy('priority','asc')->get();
-    return view('auth.writer.register',compact('country','education_level','subject'));
+    return view('auth.writer.register');
   }
 
 
@@ -83,11 +78,7 @@ class RegisterController extends Controller
           'name' => ['required', 'string', 'max:255'],
           'email' => ['required', 'email', 'max:255', 'unique:freelancers'],
           'password' => ['required', 'string', 'min:8', 'confirmed'],
-          'phone_no'=>['required|regex:/(01)[0-9]{9}/'],
-          'country_id'=>['required'],
-          'city'=>['required'],
-          'education_level'=>['required'],
-          'subjects'=>['required'],
+          'phone_no'=>['regex:/(01)[0-9]{9}/'],
 
       ]);
   }
@@ -100,21 +91,38 @@ class RegisterController extends Controller
   */
   protected function register(Request $request)
   {
-    $writer = Freelancer::where('email', $request->email)->first();
-      if (is_null($writer)) {
+    $this->validate($request,
+       ['name' => 'required|string|max:255',
+       'email' => 'required|email|unique:freelancers',
+       'password' => 'required|confirmed|min:6',
+       'country_id'=>'required',
+       'city'=>'required',
+       'education_level'=>'required',
+       'subjects'=>'required',
+
+     ],
+     [
+     'name.required'=>"Please Provide Your Full Name.",
+
+   ]);
+
     $writer = Freelancer::create([
       'name' => $request->name,
       'phone_no' => $request->phone_no,
       'email' => $request->email,
       'password' => Hash::make($request->password),
       'remember_token'  =>Str::random(50),
-      'country_id' => $request->country_id,
-      'city' => $request->city,
-      'education_level' => $request->education_level,
-      'subjects' =>implode($request->subjects,','),
       'ip_address' => request()->ip(),
-      'avater' =>Null,
     ]);
+
+    $writer_details =new WriterDetails();
+    $writer_details->writer_id = $writer->id;
+    $writer_details->country_id = $request->country_id;
+    $writer_details->city = $request->city;
+    $writer_details->education_level = $request->education_level;
+    $writer_details->subjects = implode($request->subjects,',');
+    $writer_details->save();
+
     $writer->notify(new WriterVerification($writer));
 
     $admin = Admin::get();
@@ -123,12 +131,7 @@ class RegisterController extends Controller
     }
    session()->flash('success', 'A confirmation email has sent to you.. Please check and confirm your email');
    return redirect('/writer/register');
-  }
 
-else {
-  session()->flash('warning', 'This Email is Allready Registered');
-  return redirect('/writer/register');
-}
 
 
   }

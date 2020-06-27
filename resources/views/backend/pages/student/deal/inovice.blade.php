@@ -222,7 +222,7 @@
                           <div class="col invoice-to">
                               <div class="text-gray-light">INVOICE TO:</div>
                               <h2 class="to">{{$deal->student->name}}</h2>
-                              <div class="address">{{$deal->student->city}},{{$deal->student->country['name']}}</div>
+                              <div class="address">{{$deal->student->->details->city}},{{$deal->student->details->country['name']}}</div>
                               <div class="email"><a href="mailto:{{$deal->student->email}}">{{$deal->student->email}}</a></div>
                           </div>
                           <div class="col invoice-details">
@@ -252,8 +252,8 @@
                                     {{$deal->order->assingment['assingment_details']}}
 
                                   </td>
-                                  <td class="text-left">{{$deal->order->assingment->subject['name']}}</td>
-                                  <td class="text-left">{{$deal->order->assingment->type['name']}}</td>
+                                  <td class="text-center">{{$deal->order->assingment->subject['name']}}</td>
+                                  <td class="text-center">{{$deal->order->assingment->type['name']}}</td>
 
                                   <td class="total">{{$deal->price}}</td>
                               </tr>

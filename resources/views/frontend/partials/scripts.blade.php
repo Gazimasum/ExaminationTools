@@ -33,3 +33,8 @@ $(document).ready( function () {
   $('#myTable').DataTable();
 } );
 </script>
+<script type="text/javascript">
+$(document).ready( function () {
+  document.getElementById('scroll').scrollTop =  document.getElementById('scroll').scrollHeight
+  } );
+</script>

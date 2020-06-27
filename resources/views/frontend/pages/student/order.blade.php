@@ -44,7 +44,7 @@
                               <th> Status</th>
                               <th>Transection Id</th>
                               <th>Payment Date</th>
-                              <th>CheckOut</th>
+                              <th>Action</th>
                             </tr>
                           </thead>
                         <tbody>
@@ -62,7 +62,13 @@
                               @endif</td>
                                 <td>{{$a->transection_id}}</td>
                               <td>{{$a->payment_date}}</td>
-                              <td>CheckOut</td>
+                              <td>
+                                @if ($a->is_paid==0)
+                                  <a href="{!! route('student.checkout',$a->id) !!}">Checkout</a>
+                                  @else
+                                    Paid
+                                @endif
+                              </td>
                             </tr>
                           @endforeach
                         </tbody>

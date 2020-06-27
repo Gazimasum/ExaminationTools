@@ -30,7 +30,6 @@
                                       <th>Email</th>
                                       <th>Phone</th>
                                       <th>Country & City </th>
-
                                       <th>Email Verified</th>
                                       <th>Status</th>
                                       <th>Action</th>
@@ -42,7 +41,7 @@
                                       <td>{{$s->name}}</td>
                                       <td>{{$s->email}}</td>
                                       <td>{{$s->phone_no}}</td>
-                                      <td>{{$s->country->name}} , {{$s->city}}</td>
+                                      <td>{{$s->details->country->name}} , {{$s->details->city}}</td>
 
 
                                       <td>

@@ -33,7 +33,7 @@
                               <label for="name">{{ __('Name') }}</label>
 
 
-                                  <input id="name" type="text" value="{{$student->name}}" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                  <input id="name" type="text" value="{{$student->name}}" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}"  autocomplete="name" autofocus>
 
                                   @error('name')
                                       <span class="invalid-feedback" role="alert">
@@ -46,7 +46,7 @@
                               <label for="email">{{ __('E-Mail Address') }}</label>
 
 
-                                  <input id="email" type="email" value="{{$student->email}}" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                  <input id="email" type="email" value="{{$student->email}}" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email">
 
                                   @error('email')
                                       <span class="invalid-feedback" role="alert">
@@ -60,7 +60,7 @@
                               <label for="phone_no">{{ __('Phone') }}</label>
 
 
-                                  <input id="phone_no" type="phone" value="{{$student->phone_no}}" class="form-control @error('phone_no') is-invalid @enderror" name="phone_no" value="{{ old('phone_no') }}" required autocomplete="phone_no">
+                                  <input id="phone_no" type="phone" value="{{$student->phone_no}}" class="form-control @error('phone_no') is-invalid @enderror" name="phone_no" value="{{ old('phone_no') }}"  autocomplete="phone_no">
 
                                   @error('phone_no')
                                       <span class="invalid-feedback" role="alert">
@@ -76,7 +76,7 @@
 
                                   {{-- <input id="country_id" type="text" class="form-control @error('country_id') is-invalid @enderror" name="country_id" value="{{ old('country_id') }}" required autocomplete="country_id" autofocus> --}}
                                     <select class="form-control" name="country_id" id="country_id">
-                                      <option value="{{$student->country->id}}">{{$student->country->name}}</option>
+                                      <option value="{{$student->details->country->id}}">{{$student->details->country->name}}</option>
                                       @foreach ($country as $c)
                                         <option value="{{ $c->id }}">{{ $c->name }}</option>
                                       @endforeach
@@ -92,7 +92,7 @@
                               <label for="city">{{ __('City') }}</label>
 
 
-                                  <input id="city" type="text" value="{{$student->city}}" class="form-control @error('city') is-invalid @enderror" name="city" value="{{ old('city') }}" required autocomplete="city" autofocus>
+                                  <input id="city" type="text" value="{{$student->details->city}}" class="form-control @error('city') is-invalid @enderror" name="city" value="{{ old('city') }}"  autocomplete="city" autofocus>
 
                                   @error('city')
                                       <span class="invalid-feedback" role="alert">

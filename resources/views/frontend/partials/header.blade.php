@@ -63,6 +63,11 @@
                  </a>
                  <a class="dropdown-item" href="#"
                  onclick="event.preventDefault();
+                 document.getElementById('student-profle-form').submit();">
+                   Profile
+                 </a>
+                 <a class="dropdown-item" href="#"
+                 onclick="event.preventDefault();
                  document.getElementById('assingment-request-form').submit();">
                    Assingment Request
                  </a>
@@ -70,6 +75,11 @@
                  onclick="event.preventDefault();
                  document.getElementById('student-message-form').submit();">
                   Message
+                 </a>
+                 <a class="dropdown-item" href="#"
+                 onclick="event.preventDefault();
+                 document.getElementById('student-order-form').submit();">
+                  Deal
                  </a>
 
 
@@ -89,8 +99,13 @@
 
                         <a class="dropdown-item" href="#"
                         onclick="event.preventDefault();
-                        document.getElementById('writer-dashboard-form').submit();">
+                        document.getElementById('writer-profile-form').submit();">
                             My dashboard
+                          </a>
+                        <a class="dropdown-item" href="#"
+                        onclick="event.preventDefault();
+                        document.getElementById('writer-dashboard-form').submit();">
+                            Profile
                           </a>
                           <a class="dropdown-item" href="#"
                           onclick="event.preventDefault();
@@ -99,7 +114,7 @@
                           </a>
                           <a class="dropdown-item" href="#"
                           onclick="event.preventDefault();
-                          document.getElementById('order-logout-form').submit();">
+                          document.getElementById('writer-order-form').submit();">
                               Ordered List
                             </a>
                             <a class="dropdown-item" href="#"
@@ -131,13 +146,25 @@
      <form id="dashboard-form" action="{{ route('student.dashboard') }}" method="GET" style="display: none;">
        @csrf
      </form>
+     <form id="student-proile-form" action="{{ route('student.profile') }}" method="GET" style="display: none;">
+       @csrf
+     </form>
      <form id="writer-dashboard-form" action="{{ route('writer.dashboard') }}" method="GET" style="display: none;">
+       @csrf
+     </form>
+     <form id="writer-profile-form" action="{{ route('writer.profile') }}" method="GET" style="display: none;">
        @csrf
      </form>
      <form id="student-message-form" action="{{ route('student.message.view') }}" method="GET" style="display: none;">
        @csrf
      </form>
+     <form id="student-order-form" action="{{ route('student.order') }}" method="GET" style="display: none;">
+       @csrf
+     </form>
      <form id="writer-message-form" action="{{ route('writer.message.view') }}" method="GET" style="display: none;">
+       @csrf
+     </form>
+     <form id="writer-order-form" action="{{ route('writer.order') }}" method="GET" style="display: none;">
        @csrf
      </form>
 
@@ -149,6 +176,6 @@
        @csrf
      </form>
 
-     <form id="writer-logout-form" action="{{ route('writer.logout') }}" method="POST" style="display: none;">
+     <form id="writer-logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
        @csrf
      </form>

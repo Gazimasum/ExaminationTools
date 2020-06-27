@@ -51,13 +51,15 @@ class AssingmentController extends Controller
      */
     public function store(Request $request)
     {
+
       $this->validate($request,
          ['name' => 'required',
          'assingmenttype' => 'required',
          'education_level' => 'required',
          'subject'=>'required',
          'details' =>'required',
-
+         'deadline_date'      => 'required|date|date_format:Y-m-d|after:yesterday',
+         // 'images[]' => 'mimes:jpeg,jpg,png,gif|required|max:10000'
          // 'images' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
          // 'files' => 'max:2048|mimes:pdf,docx,doc',
        ],
@@ -65,6 +67,16 @@ class AssingmentController extends Controller
        'name.required'=>"Please Provide a Name.",
        // 'vehicleoverview.max'=>"Please Provide maximum 500 word.",
      ]);
+    //  if($request->hasfile('images'))
+    // {
+    //  foreach ($request->file('images') as $image)
+    //     {
+    //         $this->validate($request,[
+    //         'images' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+    //     ]);
+    //   }
+    // }
+
      $student = Auth::user();
      $a = new Assingment();
      $a->assingment_name = $request->name;
@@ -81,6 +93,7 @@ class AssingmentController extends Controller
       {
          foreach($request->file('images') as $image)
          {
+
            $name=time().".".$image->getClientOriginalName();
            $image->move(public_path().'/files/images/', $name);
            $a_image= new AssingmentImage();

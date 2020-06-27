@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Notifications\WriterConfirm;
 use App\Models\Freelancer;
+use App\Models\WriterDetails;
 use App\Models\Country;
 use App\Models\Subject;
 use App\Models\Chat;
@@ -26,6 +28,7 @@ class WriterController extends Controller
   public function request()
   {
     $writer = Freelancer::where('status',0)->get();
+    // $writer_details = WriterDetails::where('writer_id',$writer->id)->first();
     return view('backend.pages.writer.request',compact('writer'));
   }
 
@@ -35,6 +38,7 @@ class WriterController extends Controller
     if($writer->status==0){
       $writer->status = 1;
       $writer->save();
+      $writer->notify(new WriterConfirm);
       session()->flash('success', 'Status Change Successfully');
       return back();
     }
@@ -49,31 +53,31 @@ class WriterController extends Controller
   public function edit($id)
   {
       $country = Country::get();
-      $subject = Subject::get();
-      $education_level = EducationLevel::get();
       $writer = Freelancer::find($id)->first();
-      return view('backend.pages.writer.edit',compact('writer','country','subject','education_level'));
+      return view('backend.pages.writer.edit',compact('writer','country'));
   }
   public function update(Request $request,$id)
   {
       $writer = Freelancer::find($id)->first();
       $writer->name = $request->name;
-      $writer->phone_no = $request->phone_no;
       $writer->email = $request->email;
-      $writer->country_id = $request->country_id;
-      $writer->city = $request->city;
-      $writer->education_level = $request->education_level;
-      if ($request->subjects!=$writer->subjects) {
-        $writer->subjects = null;
-        $writer->subjects =implode($request->subjects,',');
-      }else {
-      $writer->subjects = $request->subjects;
-      }
-
+      $writer->phone_no = $request->phone_no;
       $writer->status = $request->status;
-
       $writer->update();
-      session()->flash('success', 'Update Successfully');
+
+      $writer_details = WriterDetails::where('writer_id',$id)->first();
+      $writer_details->country_id = $request->country_id;
+       $writer_details->city = $request->city;
+       $writer_details->education_level = $request->education_level;
+       if ($request->subjects!=$writer_details->subjects) {
+         $writer_details->subjects = null;
+         $writer_details->subjects =implode($request->subjects,',');
+       }else {
+       $writer_details->subjects = $request->subjects;
+       }
+       $writer_details->update();
+
+      session()->flash('success', 'Profile Update Successfully');
       return back();
   }
   public function delete($id)
@@ -95,7 +99,7 @@ class WriterController extends Controller
       foreach ($data as $d) {
         $d->is_seen = 0;
       $d->update();
-      
+
       }
 
       return view('backend.pages.messages.messageview',compact('data','id'));

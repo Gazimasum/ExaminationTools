@@ -43,9 +43,9 @@
                                       <td>{{$w->name}}</td>
                                       <td>{{$w->email}}</td>
                                       <td>{{$w->phone_no}}</td>
-                                      <td>{{$w->country->name}} , {{$w->city}}</td>
-                                      <td>{{$w->educationlevel()}}</td>
-                                      <td>{{$w->subjects}}</td>
+                                      <td>{{$w->details->country->name}} , {{$w->details->city}}</td>
+                                      <td>{{$w->details->educationlevel->name}}</td>
+                                      <td>{{$w->details->subjects}}</td>
                                       <td>
                                         @if ($w->remember_token==null)
                                           Verified
@@ -119,12 +119,10 @@
 <!-- ./wrapper -->
 
 {{-- <script type="text/javascript">
-
 $("#status").click(function(e) {
     e.preventDefault();
   var status       = $("#status").val();
   console.log(status);
 });
-
 </script> --}}
 @endsection

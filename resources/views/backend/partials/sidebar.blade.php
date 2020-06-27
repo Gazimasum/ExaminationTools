@@ -72,7 +72,7 @@
                 <ul class="treeview-menu">
                   <li><a href="{!! route('admin.student.index') !!}"><i class="fa fa-angle-double-right"></i> Manage Student</a></li>
                   {{-- <li><a href="{!! route('admin.student.request') !!}"><i class="fa fa-angle-double-right"></i> Student Request <small class="badge pull-right bg-red">{{App\Models\Freelancer::studentRequest()}}</small></a></li> --}}
-                  <li><a href="{!! route('admin.student.message') !!}"><i class="fa fa-angle-double-right"></i> Student Message  <small class="badge pull-right bg-green">{{App\Models\Chat::newStudentMessage()}}</small></a></li>
+                  <li><a href="{!! route('admin.student.message') !!}"><i class="fa fa-angle-double-right"></i> Student Message </a></li>
                 </ul>
             </li>
             <li class="treeview">

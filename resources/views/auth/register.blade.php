@@ -1,6 +1,9 @@
 @extends('frontend.layouts.master')
 
 @section('content')
+  @php
+    $country = App\Models\Country::get();
+  @endphp
   <div class="intro-section single-cover" id="home-section">
                 <div class="slide-1 " style="background-image: url({!! asset('home-asset/images/img_2.jpg') !!});" data-stellar-background-ratio="0.5">
                   <div class="container">
@@ -41,6 +44,25 @@
                                       @enderror
                               </div>
                               </div>
+                              <div class="form-group row">
+                                  <label for="country_id" class="col-md-4 col-form-label text-md-right">{{ __('Country Name') }}</label>
+
+                                    <div class="col-md-6">
+                                      {{-- <input id="country_id" type="text" class="form-control @error('country_id') is-invalid @enderror" name="country_id" value="{{ old('country_id') }}" required autocomplete="country_id" autofocus> --}}
+                                        <select class="form-control" name="country_id" id="country_id">
+                                              <option value="">Select a Country</option>
+                                          @foreach ($country as $c)
+                                            <option value="{{ $c->id }}">{{ $c->name }}</option>
+                                          @endforeach
+                                        </select>
+                                      @error('country_id')
+                                          <span class="invalid-feedback" role="alert">
+                                              <strong>{{ $message }}</strong>
+                                          </span>
+                                      @enderror
+
+                                    </div>
+                              </div>
 
                               <div class="form-group row ">
                                   <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
@@ -61,7 +83,7 @@
                                   <label for="phone_no" class="col-md-4 col-form-label text-md-right">{{ __('Phone') }}</label>
                                     <div class="col-md-6">
 
-                                      <input id="phone_no" type="number" class="form-control @error('phone_no') is-invalid @enderror" name="phone_no" value="{{ old('phone_no') }}" required autocomplete="phone_no">
+                                      <input id="phone_no" type="number" class="form-control @error('phone_no') is-invalid @enderror" name="phone_no" value="{{ old('phone_no') }}" autocomplete="phone_no">
 
                                       @error('phone_no')
                                           <span class="invalid-feedback" role="alert">
@@ -72,39 +94,7 @@
                               </div>
                               </div>
 
-                              <div class="form-group row">
-                                  <label for="country_id" class="col-md-4 col-form-label text-md-right">{{ __('Country Name') }}</label>
 
-                                      <div class="col-md-6">
-                                      {{-- <input id="country_id" type="text" class="form-control @error('country_id') is-invalid @enderror" name="country_id" value="{{ old('country_id') }}" required autocomplete="country_id" autofocus> --}}
-                                        <select class="form-control" name="country_id" id="country_id">
-                                          <option value="">Select Country</option>
-                                          @foreach ($country as $c)
-                                            <option value="{{ $c->id }}">{{ $c->name }}</option>
-                                          @endforeach
-                                        </select>
-                                      @error('country_id')
-                                          <span class="invalid-feedback" role="alert">
-                                              <strong>{{ $message }}</strong>
-                                          </span>
-                                      @enderror
-
-                              </div>
-                              </div>
-                              <div class="form-group row">
-                                  <label for="city" class="col-md-4 col-form-label text-md-right">{{ __('City') }}</label>
-
-                                  <div class="col-md-6">
-                                      <input id="city" type="text" class="form-control @error('city') is-invalid @enderror" name="city" value="{{ old('city') }}" required autocomplete="city" autofocus>
-
-                                      @error('city')
-                                          <span class="invalid-feedback" role="alert">
-                                              <strong>{{ $message }}</strong>
-                                          </span>
-                                      @enderror
-
-                              </div>
-                              </div>
 
                               <div class="form-group row">
                                   <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>

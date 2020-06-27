@@ -31,7 +31,7 @@
                           <div class="col-md-9">  <h2>Chat</h2>
                             {{-- flash message --}}
                               @include('frontend.partials.messages')
-                            <ul class="list-group" style="width: auto; height: 350px; overflow: auto">
+                            <ul class="list-group" id="scroll" style="width: auto; height: 350px; overflow: auto">
                             @foreach ($chat as $c)
                               @if ($c->is_send_by==$student->id)
                                   <li class="list-group-item list-group-item-primary">Me -> {{$c->message}}</li>

@@ -55,16 +55,14 @@
                                 @foreach ($data as $d)
                                   <tr>
                                       <td>
-                                         @if($d->isOnline())
-                                           <b>user is online!!</b>
-                                          @endif
+                                        
                                           {{$d->name}}</td>
                                       <td>{{$d->email}}</td>
                                       <td>{{$d->phone_no}}</td>
-                                      <td>{{$d->country->name}} , {{$d->city}}</td>
+                                      <td>{{$d->details->country->name}} , {{$d->details->city}}</td>
                                       @if (Route::is('admin.writer.message'))
-                                        <td>{{$d->educationlevel()}}</td>
-                                      <td>{{$d->subjects}}</td>
+                                        <td>{{$d->details->educationlevel->name}}</td>
+                                      <td>{{$d->details->subjects}}</td>
                                       <td>  <a class="btn btn-primary" href="{!! route('admin.writer.messageview',$d->id) !!}">Message</a>
                                         @if (App\Models\Order::where('status',1)->first())
                                             <a href="{!! route('admin.writer.deal',$d->id) !!}"class="btn btn-warning">Deal</a>

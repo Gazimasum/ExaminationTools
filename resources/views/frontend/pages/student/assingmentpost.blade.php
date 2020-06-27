@@ -28,7 +28,7 @@
                             @include('frontend.pages.student.partials.sidebar')
                           <div class="col-md-9" >
 
-
+                            @include('frontend.partials.messages')
                           <form method="POST" action="{{ route('student.assingment.request.post') }}" class="form-box" aria-label="{{ __('Register') }}" enctype="multipart/form-data">
                               @csrf
                               <div class="form-group row">
@@ -121,17 +121,17 @@
                                   </div>
                               </div>
                               <div class="form-group row">
-                                <label for="dvPreview" class="col-md-4 col-form-label text-md-right">{{ __('Preview') }}</label>
-                                  <div class="col-md-6">
-                              <center>  <div id="dvPreview">
+                                {{-- <label for="dvPreview" class="col-md-4 col-form-label text-md-right">{{ __('Preview') }}</label> --}}
+                                  <div class="col-md-10 align-self-end">
+                              <center>  <div id="image_preview">
                               </div></center>
                                 </div>
                               </div>
                               <div class="form-group row">
-                                  <label for="images" class="col-md-4 col-form-label text-md-right">{{ __('Image') }}</label>
+                                  <label for="images" class="col-md-4 col-form-label text-md-right">{{ __('Multiple Image') }}</label>
 
                                   <div class="col-md-6">
-                                      <input id="fileupload" type="file" multiple class="form-control @error('images') is-invalid @enderror" name="images[]" value="{{ old('images') }}"  autocomplete="images"  accept="image/*">
+                                      <input id="upload_file" type="file" multiple class="form-control @error('images') is-invalid @enderror" name="images[]" value="{{ old('images') }}"  autocomplete="images"  accept="image/*" onchange="preview_image();">
 
                                       @error('images')
                                           <span class="invalid-feedback" role="alert">
@@ -141,10 +141,17 @@
                                   </div>
                               </div>
                               <div class="form-group row">
-                                  <label for="files" class="col-md-4 col-form-label text-md-right">{{ __('File') }}</label>
+                                {{-- <label for="dvPreview" class="col-md-4 col-form-label text-md-right">{{ __('Preview') }}</label> --}}
+                                  <div class="col-md-10 align-self-end">
+                              <center>  <div id="pdf_preview">
+                              </div></center>
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                  <label for="files" class="col-md-4 col-form-label text-md-right">{{ __('Multiple File') }}</label>
 
                                   <div class="col-md-6">
-                                      <input id="files" type="file" multiple class="form-control @error('files') is-invalid @enderror" name="files[]" value="{{ old('files') }}"  autocomplete="files" accept=".pdf,.doc,.docs,.txt" >
+                                      <input id="files" type="file" multiple class="form-control @error('files') is-invalid @enderror" name="files[]" value="{{ old('files') }}"  autocomplete="files" accept=".pdf,.doc,.docs,.txt" onchange="preview_pdf();">
 
                                       @error('files')
                                           <span class="invalid-feedback" role="alert">
@@ -186,36 +193,22 @@
             </div>
 
 <script language="javascript" type="text/javascript">
-window.onload = function () {
-    var fileUpload = document.getElementById("fileupload");
-    fileUpload.onchange = function () {
-        if (typeof (FileReader) != "undefined") {
-            var dvPreview = document.getElementById("dvPreview");
-            dvPreview.innerHTML = "";
-            var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
-            for (var i = 0; i < fileUpload.files.length; i++) {
-                var file = fileUpload.files[i];
-                if (regex.test(file.name.toLowerCase())) {
-                    var reader = new FileReader();
-                    reader.onload = function (e) {
-                        var img = document.createElement("IMG");
-                        img.height = "200";
-                        img.width = "200";
-                        img.src = e.target.result;
-                        dvPreview.appendChild(img);
-                    }
-                    reader.readAsDataURL(file);
-                } else {
-                    alert(file.name + " is not a valid image file.");
-                    dvPreview.innerHTML = "";
-                    return false;
-                }
-            }
-        } else {
-            alert("This browser does not support HTML5 FileReader.");
-        }
-    }
-};
+function preview_image()
+{
+ var total_file=document.getElementById("upload_file").files.length;
+ for(var i=0;i<total_file;i++)
+ {
+  $('#image_preview').append("<img src='"+URL.createObjectURL(event.target.files[i])+"' height='150px' width='150px'>");
+ }
+}
+function preview_pdf()
+{
+ var total_file=document.getElementById("files").files.length;
+ for(var i=0;i<total_file;i++)
+ {
+  $('#pdf_preview').append("<iframe src='"+URL.createObjectURL(event.target.files[i])+"' height='200px' width='200px'>");
+ }
+}
 </script>
 
 @endsection

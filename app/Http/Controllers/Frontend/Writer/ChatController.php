@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend\Writer;
 
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\Chat;
@@ -29,7 +30,8 @@ class ChatController extends Controller
       return view('frontend.pages.writer.message',compact('writer','chat'));
     }
     else {
-      session()->flash('sticky_error', 'You cant send a message Untill admin send a message to you ');
+      Toastr::error('You cant send a message untill admin send a message to you', 'Error', ["positionClass" => "toast-top-right","closeButton"=> true,"progressBar"=> true,]);
+      // session()->flash('sticky_error', 'You cant send a message Untill admin send a message to you ');
         return back();
     }
   }

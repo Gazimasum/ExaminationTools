@@ -33,11 +33,8 @@
                       @include('frontend.pages.student.partials.sidebar')
                           <div class="col-md-9">
                           <h2> <img src="{{ App\Helpers\ImageHelper::getUserImage(Auth::user()->id) }}" class="img rounded-circle" style="width:40px">  {{$student->name}}</h2>
-                            <br> <h4>  {{$student->email}}</h4>
-                          <h4>  {{$student->phone_no}}</h4>
-                          <h4>  {{$student->Country['name']}} , {{$student->city}}</h4>
-                          <br>
-                          <h2>Assingment Request</h2><br>
+
+                          <h2>Assingment That You Request</h2><br>
                             <div class="box-body table-responsive">
                           <table class="table table-hover" id="myTable">
                               <thead>
@@ -64,7 +61,7 @@
                                 @else
                                   Complete
                               @endif</td>
-                              <td>{{$a->assingment->deadline_date}}</td>                            
+                              <td>{{$a->assingment->deadline_date}}</td>
 
                             </tr>
                           @endforeach

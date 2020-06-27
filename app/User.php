@@ -19,7 +19,7 @@ protected $table = 'users';
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'phone_no','city', 'country_id', 'ip_address', 'remember_token','password'
+        'name', 'email', 'phone_no', 'ip_address', 'remember_token','password'
     ];
 
     /**
@@ -45,10 +45,6 @@ protected $table = 'users';
       return User::count();
     }
 
-    public function country(){
-      return $this->belongsTo(Country::class);
-    }
-
     public function isOnline()
     {
        return Cache::has('user-is-online-' . $this->id);
@@ -57,4 +53,9 @@ protected $table = 'users';
     public function order(){
       return $this->hasMany(Order::class);
     }
+
+    public function details()
+   {
+       return $this->hasOne('App\Models\StudentDetails','student_id');
+   }
 }

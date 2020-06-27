@@ -1,6 +1,11 @@
 @extends('frontend.layouts.master')
 
 @section('content')
+  @php
+    $country = App\Models\Country::get();
+    $education_level = App\Models\EducationLevel::get();
+    $subject = App\Models\Subject::get();
+  @endphp
   <div class="intro-section single-cover" id="home-section">
                 <div class="slide-1 " style="background-image: url({!! asset('home-asset/images/img_2.jpg') !!});" data-stellar-background-ratio="0.5">
                   <div class="container">
