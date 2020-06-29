@@ -31,10 +31,22 @@ class ChatController extends Controller
     public function writermessageview($id)
     {
 
-      $data = Chat::where('writer_id',$id)->get();
+      $data = Chat::where('writer_id',$id)->orderby('id','desc')->get();
 
         return view('backend.pages.messages.writermessageview',compact('data'));
     }
+
+    public function writerChatCount(){
+      return Chat::where('is_seen',0)->where('user_id',null)->count();
+    }
+    public function studentChatCount(){
+      return Chat::where('is_seen',0)->where('writer_id',null)->count();
+    }
+    public function ChatCount(){
+      return Chat::where('is_seen',0)->count();
+    }
+
+
 
     /**
      * Show the form for creating a new resource.

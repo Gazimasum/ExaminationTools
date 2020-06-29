@@ -41,7 +41,7 @@
                               <tbody>
                                 @foreach ($order as $a)
                                   <tr>
-                                      <td>{{$a->student->name}}</td>
+                                      <td> <a href="{!! route('admin.student.view',$a->student->id) !!}">{{$a->student->name}}</a> </td>
                                       <td>{{$a->assingment->assingment_name}}</td>
                                       <td>{{$a->assingmentSubject()}}</td>
                                       <td>{{$a->assingmentType()}}</td>

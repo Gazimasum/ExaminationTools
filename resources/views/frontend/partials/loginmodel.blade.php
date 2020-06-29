@@ -11,8 +11,8 @@
           <span aria-hidden="true">&times;</span>
         </button> --}}
       {{-- </div> --}}
-      <div class="modal-body">
-      <div class="row">
+      <div class="modal-body" style="height:335px !important">
+      <div class="row"  style="height:335px !important">
         <div class="col-xs-12 col-sm-6 student-login">
           <h3 style="margin-top:60px;color:#fff; font-weight: bold;">Student Portal</h3>
           {{-- <p style="color:#fff">Choose Student Portal If you are a student and if you want to done your assingment by our virtual assistent. </p> --}}

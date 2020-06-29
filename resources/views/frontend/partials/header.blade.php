@@ -30,6 +30,7 @@
 
           </ul>
           <ul class="navbar-nav">
+
             <li class="nav-item ">
                 <a class="nav-link {{Route::is('index') ? 'active' : '' }}" href="{!! route('index') !!}">Home</a>
             </li>
@@ -44,7 +45,7 @@
             </li>
             @guest
               <li class="nav-item" style="padding-left:20px;padding-right:20px">  <a  class="nav-link btn btn-warning" data-toggle="modal" data-target="#exampleModalCenter">
-               <span style="color:#fff; font-weight:bold;">Choose Your Portal</span>
+               <span style="color:#fff; font-weight:bold;">Login | SignUp</span>
              </a></li>
            @else
              @if (Auth::guard('web')->check())
@@ -63,7 +64,7 @@
                  </a>
                  <a class="dropdown-item" href="#"
                  onclick="event.preventDefault();
-                 document.getElementById('student-profle-form').submit();">
+                 document.getElementById('student-profile-form').submit();">
                    Profile
                  </a>
                  <a class="dropdown-item" href="#"
@@ -74,7 +75,7 @@
                  <a class="dropdown-item" href="#"
                  onclick="event.preventDefault();
                  document.getElementById('student-message-form').submit();">
-                  Message
+                  Message <span class="badge badge-primary badge-pill"><b id="noti_number_header"></b></span>
                  </a>
                  <a class="dropdown-item" href="#"
                  onclick="event.preventDefault();
@@ -99,18 +100,18 @@
 
                         <a class="dropdown-item" href="#"
                         onclick="event.preventDefault();
-                        document.getElementById('writer-profile-form').submit();">
+                        document.getElementById('writer-dashboard-form').submit();">
                             My dashboard
                           </a>
                         <a class="dropdown-item" href="#"
                         onclick="event.preventDefault();
-                        document.getElementById('writer-dashboard-form').submit();">
+                        document.getElementById('writer-profile-form').submit();">
                             Profile
                           </a>
                           <a class="dropdown-item" href="#"
                           onclick="event.preventDefault();
                           document.getElementById('writer-message-form').submit();">
-                           Message
+                           Message <span class="badge badge-primary badge-pill"><b id="noti_number_header"></b></span>
                           </a>
                           <a class="dropdown-item" href="#"
                           onclick="event.preventDefault();
@@ -146,7 +147,7 @@
      <form id="dashboard-form" action="{{ route('student.dashboard') }}" method="GET" style="display: none;">
        @csrf
      </form>
-     <form id="student-proile-form" action="{{ route('student.profile') }}" method="GET" style="display: none;">
+     <form id="student-profile-form" action="{{ route('student.profile') }}" method="GET" style="display: none;">
        @csrf
      </form>
      <form id="writer-dashboard-form" action="{{ route('writer.dashboard') }}" method="GET" style="display: none;">

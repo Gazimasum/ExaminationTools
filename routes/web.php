@@ -39,17 +39,20 @@ Route::group(['prefix' => 'student'],function ()
 
   Route::get('order','Frontend\Student\OrderController@index')->name('student.order');
   Route::get('order/checkout/{id}','Frontend\Student\OrderController@checkoutview')->name('student.checkout');
+  Route::post('order/checkout/{id}','Frontend\Student\OrderController@checkoutDone')->name('student.checkout.done');
+  Route::get('order/paid-inovice/{id}','Frontend\Student\OrderController@paidInovice')->name('student.checkout.inovice');
 
   Route::group(['prefix' => 'assingment'],function ()
   {
     Route::get('/request', 'Frontend\Student\PagesController@assingmentView')->name('student.assingment.request.view');
     Route::post('/request', 'Frontend\Student\AssingmentController@store')->name('student.assingment.request.post');
-    Route::get('/{id}','Frontend\Student\AssingmentController@show')->name('student.assingment.view');
+    Route::get('/{slug}','Frontend\Student\AssingmentController@show')->name('student.assingment.view');
   });
   Route::group(['prefix' => 'message'],function ()
   {
     Route::get('/','Frontend\Student\ChatController@messageview')->name('student.message.view');
     Route::post('/message','Frontend\Student\ChatController@messagesend')->name('student.message.send');
+    Route::get('/count','Frontend\Student\ChatController@count')->name('student.message.count');
     });
 
 
@@ -88,6 +91,7 @@ Route::group(['prefix' => 'student'],function ()
   {
     Route::get('/','Frontend\Writer\ChatController@messageview')->name('writer.message.view');
     Route::post('/message','Frontend\Writer\ChatController@messagesend')->name('writer.message.send');
+    Route::get('/count','Frontend\Writer\ChatController@count')->name('writer.message.count');
     });
 });
 
@@ -107,8 +111,18 @@ Route::group(['prefix' => 'student'],function ()
     Route::get('/password/reset/{token}', 'Auth\Admin\ResetPasswordController@showResetForm')->name('admin.password.reset');
     Route::post('/password/reset', 'Auth\Admin\ResetPasswordController@reset')->name('admin.password.reset.post');
 
+    //admin registration
+    Route::get('/register', 'Auth\Admin\RegisterController@showRegistrationForm')->name('adminregisterview');
+    Route::post('/register/submit', 'Auth\Admin\RegisterController@adminregister')->name('admin.register');
+    Route::get('/token/{token}', 'Backend\VerficationController@verify')->name('admin.verification');
 
+    //change password
+    Route::get('/profile', 'Backend\AdminController@index')->name('admin.profile.view');
+    Route::get('/profile-change', 'Backend\AdminController@profilechange')->name('admin.profile.change');
+    Route::post('/profile/update', 'Backend\AdminController@update')->name('admin.profile.update');
 
+    // ChatCount
+    Route::get('chat/count','Backend\ChatController@ChatCount')->name('admin.chat.count');
   //Writer Route
   Route::group(['prefix' => 'writer'],function(){
     Route::get('/','Backend\WriterController@index')->name('admin.writer.index');
@@ -116,6 +130,8 @@ Route::group(['prefix' => 'student'],function ()
     Route::get('/edit/{id}','Backend\WriterController@edit')->name('admin.writer.edit');
     Route::post('/edit/{id}','Backend\WriterController@update')->name('admin.writer.update');
     Route::post('/delete/{id}','Backend\WriterController@delete')->name('admin.writer.delete');
+
+    Route::get('/view/{id}','Backend\WriterController@view')->name('admin.writer.view');
 // message
     Route::get('/request','Backend\WriterController@request')->name('admin.writer.request');
     Route::get('/message','Backend\WriterController@message')->name('admin.writer.message');
@@ -148,6 +164,8 @@ Route::group(['prefix' => 'student'],function ()
     Route::get('/edit/{id}','Backend\StudentController@edit')->name('admin.student.edit');
     Route::post('/edit/{id}','Backend\StudentController@update')->name('admin.student.update');
     Route::post('/delete/{id}','Backend\StudentController@delete')->name('admin.student.delete');
+
+    Route::get('/view/{id}','Backend\StudentController@view')->name('admin.student.view');
 
     // message
     Route::get('/message','Backend\StudentController@message')->name('admin.student.message');
@@ -240,7 +258,12 @@ Route::group(['prefix' => 'assingmenttype'],function(){
   Route::post('/delete/{id}','Backend\AssingmentTypeController@delete')->name('admin.assingmenttype.delete');
 });
 
+// payment_method
 
+Route::get('/payment-method','Backend\PagesController@payment_method')->name('admin.payment_method.index');
+Route::get('/payment-method/status/{id}','Backend\PagesController@payment_method_status')->name('admin.payment_method.status');
+Route::get('/payment-method/{id}','Backend\PagesController@payment_method_edit')->name('admin.payment_method.edit');
+Route::post('/payment-method/{id}','Backend\PagesController@payment_method_update')->name('admin.payment_method.update');
 
 // API routes
 Route::get('/get-order/{id}', function($id){

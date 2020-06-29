@@ -9,6 +9,7 @@ use App\User;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use PDF;
+use Auth;
 
 class DealWithStudentController extends Controller
 {
@@ -77,14 +78,16 @@ class DealWithStudentController extends Controller
     {
       // dd($request);
         $order = Order::find($request->order_id)->first();
+        $order->deal_std = 1;
+        $order->update();
       $deal =new DealWithStudent();
       $deal->student_id = $request->student_id;
       $student = User::find($request->student_id)->first();
       $deal->order_id = $request->order_id;
       $deal->price = $request->price;
-      $order->deal_std = 1;
+
       $deal->save();
-      $order->update();
+
       // Notifications
       $pdf = PDF::loadview('backend.pages.student.deal.inovice', compact('deal'))->setPaper('a4');
       $student->notify(new DealNotification($pdf));

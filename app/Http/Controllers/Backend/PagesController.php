@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\Page;
+use App\Models\Payment_method;
 
 use Illuminate\Support\Facades\DB;
 
@@ -52,5 +53,37 @@ class PagesController extends Controller
       $page->update();
 
       return view('backend.pages.contentpage.edit', compact('page'));
+    }
+
+    public function payment_method(){
+      $payment_method = Payment_method::get();
+      return view('backend.pages.payment-method.index',compact('payment_method'));
+    }
+    public function payment_method_edit($id){
+      $payment_method = Payment_method::find($id)->first();
+      return view('backend.pages.payment-method.edit',compact('payment_method'));
+    }
+    public function payment_method_status($id){
+      $payment_method = Payment_method::find($id)->first();
+      if ($payment_method->active==0) {
+        $payment_method->active=1;
+        $payment_method->update();
+
+      }
+      else {
+        $payment_method->active=0;
+        $payment_method->update();
+      }
+      session()->flash('success', 'Status Update');
+      return view('backend.pages.payment-method.edit',compact('payment_method'));
+    }
+    public function payment_method_update(Request $r,$id){
+      $payment_method = Payment_method::find($id)->first();
+      $payment_method->name = $r->name;
+      $payment_method->description = $r->description;
+      $payment_method->active = $r->active;
+      $payment_method->update();
+        session()->flash('success', ' Update Successfully');
+      return view('backend.pages.payment-method.edit',compact('payment_method'));
     }
 }

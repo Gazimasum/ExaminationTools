@@ -29,7 +29,8 @@ class PagesController extends Controller
         session()->flash('warning', 'Added Your Payment Details');
         // Toastr::warning('Added Your Payment Details', 'Warning', ["positionClass" => "toast-top-right","closeButton"=> true,"progressBar"=> true,]);
       }
-      return view('frontend.pages.writer.dashboard', compact('writer'));
+      $assingment = DealWithWriter::where('client_id',$writer->id)->get();
+      return view('frontend.pages.writer.dashboard', compact('writer','assingment'));
 
     }
     public function profile(){
@@ -50,8 +51,14 @@ class PagesController extends Controller
 
     }
     public function ordershow($id){
-      $assingment = DealwithWriter::where('order_id',$id)->first();
-      return view('frontend.pages.writer.assingmentView', compact('assingment'));
+      $assingment = DealwithWriter::where('client_id',Auth::id())->where('order_id',$id)->first();
+      if ($assingment) {
+        return view('frontend.pages.writer.assingmentView', compact('assingment'));
+      }
+      else {
+        abort(404);
+      }
+
 
     }
 

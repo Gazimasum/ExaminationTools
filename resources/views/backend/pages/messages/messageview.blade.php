@@ -59,7 +59,7 @@
                                @if ($msg->is_send_by==Auth::id())
                                  <p style="color:#3C8DBC">Admin</p>
                                  @else
-                                  <p style="color:#3C8DBC">Student</p>
+                                  <p style="color:#3C8DBC">User</p>
                                @endif
 
                                 <br>
@@ -67,7 +67,7 @@
                                 <p style="align:right;"><span class="time"><i class="fa fa-clock-o"></i> {{ date('d, F, Y', strtotime($msg->created_at))}}</span></p>
                               </div>
                             @if ($msg->reply!=null)
-                              <div class='timeline-footer'>                                
+                              <div class='timeline-footer'>
                                   @if ($msg->is_send_by==Auth::id())
                                     <p style="color:#3C8DBC">Student</p>
                                     @else

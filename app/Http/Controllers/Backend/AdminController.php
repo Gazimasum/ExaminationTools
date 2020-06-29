@@ -1,12 +1,20 @@
 <?php
 
 namespace App\Http\Controllers\Backend;
-
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use Auth;
 
 class AdminController extends Controller
 {
+
+  public function __construct()
+  {
+    $this->middleware('auth:admin');
+  }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,11 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+      return view('backend.pages.admin.index');
+    }
+    public function profilechange()
+    {
+      return view('backend.pages.admin.edit');
     }
 
     /**
@@ -67,9 +79,21 @@ class AdminController extends Controller
      * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Admin $admin)
+    public function update(Request $request)
     {
-        //
+      $this->validate($request,
+         ['name' => 'string|max:255',
+         'email' => 'email|unique:admins',
+         'password' => 'confirmed|min:6',
+
+       ]);
+        $admin = Auth::user();
+        $admin->name = $request->name;
+        $admin->email = $request->email;
+        $admin->password = Hash::make($request->password);
+        $admin->update();
+        session()->flash('success', 'Update Successfully');
+        return redirect('/admin');
     }
 
     /**

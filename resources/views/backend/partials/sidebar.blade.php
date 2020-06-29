@@ -106,24 +106,34 @@
                     {{-- <li><a href="pages/tables/data.html"><i class="fa fa-angle-double-right"></i> Data tables</a></li> --}}
                 </ul>
             </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-cog"></i> <span>General</span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="{!! route('admin.country.index') !!}"><i class="fa fa-angle-double-right"></i> Manage Country</a></li>
-                    <li><a href="{!! route('admin.educationlevel.index') !!}"><i class="fa fa-angle-double-right"></i>Manage Education Level</a></li>
-                      <li><a href="{!! route('admin.subject.index') !!}"><i class="fa fa-angle-double-right"></i>Manage Subject</a></li>
-                      <li><a href="{!! route('admin.assingmenttype.index') !!}"><i class="fa fa-angle-double-right"></i>Manage Assingment Type</a></li>
-                      <li><a href="{!! route('admin.advertising.index') !!}"><i class="fa fa-angle-double-right"></i>Manage Advertising</a></li>
-                </ul>
-            </li>
+            @if (Auth::user()->isSuperAdmin())
+              <li class="treeview">
+                  <a href="#">
+                      <i class="fa fa-cog"></i> <span>General</span>
+                      <i class="fa fa-angle-left pull-right"></i>
+                  </a>
+                  <ul class="treeview-menu">
+                      <li><a href="{!! route('admin.country.index') !!}"><i class="fa fa-angle-double-right"></i>  Country</a></li>
+                      <li><a href="{!! route('admin.educationlevel.index') !!}"><i class="fa fa-angle-double-right"></i> Education Level</a></li>
+                        <li><a href="{!! route('admin.subject.index') !!}"><i class="fa fa-angle-double-right"></i> Subject</a></li>
+                        <li><a href="{!! route('admin.assingmenttype.index') !!}"><i class="fa fa-angle-double-right"></i> Assingment Type</a></li>
+                        <li><a href="{!! route('admin.advertising.index') !!}"><i class="fa fa-angle-double-right"></i> Advertising</a></li>
+                        <li><a href="{!! route('admin.payment_method.index') !!}"><i class="fa fa-angle-double-right"></i> Payment Method</a></li>
+                  </ul>
+              </li>
+
+
             <li>
                 <a href="{!! route('admin.pages.index') !!}">
                     <i class="fa fa-edit"></i> <span>Pages</span>
                 </a>
             </li>
+            <li>
+                <a href="{!! route('adminregisterview') !!}">
+                    <i class="fa fa-user"></i> <span>Admin Register</span>
+                </a>
+            </li>
+              @endif
             {{-- <li>
                 <a href="pages/calendar.html">
                     <i class="fa fa-calendar"></i> <span>Calendar</span>

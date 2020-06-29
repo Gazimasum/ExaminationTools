@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers\Frontend\Student;
 use App\Http\Controllers\Controller;
+use App\Notifications\PaymentRecivedNotification;
 use App\Models\Order;
+use App\Models\Admin;
+use App\Models\DealWithStudent;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 use Auth;
+use PDF;
 class OrderController extends Controller
 {
     /**
@@ -19,10 +24,30 @@ class OrderController extends Controller
     }
     public function checkoutview($id)
     {
-      $student = Auth::user();
-      return view('frontend.pages.student.payment', compact('student'));
+      $order = DealWithStudent::findOrFail($id)->first();
+      return view('frontend.pages.student.payment', compact('order'));
+    }
+    public function checkoutDone(Request $r,$id)
+    {
+      $admin = Admin::where('type','Super Admin')->get();
+      $deal = DealWithStudent::find($id)->first();
+      $deal->transection_id = $r->transection_id;
+      $deal->payment_date = $r->payment_date;
+      $deal->update();
+      $pdf = PDF::loadview('backend.pages.student.deal.paidInovice', compact('deal'))->setPaper('a4');
+
+      foreach ($admin as $key => $a) {
+        $a->notify(new PaymentRecivedNotification($pdf));
+      }
+      session()->flash('success', 'Checkout Successfully..Wait For Admin Confirmation.');
+      return back();
     }
 
+    public function paidInovice($id)
+    {
+        $deal = DealWithStudent::findOrFail($id)->first();
+        return view('backend.pages.student.deal.paidInovice',compact('deal'));
+    }
     /**
      * Show the form for creating a new resource.
      *

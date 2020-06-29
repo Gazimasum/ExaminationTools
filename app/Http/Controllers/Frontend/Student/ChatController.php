@@ -43,47 +43,48 @@ class ChatController extends Controller
     $data = Chat::where('user_id',$id)->orderby('id','desc')->first();
 
     if ($data==null) {
-      // $chat = new Chat();
-      // $chat->user_id = $id;
-      // $chat->message = $r->message;
-      // $chat->admin_id = Auth::id();
-      // $chat->is_send_by = Auth::id();
-      // $chat->save();
       session()->flash('sticky_error', 'You cant send a message Untill admin send a message to you ');
         return back();
     }
     else {
-      $admin_id = $data->admin_id;
-      if ($data->reply==null) {
-        if ($data->is_send_by!=Auth::id()) {
-          $chat = Chat::orderby('id','desc')->first();
-          $chat->reply = $r->message;
-          $chat->update();
-        }
-        else {
+      // $admin_id = $data->admin_id;
+      // if ($data->reply==null) {
+      //   if ($data->is_send_by!=Auth::id()) {
+      //     $chat = Chat::orderby('id','desc')->first();
+      //     $chat->reply = $r->message;
+      //     $chat->update();
+      //   }
+      //   else {
           $chat = new Chat();
           $chat->user_id = $id;
           $chat->message = $r->message;
           $chat->admin_id = $admin_id;
           $chat->is_send_by = Auth::id();
           $chat->save();
-        }
+        // }
 
-      }
-      else {
-        $chat = new Chat();
-        $chat->user_id = $id;
-        $chat->message = $r->message;
-        $chat->admin_id = $admin_id;
-        $chat->is_send_by = Auth::id();
-        $chat->save();
-      }
+      // }
+      // else {
+      //   $chat = new Chat();
+      //   $chat->user_id = $id;
+      //   $chat->message = $r->message;
+      //   $chat->admin_id = $admin_id;
+      //   $chat->is_send_by = Auth::id();
+      //   $chat->save();
+      // }
 
     }
     session()->flash('success', 'Message Send Successfully');
     Toastr::success('Message Send Successfully', 'Success', ["positionClass" => "toast-top-right","closeButton"=> true,"progressBar"=> true,]);
 
       return back();
+  }
+
+
+  public function count()
+  {
+    $chat =  Chat::where('user_id',Auth::id())->where('is_user_seen',0)->count();
+       return $chat;
   }
 
 }

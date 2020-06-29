@@ -33,7 +33,7 @@
                       @include('frontend.pages.student.partials.sidebar')
                           <div class="col-md-9">
 
-                          <h2>Assingment Order</h2><br>
+                          <h2 style=" margin-top:20px">Assingment Order</h2><br>
                             <div class="box-body table-responsive">
                           <table class="table table-hover" id="myTable">
                               <thead>
@@ -52,7 +52,7 @@
                             <tr>
 
                               <td>{{$key+1}}</td>
-                              <td>  <a href="#">{{$a->order->assingment['assingment_name']}}</a></td>
+                              <td>  <a href="{!! route('student.assingment.view',$a->order->assingment->slug) !!}">{{$a->order->assingment['assingment_name']}}</a></td>
                               <td>{{$a->price}}</td>
 
                               <td>@if ($a->is_paid==0)
@@ -64,9 +64,9 @@
                               <td>{{$a->payment_date}}</td>
                               <td>
                                 @if ($a->is_paid==0)
-                                  <a href="{!! route('student.checkout',$a->id) !!}">Checkout</a>
+                                  <a class="btn btn-warning" href="{!! route('student.checkout',$a->id) !!}">Checkout</a>
                                   @else
-                                    Paid
+                                    <a class="btn btn-warning" href="{!! route('student.checkout.inovice',$a->id) !!}">Inovice</a>
                                 @endif
                               </td>
                             </tr>

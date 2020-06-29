@@ -39,7 +39,7 @@
 
                                 @foreach ($writer as $w)
                                   <tr>
-                                      <td>{{$w->name}}</td>
+                                      <td> <a href="{!! route('admin.writer.view',$w->id) !!}">{{$w->name}}</a> </td>
                                       <td>{{$w->email}}</td>
                                       <td>{{$w->phone_no}}</td>
                                       <td>{{$w->details->country->name}} , {{$w->city}}</td>

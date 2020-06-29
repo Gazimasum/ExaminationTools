@@ -12,6 +12,28 @@ $('#myTable').DataTable();
         $(".textarea").wysihtml5();
     });
 </script>
+<script type="text/javascript">
+ function loadDoc() {
+
+
+  setInterval(function(){
+
+   var xhttp = new XMLHttpRequest();
+   xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     document.getElementById("noti_number_header").innerHTML = this.responseText;
+     document.getElementById("noti_number_sidebar").innerHTML = this.responseText;
+    }
+   };
+   xhttp.open("GET", "{!! route('admin.chat.count') !!}", true);
+   xhttp.send();
+
+  },1000);
+
+
+ }
+ loadDoc();
+</script>
         <!-- jQuery 2.0.2 -->
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
         <!-- jQuery UI 1.10.3 -->

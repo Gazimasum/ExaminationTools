@@ -23,7 +23,7 @@ class PagesController extends Controller
         return view('frontend.pages.contact');
       }
     public function trackOrder(Request $r) {
-      $order = Order::where('order_trace_id',$r->order_id)->first();
+      $order = Order::where('order_track_id',$r->order_id)->first();
       if ($order) {
         return view('frontend.pages.orderTrack',compact('order'));
       }

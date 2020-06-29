@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Freelancer;
 use PDF;
+use Auth;
 
 class DealWithWriterController extends Controller
 {
@@ -63,13 +64,12 @@ class DealWithWriterController extends Controller
       $order = Order::where('assingments_id',$request->assingment_id)->first();
       $order->status = 2;
       $order->deal_wrt = 1;
+      $order->update();
       $writer = Freelancer::find($request->client_id)->first();
       $deal =new DealWithWriter();
       $deal->client_id = $request->client_id;
       $deal->order_id = $order->id;
       $deal->price = $request->price;
-
-      $order->update();
       $deal->save();
       $pdf = PDF::loadview('backend.pages.writer.deal.inovice', compact('deal'))->setPaper('a4');
 

@@ -33,17 +33,17 @@
                             <ul  class="list-group" id="scroll" style="width: auto; height: 300px; overflow: auto">
                             @foreach ($chat as $c)
                               @if ($c->is_send_by==$writer->id)
-                                  <li class="list-group-item list-group-item-primary">Me -> {{$c->message}}</li>
+                                  <li class="list-group-item list-group-item-success">Me -> {{$c->message}}</li>
                               @else
                                   <li class="list-group-item list-group-item-primary">Admin -> {{$c->message}}</li>
                               @endif
-                              @if ($c->reply!=null)
+                              {{-- @if ($c->reply!=null)
                                   @if ($c->is_send_by==$writer->id)
                                     <li class="list-group-item list-group-item-success" >Admin -> {{$c->reply}}</li>
                                   @else
                                     <li class="list-group-item list-group-item-success" >Me -> {{$c->reply}}</li>
                                   @endif
-                              @endif
+                              @endif --}}
 
 
                             @endforeach

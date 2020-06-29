@@ -34,29 +34,23 @@
                               <th>Assingment Details</th>
                               <th>Assingment Status</th>
                               <th>Deadline Date</th>
-                              <th>Payment</th>
+
                             </tr>
                             <tr>
                               <td>{{$order->assingment->assingment_name}}</td>
                               <td>{{$order->assingment->assingment_details}}</td>
-                            
+
                               <td>@if ($order->status==0)
                                 Unseen
                               @elseif ($order->status==1)
-                                Unseen
+                                Seen
                               @elseif ($order->stats==2)
                                 Running
                                 @else
                                   Complete
                               @endif</td>
                               <td>{{$order->assingment->deadline_date}}</td>
-                              <td>
-                                @if ($order->is_paid==0)
-                                  Not Paid
-                                  @else
-                                    Paid
-                                @endif
-                              </td>
+
                             </tr>
                           </table>
                         </div>

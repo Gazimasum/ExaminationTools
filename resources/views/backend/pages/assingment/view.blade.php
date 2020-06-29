@@ -25,8 +25,10 @@
 
           <!-- Main content -->
           <section class="content invoice">
+              <small class="pull-right"> <a href="{!! route('admin.student.messageview',$assingment->user->id)!!}" class="btn btn-primary">Message</a> </small>
               <!-- title row -->
               <div class="row">
+
                   <div class="col-xs-12">
                       <h2 class="page-header">
                           <i class="fa fa-file-o"></i> {{$assingment->assingment_name}}

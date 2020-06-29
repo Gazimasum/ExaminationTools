@@ -38,3 +38,50 @@ $(document).ready( function () {
   document.getElementById('scroll').scrollTop =  document.getElementById('scroll').scrollHeight
   } );
 </script>
+@if (Auth::guard('web')->check())
+<script type="text/javascript">
+ function loadDoc() {
+
+
+  setInterval(function(){
+
+   var xhttp = new XMLHttpRequest();
+   xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     document.getElementById("noti_number_header").innerHTML = this.responseText;
+     document.getElementById("noti_number_sidebar").innerHTML = this.responseText;
+    }
+   };
+   xhttp.open("GET", "{!! route('student.message.count') !!}", true);
+   xhttp.send();
+
+  },1000);
+
+
+ }
+ loadDoc();
+</script>
+@else
+  <script type="text/javascript">
+   function loadDoc() {
+
+
+    setInterval(function(){
+
+     var xhttp = new XMLHttpRequest();
+     xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+       document.getElementById("noti_number_header").innerHTML = this.responseText;
+       document.getElementById("noti_number_sidebar").innerHTML = this.responseText;
+      }
+     };
+     xhttp.open("GET", "{!! route('writer.message.count') !!}", true);
+     xhttp.send();
+
+    },1000);
+
+
+   }
+   loadDoc();
+  </script>
+@endif

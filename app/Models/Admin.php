@@ -40,7 +40,15 @@ class Admin extends Authenticatable
     public static function totalAdmin(){
 
 
-      $adminno=Admin::where('type','super Admin')->orwhere('type','Admin')->count();
+      $adminno=Admin::where('type','Super Admin')->orwhere('type','Admin')->count();
       return $adminno;
     }
+
+    public function isSuperAdmin() {
+         return $this->type === 'Super Admin';
+      }
+
+      public function isAdmin() {
+         return $this->type === 'Admin';
+      }
 }

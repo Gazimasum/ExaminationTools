@@ -14,12 +14,17 @@
         </a>
         <div class="navbar-right">
             <ul class="nav navbar-nav">
-
+              <li class="dropdown messages-menu">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      <i class="fa fa-envelope"></i>
+                      <span class="label label-success"> <b id="noti_number_header"></b> </span>
+                  </a>
+                </li>
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="glyphicon glyphicon-user"></i>
-                        <span>Jane Doe <i class="caret"></i></span>
+                        <span>Admin <i class="caret"></i></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
@@ -30,11 +35,11 @@
 
                             </p>
                         </li>
-                      
+
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                <a href="{!! route('admin.profile.view') !!}" class="btn btn-default btn-flat">Profile</a>
                             </div>
                             <div class="pull-right">
                               {{-- <form class="" action="{!! route('admin.logout') !!}" method="post">

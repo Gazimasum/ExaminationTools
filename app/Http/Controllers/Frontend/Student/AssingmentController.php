@@ -80,6 +80,7 @@ class AssingmentController extends Controller
      $student = Auth::user();
      $a = new Assingment();
      $a->assingment_name = $request->name;
+     $a->slug = Str::slug($request->name);
      $a->student_id =$student->id;
      $a->assingment_type_id = $request->assingmenttype;
      $a->education_level_id = $request->education_level;
@@ -142,13 +143,17 @@ class AssingmentController extends Controller
      * @param  \App\Models\Assingment  $assingment
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        $assingment = Assingment::where('id',$id)->first();
-        if ($assingment!=null) {
-          // Toastr::success('Messages in here', 'Title', ["positionClass" => "toast-top-right","closeButton"=> true,"progressBar"=> true,]);
-         return view('frontend.pages.student.assingmentView',compact('assingment'));
+
+       $assingment = Assingment::where('slug',$slug)->first();
+        if ($assingment) {
+            return view('frontend.pages.student.assingmentView',compact('assingment'));
         }
+        else {
+          abort(404);
+        }
+
     }
 
     /**

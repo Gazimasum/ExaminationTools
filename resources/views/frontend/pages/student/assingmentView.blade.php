@@ -26,7 +26,8 @@
                     <div class="col-md-12">
                       <div class="col-lg-12 ml-auto" data-aos="fade-up" data-aos-delay="100">
                         <div class="row">
-                            <div class="col-md-12">
+                            @include('frontend.pages.student.partials.sidebar')
+                            <div class="col-md-9">
                         <table class="table table-borderless">
                       <tbody>
                         <tr>
@@ -41,9 +42,8 @@
                       </tbody>
 
                         </table>
-                        </div>
-                        </div>
-                        <div class="row">
+
+
                           @if ($assingment->images!=null)
                           @foreach ($assingment->images as $key => $image)
                               <div class="col-md-4" style="margin-top:10px">
@@ -61,6 +61,7 @@
                           </div>
                       @endforeach
                     @endif
+                        </div>
                         </div>
 
 

@@ -10,7 +10,7 @@
     <a class="{{Route::is('student.order')? 'active' : ''}}" href="{!! route('student.order') !!}">Deal</a>
     @if (!empty($chat))
 
-    <a href="{!! route('student.message.view') !!}">Message</a>
+    <a href="{!! route('student.message.view') !!}">Message <span class="badge badge-primary badge-pill"><b id="noti_number_sidebar"></b></span></a>
 
     @endif
   </div>

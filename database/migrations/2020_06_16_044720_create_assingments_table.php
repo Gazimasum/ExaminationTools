@@ -17,6 +17,7 @@ class CreateAssingmentsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('student_id')->unsigned()->index();
             $table->string('assingment_name');
+            $table->string('slug');
             $table->unsignedInteger('assingment_subject_id');
             $table->unsignedInteger('assingment_type_id');
             $table->unsignedInteger('education_level_id');

@@ -38,7 +38,7 @@
                               <tbody>
                                 @foreach ($student as $s)
                                   <tr>
-                                      <td>{{$s->name}}</td>
+                                      <td><a href="{!! route('admin.student.view',$s->id) !!}">{{$s->name}}</a></td>
                                       <td>{{$s->email}}</td>
                                       <td>{{$s->phone_no}}</td>
                                       <td>{{$s->details->country->name}} , {{$s->details->city}}</td>

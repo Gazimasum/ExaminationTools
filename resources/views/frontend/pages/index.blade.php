@@ -3,7 +3,7 @@
   <!--================ Start Home Banner Area =================-->
     @include('frontend.partials.banner')
   <!--================ End Home Banner Area =================-->
-<div class="site-section">
+<div class="site-section track-section">
   <div class="container">
     <div class="row mb-5 justify-content-center">
         <div class="col-md-7 text-center" data-aos="fade-up" data-aos-delay="">
@@ -100,12 +100,12 @@
 
 
       </div>
-      <div class="row justify-content-center">
+      {{-- <div class="row justify-content-center">
         <div class="col-7 text-center">
           <button class="customPrevBtn btn btn-primary m-1">Prev</button>
           <button class="customNextBtn btn btn-primary m-1">Next</button>
         </div>
-      </div>
+      </div> --}}
     </div>
   </div>
 

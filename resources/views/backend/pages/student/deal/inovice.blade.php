@@ -200,7 +200,7 @@
                   <header>
                       <div class="row">
                           <div class="col">
-                              <a target="_blank" href="https://lobianijs.com">
+                              <a target="_blank" href="https://examinationtools.com">
                                   {{-- <img src="http://lobianijs.com/lobiadmin/version/1.0/ajax/img/logo/lobiadmin-logo-text-64.png" data-holder-rendered="true" /> --}}
                                   <h2>ExaminationTools</h2>
                                   </a>
@@ -222,7 +222,7 @@
                           <div class="col invoice-to">
                               <div class="text-gray-light">INVOICE TO:</div>
                               <h2 class="to">{{$deal->student->name}}</h2>
-                              <div class="address">{{$deal->student->->details->city}},{{$deal->student->details->country['name']}}</div>
+                              <div class="address">{{$deal->student->details->city}},{{$deal->student->details->country['name']}}</div>
                               <div class="email"><a href="mailto:{{$deal->student->email}}">{{$deal->student->email}}</a></div>
                           </div>
                           <div class="col invoice-details">

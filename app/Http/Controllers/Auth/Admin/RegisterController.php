@@ -9,9 +9,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
-use App\Models\Division;
-use App\Models\District;
+use Illuminate\Support\Str;
+use Auth;
 
 use App\Notifications\Adminverification;
 
@@ -58,7 +57,7 @@ class RegisterController extends Controller
   public function showRegistrationForm()
   {
 
-    return view('auth.admin.adminregister');
+    return view('auth.admin.register');
   }
 
 
@@ -72,7 +71,7 @@ class RegisterController extends Controller
   {
     return Validator::make($data, [
       'name' => 'required|string|max:30',
-
+      'type' => 'required',
       'email' => 'required|string|email|max:100|unique:users',
       'password' => 'required|string|min:6|confirmed',
 
@@ -90,22 +89,33 @@ class RegisterController extends Controller
   */
   protected function adminregister(Request $request)
   {
+   //  $this->validate($request,
+   //     ['name' => 'required|string|max:255',
+   //     'type' => 'required',
+   //     'email' => 'required|email|unique:admins',
+   //     'password' => 'required|confirmed|min:6',
+   //
+   //   ],
+   //   [
+   //   'name.required'=>"Please Provide a Full Name.",
+   //
+   // ]);
 
     $admin = Admin::create([
       'name' => $request->name,
-      'phone_no' => $request->phone_no,
       'email' => $request->email,
+      'type' => $request->type,
       'password' => Hash::make($request->password),
-      'remember_token'  =>str_random(50),
+      'remember_token'  =>Str::random(50),
       'avater' =>Null,
     ]);
 
      $admin->notify(new Adminverification($admin));
 
     session()->flash('success', 'A confirmation email has sent to you.. Please check and confirm your email');
-    return redirect('/admin/register');
+    return redirect('/admin');
 
-
+// dd($request);
   }
 
 }

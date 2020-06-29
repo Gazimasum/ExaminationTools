@@ -200,7 +200,7 @@
                   <header>
                       <div class="row">
                           <div class="col">
-                              <a target="_blank" href="https://lobianijs.com">
+                              <a target="_blank" href="https://examinationtools.com">
                                   {{-- <img src="http://lobianijs.com/lobiadmin/version/1.0/ajax/img/logo/lobiadmin-logo-text-64.png" data-holder-rendered="true" /> --}}
                                   <h2>ExaminationTools</h2>
                                   </a>
@@ -227,7 +227,7 @@
                           </div>
                           <div class="col invoice-details">
                               <h1 class="invoice-id">INVOICE {{$deal->order->order_track_id}}</h1>
-                              
+
                               {{-- <div class="date">Due Date: 30/10/2018</div> --}}
                           </div>
                       </div>

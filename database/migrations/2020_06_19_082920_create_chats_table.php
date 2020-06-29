@@ -15,28 +15,28 @@ class CreateChatsTable extends Migration
     {
         Schema::create('chats', function (Blueprint $table) {
         $table->bigIncrements('id');
-         $table->tinyInteger('user_id')->nullable();
-         $table->tinyInteger('writer_id')->nullable();
-         $table->tinyInteger('admin_id')->nullable();
+      
+         $table->bigInteger('user_id')->unsigned()->index();
+         $table->bigInteger('writer_id')->unsigned()->index();
+         $table->bigInteger('admin_id')->unsigned()->index();
          $table->text('message');
-         $table->text('reply')->nullable();
-         $table->tinyInteger('is_send_by');
-         $table->tinyInteger('is_seen')->default(1);
-         $table->tinyInteger('is_user_seen')->default(1);
+         $table->bigInteger('is_send_by');
+         $table->bigInteger('is_seen')->default(0);
+         $table->bigInteger('is_user_seen')->default(0);
 
          $table->timestamps();
 
-         // $table->foreign('user_id')
-         // ->references('id')->on('users')
-         // ->onDelete('cascade');
-         //
-         // $table->foreign('writer_id')
-         // ->references('id')->on('freelancers')
-         // ->onDelete('cascade');
-         //
-         // $table->foreign('admin_id')
-         // ->references('id')->on('admins')
-         // ->onDelete('cascade');
+         $table->foreign('user_id')
+         ->references('id')->on('users')
+         ->onDelete('cascade');
+
+         $table->foreign('writer_id')
+         ->references('id')->on('freelancers')
+         ->onDelete('cascade');
+
+         $table->foreign('admin_id')
+         ->references('id')->on('admins')
+         ->onDelete('cascade');
         });
     }
 

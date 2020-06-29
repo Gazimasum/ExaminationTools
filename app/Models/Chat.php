@@ -16,13 +16,15 @@ class Chat extends Model
   {
 
     // $chat = Chat::select(..)->whereNotIn('is_send_by',Auth::id())->orderby('id','desc')->count();
-  $chat =  Chat::where('is_seen',1)->count();
+  $chat =  Chat::where('is_seen',0)->count();
      return $chat;
   }
   public static function newStudentMessage()
   {
-    // $chat = Chat::select(..)->whereNotIn('is_send_by',Auth::id())->orderby('id','desc')->count();
-  $chat =  Chat::where('is_seen',1)->count();
+
+  $chat =  Chat::where('user_id',Auth::id())->where('is_seen',0)->count();
      return $chat;
   }
+
+
 }

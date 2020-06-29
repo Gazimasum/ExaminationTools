@@ -34,7 +34,7 @@ class WriterController extends Controller
 
   public function status($id)
   {
-    $writer = Freelancer::find($id)->first();
+    $writer = Freelancer::findOrFail($id)->first();
     if($writer->status==0){
       $writer->status = 1;
       $writer->save();
@@ -53,12 +53,20 @@ class WriterController extends Controller
   public function edit($id)
   {
       $country = Country::get();
-      $writer = Freelancer::find($id)->first();
+      $writer = Freelancer::findOrFail($id)->first();
       return view('backend.pages.writer.edit',compact('writer','country'));
   }
+
+  public function view($id)
+  {
+      $writer = Freelancer::findOrFail($id)->first();
+      return view('backend.pages.writer.view',compact('writer'));
+  }
+
+
   public function update(Request $request,$id)
   {
-      $writer = Freelancer::find($id)->first();
+      $writer = Freelancer::findOrFail($id)->first();
       $writer->name = $request->name;
       $writer->email = $request->email;
       $writer->phone_no = $request->phone_no;
@@ -82,7 +90,7 @@ class WriterController extends Controller
   }
   public function delete($id)
   {
-      $writer = Freelancer::find($id)->first();
+      $writer = Freelancer::findOrFail($id)->first();
       $writer->delete();
       session()->flash('success', 'Delete Successfully');
       return back();
@@ -97,7 +105,7 @@ class WriterController extends Controller
 
       $data = Chat::where('writer_id',$id)->get();
       foreach ($data as $d) {
-        $d->is_seen = 0;
+        $d->is_seen = 1;
       $d->update();
 
       }
@@ -106,43 +114,14 @@ class WriterController extends Controller
   }
   public function messagesend(Request $r,$id)
   {
-    $data = Chat::where('writer_id',$id)->orderby('id','desc')->first();
 
-    if ($data==null) {
       $chat = new Chat();
       $chat->writer_id = $id;
       $chat->message = $r->message;
       $chat->admin_id = Auth::id();
       $chat->is_send_by = Auth::id();
       $chat->save();
-    }
-    else {
-      if ($data->reply==null) {
-        if ($data->is_send_by!=Auth::id()) {
-          $chat = Chat::orderby('id','desc')->first();
-          $chat->reply = $r->message;
-          $chat->update();
-        }
-        else {
-          $chat = new Chat();
-          $chat->writer_id = $id;
-          $chat->message = $r->message;
-          $chat->admin_id = Auth::id();
-          $chat->is_send_by = Auth::id();
-          $chat->save();
-        }
 
-      }
-      else {
-        $chat = new Chat();
-        $chat->writer_id = $id;
-        $chat->message = $r->message;
-        $chat->admin_id = Auth::id();
-        $chat->is_send_by = Auth::id();
-        $chat->save();
-      }
-
-    }
     session()->flash('success', 'Message Send Successfully');
       return back();
   }

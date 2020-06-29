@@ -55,8 +55,12 @@
                                 @foreach ($data as $d)
                                   <tr>
                                       <td>
-                                        
-                                          {{$d->name}}</td>
+                                        @if (Route::is('admin.writer.message'))
+                                          <a href="{!! route('admin.writer.view',$d->id) !!}">  {{$d->name}}</a>
+                                          @else
+                                            <a href="{!! route('admin.student.view',$d->id) !!}">  {{$d->name}}</a>
+                                          @endif
+                                        </td>
                                       <td>{{$d->email}}</td>
                                       <td>{{$d->phone_no}}</td>
                                       <td>{{$d->details->country->name}} , {{$d->details->city}}</td>

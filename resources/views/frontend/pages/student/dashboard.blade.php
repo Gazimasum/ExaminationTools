@@ -50,7 +50,7 @@
                             <tr>
 
                               <td>{{$key+1}}</td>
-                              <td>  <a href="{!! route('student.assingment.view',$a->assingments_id) !!}">{{$a->assingment->assingment_name}}</a></td>
+                              <td>  <a href="{!! route('student.assingment.view',$a->assingment->slug) !!}">{{$a->assingment->assingment_name}}</a></td>
 
                               <td>@if ($a->status==0)
                                 Unseen
