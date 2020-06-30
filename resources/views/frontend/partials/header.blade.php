@@ -13,7 +13,7 @@
   }
 
 .navbar-light{
-  background-color: #7971ea !important;
+  background-color: {{$headerstyle->background_color}} !important;
 }
 .navbar-light .navbar-toggler {
   color: rgb(0, 0, 0);
@@ -75,12 +75,12 @@
                  <a class="dropdown-item" href="#"
                  onclick="event.preventDefault();
                  document.getElementById('student-message-form').submit();">
-                  Message <span class="badge badge-primary badge-pill"><b id="noti_number_header"></b></span>
+                  Message <span class="badge badge-primary badge-pill"><b id="noti_number_header">0</b></span>
                  </a>
                  <a class="dropdown-item" href="#"
                  onclick="event.preventDefault();
                  document.getElementById('student-order-form').submit();">
-                  Deal
+                  Deal <span class="badge badge-primary badge-pill"><b>{{App\Models\DealWithStudent::newStdDeal()}}</b></span>
                  </a>
 
 
@@ -111,7 +111,7 @@
                           <a class="dropdown-item" href="#"
                           onclick="event.preventDefault();
                           document.getElementById('writer-message-form').submit();">
-                           Message <span class="badge badge-primary badge-pill"><b id="noti_number_header"></b></span>
+                           Message <span class="badge badge-primary badge-pill"><b id="noti_number_header">0</b></span>
                           </a>
                           <a class="dropdown-item" href="#"
                           onclick="event.preventDefault();

@@ -8,7 +8,11 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 @include('frontend.partials.styles')
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-
+@php
+  $headerstyle = App\Models\Style::where('name','header')->first();
+  $footerstyle = App\Models\Style::where('name','footer')->first();
+  $sliderstyle = App\Models\Style::where('name','slider')->first();
+@endphp
 <div class="site-wrap">
 
   <div class="site-mobile-menu site-navbar-target">

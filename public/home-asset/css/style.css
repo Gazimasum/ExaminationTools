@@ -3,7 +3,9 @@ body {
   line-height: 1.7;
   color: gray;
   font-weight: 300;
-  font-size: 1.1rem; }
+  font-size: 1.1rem;
+  font-family: sans-serif;
+  }
 
 /* Models */
 
@@ -88,6 +90,7 @@ body {
     padding: 10px;
     width: 200px;
     background-color: #ffff;
+    font-weight:bold;
     /* border-bottom: 1px solid #7971ea !important; */
     border-radius:10px;
     position: fixed;
@@ -108,6 +111,7 @@ body {
       border-bottom: 2px solid #7971ea !important;
     color: #7971ea;
     font-weight: bold;
+    font-size: 20px;
   }
 
   .sidebar a:hover:not(.active) {
@@ -148,7 +152,16 @@ body {
 
   /* sidebar end */
 
+/* track section  */
 
+.track-section{
+height: 250px;
+  position: relative;
+}
+
+
+
+/* track section */
 ::-moz-selection {
   background: #000;
   color: #fff; }

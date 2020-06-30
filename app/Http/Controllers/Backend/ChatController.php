@@ -42,6 +42,7 @@ class ChatController extends Controller
     public function studentChatCount(){
       return Chat::where('is_seen',0)->where('writer_id',null)->count();
     }
+    
     public function ChatCount(){
       return Chat::where('is_seen',0)->count();
     }

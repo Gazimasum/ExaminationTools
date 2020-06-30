@@ -19,9 +19,9 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
       switch ($guard) {
-       case 'worker':
+       case 'writer':
        if (Auth::guard($guard)->check()) {
-           return redirect('worker.index');
+           return redirect('writer.index');
        }
 
          break;

@@ -67,13 +67,13 @@
                                       @if (Route::is('admin.writer.message'))
                                         <td>{{$d->details->educationlevel->name}}</td>
                                       <td>{{$d->details->subjects}}</td>
-                                      <td>  <a class="btn btn-primary" href="{!! route('admin.writer.messageview',$d->id) !!}">Message</a>
+                                      <td>  <a class="btn btn-primary" href="{!! route('admin.writer.messageview',$d->id) !!}"><b>{{$d->msgWriter($d->id)}}</b> Message</a>
                                         @if (App\Models\Order::where('status',1)->first())
                                             <a href="{!! route('admin.writer.deal',$d->id) !!}"class="btn btn-warning">Deal</a>
                                         @endif
                                       </td>
                                       @else
-                                          <td>  <a class="btn btn-primary" href="{!! route('admin.student.messageview',$d->id) !!}">Message</a> </td>
+                                          <td>  <a class="btn btn-primary" href="{!! route('admin.student.messageview',$d->id) !!}"><b>{{$d->msgStudent($d->id)}}</b> Message</a> </td>
                                        @endif
                                   </tr>
                                 @endforeach

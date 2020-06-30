@@ -63,8 +63,10 @@
                                 <td>{{$a->transection_id}}</td>
                               <td>{{$a->payment_date}}</td>
                               <td>
-                                @if ($a->is_paid==0)
+                                @if ($a->is_paid==0&&$a->transection_id==null)
                                   <a class="btn btn-warning" href="{!! route('student.checkout',$a->id) !!}">Checkout</a>
+                                @elseif($a->is_paid==0&&$a->transection_id!=null)
+                                  <a href="#">Wait For Confirm</a>
                                   @else
                                     <a class="btn btn-warning" href="{!! route('student.checkout.inovice',$a->id) !!}">Inovice</a>
                                 @endif

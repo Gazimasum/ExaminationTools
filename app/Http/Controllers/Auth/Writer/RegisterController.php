@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Str;
 
@@ -38,7 +39,7 @@ class RegisterController extends Controller
   *
   * @var string
   */
-  protected $redirectTo = '/';
+  protected $redirectTo = '/writer';
 
   /**
   * Create a new controller instance.
@@ -48,7 +49,7 @@ class RegisterController extends Controller
   public function __construct()
   {
 
-      $this->middleware('guest:writer');
+    $this->middleware('guest');
   }
 
 /**
@@ -129,6 +130,7 @@ class RegisterController extends Controller
     foreach ($admin as $a) {
       $a->notify(new WriterRequest);
     }
+    Toastr::success('A confirmation email has sent to you.. Please check and confirm your email', 'Success', ["positionClass" => "toast-top-right"]);
    session()->flash('success', 'A confirmation email has sent to you.. Please check and confirm your email');
    return redirect('/writer/register');
 

@@ -103,7 +103,7 @@ class WriterController extends Controller
   public function messageview($id)
   {
 
-      $data = Chat::where('writer_id',$id)->get();
+      $data = Chat::where('writer_id',$id)->orderBy('id','desc')->get();
       foreach ($data as $d) {
         $d->is_seen = 1;
       $d->update();
@@ -117,6 +117,7 @@ class WriterController extends Controller
 
       $chat = new Chat();
       $chat->writer_id = $id;
+      $chat->user_id = null;
       $chat->message = $r->message;
       $chat->admin_id = Auth::id();
       $chat->is_send_by = Auth::id();

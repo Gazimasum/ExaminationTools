@@ -22,7 +22,7 @@
 
                   @csrf
                     <h3 class="h4 text-black mb-4">Writer Sign In</h3>
-                  @include('backend.partials.messages')
+                  @include('frontend.partials.messages')
             <div class="form-group ">
                 <label for="email" >{{ __('E-Mail Address') }}</label>
 

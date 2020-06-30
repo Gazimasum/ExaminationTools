@@ -43,15 +43,15 @@
                  </div>
                </div>
                {{-- {{{$page->content}}} --}}
-               {!! html_entity_decode($page->content, ENT_QUOTES, 'UTF-8') !!}
+               {{-- {!! html_entity_decode($page->content, ENT_QUOTES, 'UTF-8') !!} --}}
 
-                {{-- <div class="container" style="margin-top:20px; font-size:22px;font-weight:bold;color:#000">
+                <div class="container" style="margin-top:20px; font-size:22px;font-weight:bold;color:#000">
                   <div class="row">
                     <div class="col-md-12">
                       <div class="col-lg-12 ml-auto" data-aos="fade-up" data-aos-delay="100">
                         <div class="row">
                           <div class="col-md-4">
-                            <ul>
+                            <ul style="list-style-type: square;">
                               <li>Civil</li>
                               <li>Mining</li>
                               <li>Broking</li>
@@ -65,7 +65,7 @@
                             </ul>
                           </div>
                           <div class="col-md-4">
-                            <ul>
+                            <ul style="list-style-type: square;">
                               <li>Marketing</li>
                               <li>Journalism</li>
                               <li>Accounting</li>
@@ -78,7 +78,7 @@
                             </ul>
                           </div>
                           <div class="col-md-4">
-                            <ul>
+                            <ul style="list-style-type: square;">
                               <li>Geo-informatics</li>
                               <li>Interactive Media</li>
                               <li>Asset Management</li>
@@ -103,7 +103,7 @@
                       <div class="col-lg-12 ml-auto" data-aos="fade-up" data-aos-delay="100">
                         <div class="row">
                         <div class="col-md-6">
-                          <ul>
+                          <ul style="list-style-type: square;">
                             <li>Visual Effects & Animation</li>
                             <li>Geoscience & Oceanography</li>
                             <li>Oil & Petroleum Engineering</li>
@@ -114,7 +114,7 @@
                           </ul>
                         </div>
                           <div class="col-md-6">
-                            <ul>
+                            <ul style="list-style-type: square;">
                               <li>Database analysts and data administrators</li>
                               <li>Information systems analysts and consultants</li>
                               <li>Architecture (Urban & Landscape Architects)</li>
@@ -167,5 +167,5 @@
                   </div>
                 </div>
               </div>
-            </div> --}}
+            </div>
         @endsection

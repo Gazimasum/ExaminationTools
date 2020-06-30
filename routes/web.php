@@ -116,6 +116,12 @@ Route::group(['prefix' => 'student'],function ()
     Route::post('/register/submit', 'Auth\Admin\RegisterController@adminregister')->name('admin.register');
     Route::get('/token/{token}', 'Backend\VerficationController@verify')->name('admin.verification');
 
+    //Admin view
+    Route::get('/view','Backend\AdminController@view')->name('admin.view');
+    Route::get('/status/{id}','Backend\AdminController@status')->name('admin.status');
+    Route::post('/delete/{id}','Backend\AdminController@delete')->name('admin.delete');
+
+
     //change password
     Route::get('/profile', 'Backend\AdminController@index')->name('admin.profile.view');
     Route::get('/profile-change', 'Backend\AdminController@profilechange')->name('admin.profile.change');
@@ -123,6 +129,8 @@ Route::group(['prefix' => 'student'],function ()
 
     // ChatCount
     Route::get('chat/count','Backend\ChatController@ChatCount')->name('admin.chat.count');
+    Route::get('student/chat/count','Backend\ChatController@StudentChatCount')->name('admin.student.chat.count');
+    Route::get('writer/chat/count','Backend\ChatController@WriterChatCount')->name('admin.writer.chat.count');
   //Writer Route
   Route::group(['prefix' => 'writer'],function(){
     Route::get('/','Backend\WriterController@index')->name('admin.writer.index');
@@ -264,6 +272,12 @@ Route::get('/payment-method','Backend\PagesController@payment_method')->name('ad
 Route::get('/payment-method/status/{id}','Backend\PagesController@payment_method_status')->name('admin.payment_method.status');
 Route::get('/payment-method/{id}','Backend\PagesController@payment_method_edit')->name('admin.payment_method.edit');
 Route::post('/payment-method/{id}','Backend\PagesController@payment_method_update')->name('admin.payment_method.update');
+
+//Style
+
+Route::get('/style','Backend\StyleController@index')->name('admin.style');
+Route::get('/style/{id}','Backend\StyleController@edit')->name('admin.style.edit');
+Route::post('/style/{id}','Backend\StyleController@update')->name('admin.style.update');
 
 // API routes
 Route::get('/get-order/{id}', function($id){

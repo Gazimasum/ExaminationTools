@@ -19,15 +19,15 @@
         {!! Toastr::message() !!}
 
 <script src="{!! asset('home-asset/js/main.js')!!}"></script>
-<script type="text/javascript">
+{{-- <script type="text/javascript">
 $(function()
 {
 $(".js-example-basic-multiple-limit").select2(
 {
-  maximumSelectionLength: 2
+  maximumSelectionLength: 5
 });
 });
-</script>
+</script> --}}
 <script type="text/javascript">
 $(document).ready( function () {
   $('#myTable').DataTable();
@@ -55,7 +55,7 @@ $(document).ready( function () {
    xhttp.open("GET", "{!! route('student.message.count') !!}", true);
    xhttp.send();
 
-  },1000);
+ },5000);
 
 
  }
@@ -73,12 +73,13 @@ $(document).ready( function () {
       if (this.readyState == 4 && this.status == 200) {
        document.getElementById("noti_number_header").innerHTML = this.responseText;
        document.getElementById("noti_number_sidebar").innerHTML = this.responseText;
+
       }
      };
      xhttp.open("GET", "{!! route('writer.message.count') !!}", true);
      xhttp.send();
 
-    },1000);
+   },4000);
 
 
    }

@@ -36,15 +36,9 @@
                               @if ($c->is_send_by==$student->id)
                                   <li class="list-group-item list-group-item-primary">Me -> {{$c->message}}</li>
                               @else
-                                  <li class="list-group-item list-group-item-primary">Admin -> {{$c->message}}</li>
+                                  <li class="list-group-item list-group-item-success">Admin -> {{$c->message}}</li>
                               @endif
-                              @if ($c->reply!=null)
-                                  @if ($c->is_send_by==$student->id)
-                                    <li class="list-group-item list-group-item-success" >Admin -> {{$c->reply}}</li>
-                                  @else
-                                    <li class="list-group-item list-group-item-success" >Me -> {{$c->reply}}</li>
-                                  @endif
-                              @endif
+                            
                             @endforeach
                             </ul>
 

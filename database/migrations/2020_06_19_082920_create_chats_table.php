@@ -15,9 +15,9 @@ class CreateChatsTable extends Migration
     {
         Schema::create('chats', function (Blueprint $table) {
         $table->bigIncrements('id');
-      
-         $table->bigInteger('user_id')->unsigned()->index();
-         $table->bigInteger('writer_id')->unsigned()->index();
+
+         $table->bigInteger('user_id')->unsigned()->index()->nullable();
+         $table->bigInteger('writer_id')->unsigned()->index()->nullable();
          $table->bigInteger('admin_id')->unsigned()->index();
          $table->text('message');
          $table->bigInteger('is_send_by');

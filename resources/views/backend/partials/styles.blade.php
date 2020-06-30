@@ -23,6 +23,7 @@
 <!-- DATA TABLES -->
 <link href="{!! asset('admin-asset/css/datatables/dataTables.bootstrap.css') !!}" rel="stylesheet" type="text/css" />
 <link href="{!! asset('admin-asset/css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')!!}" rel="stylesheet" type="text/css" />
+<link href="{!! asset('admin-asset/css/colorpicker/bootstrap-colorpicker.min.css')!!}" rel="stylesheet"/>
 {{-- <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script> --}}
 {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">

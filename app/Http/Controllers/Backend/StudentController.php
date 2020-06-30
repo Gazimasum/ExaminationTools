@@ -90,7 +90,7 @@ class StudentController extends Controller
   public function messageview($id)
   {
 
-      $data = Chat::where('user_id',$id)->get();
+      $data = Chat::where('user_id',$id)->orderBy('id','desc')->get();
       foreach ($data as $d) {
         $d->is_seen = 1;
       $d->update();
@@ -104,6 +104,7 @@ class StudentController extends Controller
           $chat = new Chat();
           $chat->user_id = $id;
           $chat->message = $r->message;
+          $chat->writer_id=null;
           $chat->admin_id = Auth::id();
           $chat->is_send_by = Auth::id();
           $chat->save();

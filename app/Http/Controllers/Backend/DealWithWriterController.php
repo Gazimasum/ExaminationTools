@@ -61,7 +61,7 @@ class DealWithWriterController extends Controller
      */
     public function store(Request $request)
     {
-      $order = Order::where('assingments_id',$request->assingment_id)->first();
+      $order = Order::where('assingments_id',$request->assingment_id)->where('deal_wrt',0)->first();
       $order->status = 2;
       $order->deal_wrt = 1;
       $order->update();

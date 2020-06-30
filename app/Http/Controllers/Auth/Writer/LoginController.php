@@ -32,7 +32,7 @@ class LoginController extends Controller
   *
   * @var string
   */
-  protected $redirectTo = '/writter';
+  protected $redirectTo = '/writer';
 
   /**
   * Create a new controller instance.
@@ -42,13 +42,12 @@ class LoginController extends Controller
   public function __construct()
   {
     $this->middleware('guest')->except('logout');
-         $this->middleware('guest:admin')->except('logout');
-         $this->middleware('guest:writer')->except('logout');
+
   }
 
   public function showLoginForm()
   {
-     return view('auth.writer.login', ['url' => 'writer']);
+     return view('auth.writer.login');
   }
 
 
@@ -90,7 +89,8 @@ class LoginController extends Controller
           }
         }
         else {
-          session()->flash('sticky_error','Your Account is Verified.. Please Wait Until Approved Your Account !!');
+          
+          session()->flash('success','Your Account is Verified.. Please Wait Until Approved Your Account !!');
           return redirect()->route('writer.login');
         }
       }

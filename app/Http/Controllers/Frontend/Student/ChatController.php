@@ -23,7 +23,7 @@ class ChatController extends Controller
     if (!empty($allow)) {
       $chat = Chat::where('user_id',$student->id)->get();
       foreach ($chat as $c) {
-        $c->is_user_seen = 0;
+        $c->is_user_seen = 1;
       $c->update();
 
       }
@@ -47,7 +47,7 @@ class ChatController extends Controller
         return back();
     }
     else {
-      // $admin_id = $data->admin_id;
+      $admin_id = $data->admin_id;
       // if ($data->reply==null) {
       //   if ($data->is_send_by!=Auth::id()) {
       //     $chat = Chat::orderby('id','desc')->first();
@@ -57,6 +57,7 @@ class ChatController extends Controller
       //   else {
           $chat = new Chat();
           $chat->user_id = $id;
+          $chat->writer_id = null;
           $chat->message = $r->message;
           $chat->admin_id = $admin_id;
           $chat->is_send_by = Auth::id();
@@ -85,6 +86,7 @@ class ChatController extends Controller
   {
     $chat =  Chat::where('user_id',Auth::id())->where('is_user_seen',0)->count();
        return $chat;
+       // return response()->json(['chat' => $chat]);
   }
 
 }

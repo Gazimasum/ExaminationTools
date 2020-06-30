@@ -24,8 +24,14 @@ class OrderController extends Controller
     }
     public function checkoutview($id)
     {
-      $order = DealWithStudent::findOrFail($id)->first();
-      return view('frontend.pages.student.payment', compact('order'));
+      $order = DealWithStudent::where('id',$id)->where('is_paid',0)->where('student_id',Auth::id())->first();
+      if ($order) {
+        return view('frontend.pages.student.payment', compact('order'));
+      }
+      else {
+        abort(404);
+      }
+
     }
     public function checkoutDone(Request $r,$id)
     {

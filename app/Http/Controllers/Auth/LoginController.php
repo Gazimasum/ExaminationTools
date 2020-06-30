@@ -39,8 +39,7 @@ class LoginController extends Controller
     public function __construct()
     {
       $this->middleware('guest')->except('logout');
-           $this->middleware('guest:admin')->except('logout');
-           $this->middleware('guest:writer')->except('logout');
+
     }
 
 
@@ -58,7 +57,7 @@ class LoginController extends Controller
         // login This User
 
         if (Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
-          // Log Him Now
+            Toastr::success('Successfully Login..', 'Success', ["positionClass" => "toast-top-right"]);
           return redirect()->intended(route('student.dashboard'));
         }else {
           session()->flash('sticky_error', 'Invalid Login');

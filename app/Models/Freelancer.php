@@ -55,5 +55,11 @@ class Freelancer extends Authenticatable
     {
       return Freelancer::where('status',1)->count();
     }
+    public static function msgWriter($id)
+    {
+      return Chat::where('writer_id',$id)->where('is_seen',0)->count();
+    }
+
+
 
 }

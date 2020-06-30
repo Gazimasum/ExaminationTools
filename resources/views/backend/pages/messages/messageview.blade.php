@@ -59,7 +59,11 @@
                                @if ($msg->is_send_by==Auth::id())
                                  <p style="color:#3C8DBC">Admin</p>
                                  @else
-                                  <p style="color:#3C8DBC">User</p>
+                                     @if (Route::is('admin.writer.messageview'))
+                                  <p style="color:#3C8DBC">{{$msg->writer->name}}</p>
+                                  @else
+                                    <p style="color:#3C8DBC">{{$msg->student->name}}</p>
+                                  @endif
                                @endif
 
                                 <br>

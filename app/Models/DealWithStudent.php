@@ -24,6 +24,13 @@ class DealWithStudent extends Model
   return Order::where('deal_std',0)->count();
 
   }
+  public static function newStdDeal()
+  {
+
+  return DealWithStudent::where('transection_id',null)->count();
+
+  }
+
 
 
 }

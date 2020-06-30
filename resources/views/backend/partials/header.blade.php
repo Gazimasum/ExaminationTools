@@ -17,8 +17,12 @@
               <li class="dropdown messages-menu">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                       <i class="fa fa-envelope"></i>
-                      <span class="label label-success"> <b id="noti_number_header"></b> </span>
+                      <span class="label label-success"> <b id="noti_number_header">0</b> </span>
                   </a>
+                  <ul class="dropdown-menu">
+                      <li class="header" >You have <b id="s_noti_number_header">0</b> Student messages</li>
+                      <li class="header">You have <b id="w_noti_number_header">0</b> Writer messages</li>
+                  </ul>
                 </li>
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">

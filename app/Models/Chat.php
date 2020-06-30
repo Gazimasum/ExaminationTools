@@ -8,6 +8,17 @@ use Auth;
 
 class Chat extends Model
 {
+
+  public  function student(){
+
+    return $this->belongsTo('App\User','user_id');
+  }
+  public  function writer(){
+
+    return $this->belongsTo('App\Models\Freelancer','writer_id');
+  }
+
+
   public static function newWriterMessage()
   {
     return Chat::count();

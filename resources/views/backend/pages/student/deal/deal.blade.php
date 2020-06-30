@@ -42,7 +42,7 @@
                         </div>
                         <div class="form-group">
                             <label for="assingment_id">Assingment Details</label>
-                            <textarea  rows="8" cols="80" readonly>{{ $order->assingment->assingment_details }}</textarea>
+                            <textarea  class="form-control"  readonly>{{ $order->assingment->assingment_details }}</textarea>
                         </div>
                         <div class="form-group">
                           <label for="price">Price</label>

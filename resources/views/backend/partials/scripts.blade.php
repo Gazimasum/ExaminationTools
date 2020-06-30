@@ -2,6 +2,8 @@
 $(document).ready( function () {
 $('#myTable').DataTable();
 } );
+//color picker with addon
+
 </script>
 <script type="text/javascript">
     $(function() {
@@ -28,7 +30,27 @@ $('#myTable').DataTable();
    xhttp.open("GET", "{!! route('admin.chat.count') !!}", true);
    xhttp.send();
 
-  },1000);
+   var shttp = new XMLHttpRequest();
+   shttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     document.getElementById("s_noti_number_header").innerHTML = this.responseText;
+     document.getElementById("s_noti_number_sidebar").innerHTML = this.responseText;
+    }
+   };
+   shttp.open("GET", "{!! route('admin.student.chat.count') !!}", true);
+   shttp.send();
+
+   var whttp = new XMLHttpRequest();
+   whttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     document.getElementById("w_noti_number_header").innerHTML = this.responseText;
+     document.getElementById("w_noti_number_sidebar").innerHTML = this.responseText;
+    }
+   };
+   whttp.open("GET", "{!! route('admin.writer.chat.count') !!}", true);
+   whttp.send();
+
+ },4000);
 
 
  }
@@ -75,3 +97,6 @@ $('#myTable').DataTable();
         <script src="{!! asset('admin-asset/js/plugins/ckeditor/ckeditor.js')!!}" type="text/javascript"></script>
         <!-- Bootstrap WYSIHTML5 -->
         <script src="{!! asset('admin-asset/js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')!!}" type="text/javascript"></script>
+
+        <!-- bootstrap color picker -->
+        <script src="{!! asset('admin-asset/js/plugins/colorpicker/bootstrap-colorpicker.min.js')!!}" type="text/javascript"></script>

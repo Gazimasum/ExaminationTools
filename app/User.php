@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Country;
 use App\Models\Order;
+use App\Models\Chat;
 use Cache;
 
 class User extends Authenticatable
@@ -57,5 +58,10 @@ protected $table = 'users';
     public function details()
    {
        return $this->hasOne('App\Models\StudentDetails','student_id');
+   }
+
+   public static function msgStudent($id)
+   {
+     return Chat::where('user_id',$id)->where('is_seen',0)->count();
    }
 }

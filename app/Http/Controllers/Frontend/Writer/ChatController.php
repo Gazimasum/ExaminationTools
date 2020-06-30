@@ -23,7 +23,7 @@ class ChatController extends Controller
     if (!empty($allow)) {
       $chat = Chat::where('writer_id',$writer->id)->get();
       foreach ($chat as $c) {
-        $c->is_user_seen = 0;
+        $c->is_user_seen = 1;
       $c->update();
 
       }
@@ -56,6 +56,7 @@ class ChatController extends Controller
     //     }
     //     else {
           $chat = new Chat();
+          $chat->user_id = null;
           $chat->writer_id = $id;
           $chat->message = $r->message;
           $chat->admin_id = $admin_id;

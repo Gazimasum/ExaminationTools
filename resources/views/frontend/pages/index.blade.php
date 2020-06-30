@@ -3,7 +3,7 @@
   <!--================ Start Home Banner Area =================-->
     @include('frontend.partials.banner')
   <!--================ End Home Banner Area =================-->
-<div class="site-section track-section">
+<div class="track-section">
   <div class="container">
     <div class="row mb-5 justify-content-center">
         <div class="col-md-7 text-center" data-aos="fade-up" data-aos-delay="">
@@ -11,12 +11,15 @@
           @include('frontend.partials.messages')
           <form class="form-box" action="{!! route('track.order') !!}" method="post">
             @csrf
-            <div class="form-group">
-            <input type="text" name="order_id" class="form-control" value="" placeholder="#I123" required>
-          </div>
-            <div class="form-group  mb-0">
+            <div class="form-group row">
+            <div class="col-md-10">
+              <input type="text" name="order_id" class="form-control" value="" placeholder="#I123" required>
+            </div>
+            <div class="col-md-2">
               <button type="submit" class="btn btn-primary">TRACK</button>
-              <div>
+            </div>
+          </div>
+
           </form>
         </div>
     </div>
@@ -42,7 +45,7 @@
 
           <div class="course bg-white h-100 align-self-stretch">
             <figure class="m-0">
-              <a href="course-single.html"><img src="{!! asset('home-asset/images/documents.png')!!}" alt="Image" class="img-fluid"></a>
+              <a href="#"><img src="{!! asset('home-asset/images/documents.png')!!}" alt="Image" class="img-fluid"></a>
             </figure>
             <div class="course-inner-text py-4 px-4">
               {{-- <span class="course-price">$20</span> --}}
@@ -60,7 +63,7 @@
 
           <div class="course bg-white h-100 align-self-stretch">
             <figure class="m-0">
-              <a href="course-single.html"><img src="{!! asset('home-asset/images/buy.png')!!}" alt="Image" width="300" height="500" class="img-fluid"></a>
+              <a href="#"><img src="{!! asset('home-asset/images/buy.png')!!}" alt="Image" width="300" height="500" class="img-fluid"></a>
             </figure>
             <div class="course-inner-text py-4 px-4">
               {{-- <span class="course-price">$99</span> --}}
@@ -78,7 +81,7 @@
 
           <div class="course bg-white h-100 align-self-stretch">
             <figure class="m-0">
-              <a href="course-single.html"><img src="{!! asset('home-asset/images/shield.png')!!}" width="100" height="100" alt="Image" class="img-fluid"></a>
+              <a href="#"><img src="{!! asset('home-asset/images/shield.png')!!}" width="100" height="100" alt="Image" class="img-fluid"></a>
             </figure>
             <div class="course-inner-text py-4 px-4">
               {{-- <span class="course-price">$20</span> --}}

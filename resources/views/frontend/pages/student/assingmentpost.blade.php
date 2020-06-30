@@ -111,8 +111,7 @@
                                   <label for="details" class="col-md-4 col-form-label text-md-right">{{ __('Assingment Details') }}</label>
 
                                   <div class="col-md-6">
-                                      <textarea id="details" type="text" class="form-control @error('details') is-invalid @enderror" name="details" value="{{ old('details') }}" required >
-                                      </textarea>
+                                      <textarea id="details" type="text" class="form-control @error('details') is-invalid @enderror" name="details" value="{{ old('details') }}" required ></textarea>
                                       @error('details')
                                           <span class="invalid-feedback" role="alert">
                                               <strong>{{ $message }}</strong>

@@ -6,11 +6,12 @@
     width: 80% !important;
   }
   .about-section {
-  padding: 1em 0;
+  height: 60px;
   position: relative;
 }
 .about-section-title {
-    font-size: 2rem;
+  margin-top: 2rem;
+    font-size: 1.5rem;
     color: #fff;
     /* margin-bottom: 0.5rem; */
     font-weight: 500;
@@ -38,7 +39,7 @@
             <div class="about-section courses-title" id="courses-section">@include('frontend.partials.advertising.top')
               <div class="container">
                 <div class="row mb-5 justify-content-center">
-                  <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="">
+                  <div class="col-lg-7 text-center" >
                     {{-- <h2 class="section-title">HOW ONLINE ASSIGNMENT WRITING SERVICE WORKS</h2> --}}
                     <h2 class="about-section-title">Our core values are what we stand for, driven by a desire to improve our Services, they are what matter most for us.</h2>
                   </div>

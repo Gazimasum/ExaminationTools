@@ -44,7 +44,7 @@
                 <ul class="treeview-menu">
                   <li><a href="{!! route('admin.assingment.index') !!}"><i class="fa fa-angle-double-right"></i> View Assingment <small class="badge pull-right bg-red">{{App\Models\Order::newOrder()}}</small></a></li>
                     {{-- <li><a href="#"><i class="fa fa-angle-double-right"></i> Manage Assingment</a></li> --}}
-                  <li><a href="pages/charts/inline.html"><i class="fa fa-angle-double-right"></i> Complete Assingment <small class="badge pull-right bg-green">{{App\Models\Order::completeOrder()}}</small></a></li>
+                  <li><a href="{!! route('admin.assingment.complete') !!}"><i class="fa fa-angle-double-right"></i> Complete Assingment <small class="badge pull-right bg-green">{{App\Models\Order::completeOrder()}}</small></a></li>
 
 
                 </ul>
@@ -58,7 +58,7 @@
                 <ul class="treeview-menu">
                     <li><a href="{!! route('admin.writer.request') !!}"><i class="fa fa-angle-double-right"></i> Writer Request <small class="badge pull-right bg-green">{{App\Models\Freelancer::writerReq()}}</small></a></li>
                     <li><a href="{!! route('admin.writer.index') !!}"><i class="fa fa-angle-double-right"></i> Manage Writer</a></li>
-                    <li><a href="{!! route('admin.writer.message') !!}"><i class="fa fa-angle-double-right"></i> Writer Message </a></li>
+                    <li><a href="{!! route('admin.writer.message') !!}"><i class="fa fa-angle-double-right"></i> Writer Message <small class="badge pull-right bg-green"><b id="w_noti_number_sidebar">0</b></small> </a></li>
                     {{-- <li><a href="pages/UI/buttons.html"><i class="fa fa-angle-double-right"></i> Buttons</a></li>
                     <li><a href="pages/UI/sliders.html"><i class="fa fa-angle-double-right"></i> Sliders</a></li>
                     <li><a href="pages/UI/timeline.html"><i class="fa fa-angle-double-right"></i> Timeline</a></li> --}}
@@ -72,7 +72,7 @@
                 <ul class="treeview-menu">
                   <li><a href="{!! route('admin.student.index') !!}"><i class="fa fa-angle-double-right"></i> Manage Student</a></li>
                   {{-- <li><a href="{!! route('admin.student.request') !!}"><i class="fa fa-angle-double-right"></i> Student Request <small class="badge pull-right bg-red">{{App\Models\Freelancer::studentRequest()}}</small></a></li> --}}
-                  <li><a href="{!! route('admin.student.message') !!}"><i class="fa fa-angle-double-right"></i> Student Message </a></li>
+                  <li><a href="{!! route('admin.student.message') !!}"><i class="fa fa-angle-double-right"></i> Student Message <small class="badge pull-right bg-green"><b id="s_noti_number_sidebar">0</b></small>  </a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -121,6 +121,17 @@
                         <li><a href="{!! route('admin.payment_method.index') !!}"><i class="fa fa-angle-double-right"></i> Payment Method</a></li>
                   </ul>
               </li>
+              <li class="treeview">
+                  <a href="#">
+                      <i class="fa fa-user"></i><span>Admin</span>
+                      <i class="fa fa-angle-left pull-right"></i>
+                  </a>
+                  <ul class="treeview-menu">
+                      <li><a href="{!! route('adminregisterview') !!}"> <i class="fa fa-angle-double-right"></i>Register</a></li>
+                      <li><a href="{!! route('admin.view') !!}"><i class="fa fa-angle-double-right"></i> View</a></li>
+                        </ul>
+              </li>
+
 
 
             <li>
@@ -129,10 +140,11 @@
                 </a>
             </li>
             <li>
-                <a href="{!! route('adminregisterview') !!}">
-                    <i class="fa fa-user"></i> <span>Admin Register</span>
+                <a href="{!! route('admin.style') !!}">
+                    <i class="fa fa-edit"></i> <span>Style</span>
                 </a>
             </li>
+
               @endif
             {{-- <li>
                 <a href="pages/calendar.html">

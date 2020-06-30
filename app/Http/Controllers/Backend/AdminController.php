@@ -102,8 +102,32 @@ class AdminController extends Controller
      * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Admin $admin)
+    public function status($id)
     {
-        //
+        $admin = Admin::findOrFail($id)->first();
+        if ($admin->status==0) {
+          $admin->status=1;
+          $admin->update();
+        }
+        else {
+          $admin->status=0;
+          $admin->update();
+        }
+
+        session()->flash('success', 'Update Successfully');
+        return redirect('/admin');
+    }
+    public function delete($id)
+    {
+        $admin = Admin::findOrFail($id)->first();
+        $admin->delete();
+        session()->flash('success', 'Deleted Successfully');
+        return redirect('/admin');
+    }
+
+    public function view()
+    {
+      $admin = Admin::get();
+      return view('backend.pages.admin.alladmin',compact('admin'));
     }
 }

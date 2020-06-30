@@ -77,7 +77,7 @@ class DealWithStudentController extends Controller
     public function store(Request $request)
     {
       // dd($request);
-        $order = Order::find($request->order_id)->first();
+        $order = Order::where('id',$request->order_id)->where('deal_std',0)->first();
         $order->deal_std = 1;
         $order->update();
       $deal =new DealWithStudent();

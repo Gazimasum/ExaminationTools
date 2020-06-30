@@ -130,7 +130,7 @@ class AssingmentController extends Controller
       foreach ($admin as $a) {
         $a->notify(new AssingmentRequest);
       }
-      Toastr::success('Request Sent successfully', 'Title', ["positionClass" => "toast-top-right","closeButton"=> true,"progressBar"=> true,]);
+      Toastr::success('Request Sent successfully', 'Success', ["positionClass" => "toast-top-right","closeButton"=> true,"progressBar"=> true,]);
       session()->flash('success', 'Request Sent successfully');
       return back();
 
