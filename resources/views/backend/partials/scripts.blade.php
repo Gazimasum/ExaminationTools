@@ -5,6 +5,7 @@ $('#myTable').DataTable();
 //color picker with addon
 
 </script>
+
 <script type="text/javascript">
     $(function() {
         // Replace the <textarea id="editor1"> with a CKEditor
@@ -50,7 +51,7 @@ $('#myTable').DataTable();
    whttp.open("GET", "{!! route('admin.writer.chat.count') !!}", true);
    whttp.send();
 
- },4000);
+ },7000);
 
 
  }

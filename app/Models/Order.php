@@ -25,9 +25,15 @@ protected $table = 'orders';
         return $this->belongsTo('App\User','student_id');
         // return user::where('id',$this->student_id)->first()->name;
       }
+
+      public function completeAssingment()
+      {
+        return $this->hasOne('App\Models\CompleteAssingment','order_id');
+      }
+
       public function writer()
       {
-        return $this->belongsTo('App\Models\Freelancer','student_id');
+        return $this->hasOne('App\Models\DealWithWriter','order_id');
         // return user::where('id',$this->student_id)->first()->name;
       }
       public function assingment()
@@ -36,21 +42,12 @@ protected $table = 'orders';
         return $this->belongsTo('App\Models\Assingment','assingments_id');
 
       }
-      public function assingmentSubject()
+
+      public function deal()
       {
-        $assingment= Assingment::where('id',$this->assingments_id)->first();
-        return Subject::where('id',$assingment->assingment_subject_id)->first()->name;
-      }
-      public function assingmentType()
-      {
-        $assingment= Assingment::where('id',$this->assingments_id)->first();
-        return AssingmentType::where('id',$assingment->assingment_type_id)->first()->name;
-      }
-      public function assingmentLevel()
-      {
-        $assingment= Assingment::where('id',$this->assingments_id)->first();
-        return EducationLevel::where('id',$assingment->assingment_type_id)->first()->name;
-      }
+    return $this->hasOne('App\Models\DealWithWriter', 'order_id');
+      }   
+    
 
       public static function newOrder()
       {

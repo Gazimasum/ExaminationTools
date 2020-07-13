@@ -3,12 +3,18 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Auth;
 
 class DealWithStudent extends Model
 {
   public function student()
   {
     return $this->belongsTo('App\User','student_id');
+    // return user::where('id',$this->student_id)->first()->name;
+  }
+public function currency()
+  {
+    return $this->belongsTo('App\Models\Currency','currency_id');
     // return user::where('id',$this->student_id)->first()->name;
   }
 
@@ -27,7 +33,7 @@ class DealWithStudent extends Model
   public static function newStdDeal()
   {
 
-  return DealWithStudent::where('transection_id',null)->count();
+  return DealWithStudent::where('student_id',Auth::id())->where('transection_id',null)->count();
 
   }
 

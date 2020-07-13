@@ -26,7 +26,7 @@ class AssingmentTypeController extends Controller
 
   public function edit($id)
   {
-      $assingmenttype = AssingmentType::find($id)->first();
+      $assingmenttype = AssingmentType::where('id',$id)->first();
       return view('backend.pages.assingmenttype.edit',compact('assingmenttype'));
   }
   public function store(Request $request)
@@ -40,7 +40,7 @@ class AssingmentTypeController extends Controller
   }
   public function update(Request $request,$id)
   {
-      $assingmenttype = AssingmentType::find($id)->first();
+      $assingmenttype = AssingmentType::where('id',$id)->first();
       $assingmenttype->name = $request->name;
       $assingmenttype->priority = $request->priority;
       $assingmenttype->update();
@@ -49,7 +49,7 @@ class AssingmentTypeController extends Controller
   }
   public function delete($id)
   {
-      $assingmenttype = AssingmentType::find($id)->first();
+      $assingmenttype = AssingmentType::where('id',$id)->first();
       $assingmenttype->delete();
       session()->flash('success', 'Delete Successfully');
       return back();

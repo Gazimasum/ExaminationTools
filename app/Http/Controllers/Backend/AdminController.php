@@ -104,7 +104,7 @@ class AdminController extends Controller
      */
     public function status($id)
     {
-        $admin = Admin::findOrFail($id)->first();
+        $admin = Admin::where('id',$id)->first();
         if ($admin->status==0) {
           $admin->status=1;
           $admin->update();
@@ -119,7 +119,7 @@ class AdminController extends Controller
     }
     public function delete($id)
     {
-        $admin = Admin::findOrFail($id)->first();
+        $admin = Admin::where('id',$id)->first();
         $admin->delete();
         session()->flash('success', 'Deleted Successfully');
         return redirect('/admin');

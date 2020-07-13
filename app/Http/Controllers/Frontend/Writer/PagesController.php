@@ -8,7 +8,10 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Models\WriterDetails;
 use App\Models\Chat;
-use App\Models\DealwithWriter;
+use App\Models\Order;
+use App\Models\DealWithWriter;
+use App\Models\CompleteAssingment;
+use App\Models\CompleteFile;
 
 class PagesController extends Controller
 {
@@ -20,7 +23,7 @@ class PagesController extends Controller
 
     public function index(){
       $writer = Auth::user();
-      return view('frontend.pages.writer.index', compact('writer'));
+      return view('frontend.pages.index', compact('writer'));
 
     }
     public function dashboard(){
@@ -77,6 +80,41 @@ class PagesController extends Controller
       return back();
     }
 
+
+public function complete($id)
+{
+  $assingment = DealwithWriter::where('client_id',Auth::id())->where('order_id',$id)->first();
+  return view('frontend.pages.writer.deliver',compact('assingment'));
+}
+
+public function deliver(Request $request,$id)
+{
+  $order = Order::where('id',$id)->first();
+  $order->status=3;
+  $order->update();
+ $completeAssingment = new CompleteAssingment();
+ $completeAssingment->writer_id = Auth::id();
+ $completeAssingment->order_id = $id;
+ $completeAssingment->save();
+  
+  if($request->hasfile('files'))
+      {
+         foreach($request->file('files') as $files)
+         {
+           $name=time().".".$files->getClientOriginalName();
+           $files->move(public_path().'/files/others/', $name);
+            $CompleteFile = new CompleteFile();
+           $CompleteFile->file=$name;
+           $CompleteFile->complete_id=$completeAssingment->id;
+           $CompleteFile->save();
+         }
+
+
+      }
+       session()->flash('success', 'Assingment Deliver Successfully');
+      return redirect('writer/dashboard');
+
+}
 
 
 }

@@ -43,12 +43,12 @@ class PagesController extends Controller
     }
     public function pagesContentShow($id)
     {
-      $page = Page::find($id)->first();
+      $page = Page::where('id',$id)->first();
       return view('backend.pages.contentpage.edit', compact('page'));
     }
     public function pageupdate(Request $r,$id)
     {
-      $page = Page::find($id)->first();
+      $page = Page::where('id',$id)->first();
       $page->content = $r->content;
       $page->update();
 
@@ -60,11 +60,11 @@ class PagesController extends Controller
       return view('backend.pages.payment-method.index',compact('payment_method'));
     }
     public function payment_method_edit($id){
-      $payment_method = Payment_method::find($id)->first();
+      $payment_method = Payment_method::where('id',$id)->first();
       return view('backend.pages.payment-method.edit',compact('payment_method'));
     }
     public function payment_method_status($id){
-      $payment_method = Payment_method::find($id)->first();
+      $payment_method = Payment_method::where('id',$id)->first();
       if ($payment_method->active==0) {
         $payment_method->active=1;
         $payment_method->update();
@@ -75,10 +75,10 @@ class PagesController extends Controller
         $payment_method->update();
       }
       session()->flash('success', 'Status Update');
-      return view('backend.pages.payment-method.edit',compact('payment_method'));
+      return back();
     }
     public function payment_method_update(Request $r,$id){
-      $payment_method = Payment_method::find($id)->first();
+      $payment_method = Payment_method::where('id',$id)->first();
       $payment_method->name = $r->name;
       $payment_method->description = $r->description;
       $payment_method->active = $r->active;

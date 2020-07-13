@@ -18,6 +18,7 @@ Route::get('/about', 'Frontend\PagesController@about')->name('about');
 Route::get('/service', 'Frontend\PagesController@service')->name('service');
 Route::get('/contact', 'Frontend\PagesController@contact')->name('contact');
 Route::post('/contact', 'Frontend\ContactMessageController@store')->name('contact.message');
+Route::get('/track/order', 'Frontend\PagesController@trackOrderView')->name('track.order.view');
 Route::post('/track/order', 'Frontend\PagesController@trackOrder')->name('track.order');
 
 
@@ -41,6 +42,10 @@ Route::group(['prefix' => 'student'],function ()
   Route::get('order/checkout/{id}','Frontend\Student\OrderController@checkoutview')->name('student.checkout');
   Route::post('order/checkout/{id}','Frontend\Student\OrderController@checkoutDone')->name('student.checkout.done');
   Route::get('order/paid-inovice/{id}','Frontend\Student\OrderController@paidInovice')->name('student.checkout.inovice');
+
+  Route::get('order/complete','Frontend\Student\OrderController@complete')->name('student.order.complete');
+  Route::get('order/complete/{id}','Frontend\Student\OrderController@completeView')->name('student.order.complete.view');
+
 
   Route::group(['prefix' => 'assingment'],function ()
   {
@@ -80,6 +85,8 @@ Route::group(['prefix' => 'student'],function ()
 
   Route::get('order','Frontend\Writer\PagesController@order')->name('writer.order');
   Route::get('order/{id}','Frontend\Writer\PagesController@ordershow')->name('writer.order.view');
+  Route::get('order/complete/{id}','Frontend\Writer\PagesController@complete')->name('writer.order.complete');
+  Route::post('order/complete/{id}','Frontend\Writer\PagesController@deliver')->name('writer.order.deliver');
 
   Route::group(['prefix' => 'assingment'],function ()
   {
@@ -196,15 +203,24 @@ Route::group(['prefix' => 'student'],function ()
     Route::get('/','Backend\AssingmentController@index')->name('admin.assingment.index');
     Route::get('/view/{id}','Backend\AssingmentController@view')->name('admin.assingment.view');
     Route::get('/complete','Backend\AssingmentController@complete')->name('admin.assingment.complete');
+    Route::get('/handover/{id}/{std_id}','Backend\AssingmentController@handOver')->name('admin.assingment.handover');
 
     Route::get('/edit/{id}','Backend\AssingmentController@edit')->name('admin.assingment.edit');
     Route::post('/edit/{id}','Backend\AssingmentController@update')->name('admin.assingment.update');
+     Route::post('/image/{id}','Backend\AssingmentController@imagechage')->name('admin.assingment.imagechage');
+     Route::post('/file/{id}','Backend\AssingmentController@filechange')->name('admin.assingment.filechange');
+
+
+
     Route::post('/delete/{id}','Backend\AssingmentController@delete')->name('admin.assingment.delete');
   });
   //Order Route
   Route::group(['prefix' => 'order'],function(){
     Route::get('/','Backend\OrderController@index')->name('admin.order.index');
     Route::get('/view/{id}','Backend\OrderController@view')->name('admin.order.view');
+    Route::get('/complete/','Backend\OrderController@complete')->name('admin.order.complete');
+    Route::get('/complete/{id}','Backend\OrderController@completeView')->name('admin.order.complete.view');
+ Route::post('/complete/{id}','Backend\OrderController@changeCompleteOrder')->name('admin.order.complete.update');
 
     Route::get('/edit/{id}','Backend\OrderController@edit')->name('admin.order.edit');
     Route::post('/edit/{id}','Backend\OrderController@update')->name('admin.order.update');
@@ -238,6 +254,17 @@ Route::group(['prefix' => 'country'],function(){
   Route::post('/edit/{id}','Backend\CountryController@update')->name('admin.country.update');
   Route::post('/delete/{id}','Backend\CountryController@delete')->name('admin.country.delete');
 });
+//currency Routes
+Route::group(['prefix' => 'currency'],function(){
+  Route::get('/','Backend\CurrencyController@index')->name('admin.currency.index');
+  Route::get('/create','Backend\CurrencyController@create')->name('admin.currency.create');
+  Route::post('/store','Backend\CurrencyController@store')->name('admin.currency.store');
+  Route::get('/edit/{id}','Backend\CurrencyController@edit')->name('admin.currency.edit');
+  Route::post('/edit/{id}','Backend\CurrencyController@update')->name('admin.currency.update');
+  Route::post('/delete/{id}','Backend\CurrencyController@delete')->name('admin.currency.delete');
+
+  Route::get('/{id}','Backend\CurrencyController@getId');
+});
 //EducationLevel Routes
 Route::group(['prefix' => 'educationlevel'],function(){
   Route::get('/','Backend\EducationLevelController@index')->name('admin.educationlevel.index');
@@ -247,6 +274,7 @@ Route::group(['prefix' => 'educationlevel'],function(){
   Route::post('/edit/{id}','Backend\EducationLevelController@update')->name('admin.educationlevel.update');
   Route::post('/delete/{id}','Backend\EducationLevelController@delete')->name('admin.educationlevel.delete');
 });
+
 //Subject Routes
 Route::group(['prefix' => 'subject'],function(){
   Route::get('/','Backend\SubjectController@index')->name('admin.subject.index');
@@ -256,6 +284,18 @@ Route::group(['prefix' => 'subject'],function(){
   Route::post('/edit/{id}','Backend\SubjectController@update')->name('admin.subject.update');
   Route::post('/delete/{id}','Backend\SubjectController@delete')->name('admin.subject.delete');
 });
+
+//Subject Routes
+Route::group(['prefix' => 'subject'],function(){
+  Route::get('/','Backend\MailboxCotroller@index')->name('admin.mailbox.index');
+  Route::get('/create','Backend\MailboxCotroller@create')->name('admin.mailbox.create');
+  Route::post('/store','Backend\MailboxCotroller@store')->name('admin.mailbox.store');
+  Route::get('/edit/{id}','Backend\MailboxCotroller@edit')->name('admin.mailbox.edit');
+  Route::post('/edit/{id}','Backend\MailboxCotroller@update')->name('admin.mailbox.update');
+  Route::post('/delete/{id}','Backend\MailboxCotroller@delete')->name('admin.mailbox.delete');
+});
+
+
 //AssingmentType Routes
 Route::group(['prefix' => 'assingmenttype'],function(){
   Route::get('/','Backend\AssingmentTypeController@index')->name('admin.assingmenttype.index');

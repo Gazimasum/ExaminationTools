@@ -65,7 +65,7 @@ class StyleController extends Controller
      */
     public function edit($id)
     {
-        $style = Style::findOrFail($id)->first();
+        $style = Style::where('id',$id)->first();
         return view('backend.pages.style.edit',compact('style'));
 
     }
@@ -79,7 +79,7 @@ class StyleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $style = Style::findOrFail($id)->first();
+        $style = Style::where('id',$id)->first();
         $style->name = $request->name;
         $style->background_color = $request->background_color;
 

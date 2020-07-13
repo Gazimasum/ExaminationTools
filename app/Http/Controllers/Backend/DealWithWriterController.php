@@ -38,8 +38,8 @@ class DealWithWriterController extends Controller
 
      public function deal($id)
      {
-       $writer = Freelancer::find($id)->first();
-       $assingment = Order::where('status',1)->get();
+       $writer = Freelancer::where('id',$id)->first();
+       $assingment = Order::where('status',1)->where('deal_wrt',0)->get();
 
        return view('backend.pages.writer.deal.deal',compact('writer','assingment'));
      }
@@ -65,10 +65,11 @@ class DealWithWriterController extends Controller
       $order->status = 2;
       $order->deal_wrt = 1;
       $order->update();
-      $writer = Freelancer::find($request->client_id)->first();
+      $writer = Freelancer::where('id',$request->client_id)->first();
       $deal =new DealWithWriter();
       $deal->client_id = $request->client_id;
       $deal->order_id = $order->id;
+      $deal->currency_id = $request->currency_id;
       $deal->price = $request->price;
       $deal->save();
       $pdf = PDF::loadview('backend.pages.writer.deal.inovice', compact('deal'))->setPaper('a4');
@@ -82,22 +83,22 @@ class DealWithWriterController extends Controller
 
     public function inovice($id)
     {
-        $deal = DealWithWriter::find($id)->first();
+        $deal = DealWithWriter::where('id',$id)->first();
         return view('backend.pages.writer.deal.inovice',compact('deal'));
     }
     public function paidInovice($id)
     {
-        $deal = DealWithWriter::find($id)->first();
+        $deal = DealWithWriter::where('id',$id)->first();
         return view('backend.pages.writer.deal.paidInovice',compact('deal'));
     }
     public function checkoutView($id)
     {
-        $deal = DealWithWriter::find($id)->first();
+        $deal = DealWithWriter::where('id',$id)->first();
         return view('backend.pages.writer.deal.checkout',compact('deal'));
     }
     public function checkoutDone(Request $request,$id)
     {
-        $deal = DealWithWriter::find($id)->first();
+        $deal = DealWithWriter::where('id',$id)->first();
         $writer = Freelancer::where('id',$deal->client_id)->first();
         $deal->is_paid = 1;
         $deal->transection_id = $request->transection_id;

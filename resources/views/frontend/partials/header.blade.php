@@ -19,9 +19,15 @@
   color: rgb(0, 0, 0);
   border-color: rgb(0, 0, 0);
 }
+.dropdown-item:hover{
+
+  background-color: #0072CE;
+  color: #fff;
+  font-weight: bold;
+}
 </style>
   <nav class="navbar fixed-top navbar-expand-md navbar-light bg-light" style="">
-      <a class="navbar-brand" href="#" style="font-size:30px;font-weight:bold;color:#fff">ExaminationTools</a>
+      <a class="navbar-brand" href="{!! route('index') !!}" style="font-size:25px;font-weight:bold;color:{{$headerstyle->color}};font-family:Roboto !important">EXAMINATIONTOOLS</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
           <span class="navbar-toggler-icon"></span>
       </button>
@@ -44,9 +50,47 @@
                 <a class="nav-link  {{Route::is('contact') ? 'active' : '' }}" href="{!! route('contact') !!}">Contact</a>
             </li>
             @guest
-              <li class="nav-item" style="padding-left:20px;padding-right:20px">  <a  class="nav-link btn btn-warning" data-toggle="modal" data-target="#exampleModalCenter">
+              @if (Session::has('Writer'))
+                <li class="nav-item dropdown">
+                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       <img src="{{ App\Helpers\ImageHelper::getUserImage(Session::get('Writer')->id) }}" class="img rounded-circle" style="width:40px">
+                       {{ Session::get('Writer')->name }}
+                       <span class="caret"></span>
+                     </a>
+                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                       <a class="dropdown-item" href="#"
+                       onclick="event.preventDefault();
+                       document.getElementById('writer-dashboard-form').submit();">
+                           My dashboard
+                         </a>
+                       <a class="dropdown-item" href="#"
+                       onclick="event.preventDefault();
+                       document.getElementById('writer-profile-form').submit();">
+                           Profile
+                         </a>
+                         <a class="dropdown-item" href="#"
+                         onclick="event.preventDefault();
+                         document.getElementById('writer-message-form').submit();">
+                          Message <span class="badge badge-primary badge-pill"><b id="noti_number_header">0</b></span>
+                         </a>
+                         <a class="dropdown-item" href="#"
+                         onclick="event.preventDefault();
+                         document.getElementById('writer-order-form').submit();">
+                             Ordered List
+                           </a>
+                           <a class="dropdown-item" href="#"
+                           onclick="event.preventDefault();
+                           document.getElementById('writer-logout-form').submit();">
+                           Logout
+                          </a>
+                     </div>
+              </li>
+            @else
+              <li class="nav-item" style="padding-left:20px;padding-right:20px;">  <a  class="nav-link btn" data-toggle="modal" data-target="#exampleModalCenter" style="background-color:#780932;border-radius:5px;">
                <span style="color:#fff; font-weight:bold;">Login | SignUp</span>
              </a></li>
+           @endif
            @else
              @if (Auth::guard('web')->check())
              <li class="nav-item dropdown">
@@ -81,6 +125,11 @@
                  onclick="event.preventDefault();
                  document.getElementById('student-order-form').submit();">
                   Deal <span class="badge badge-primary badge-pill"><b>{{App\Models\DealWithStudent::newStdDeal()}}</b></span>
+                 </a>
+                  <a class="dropdown-item" href="#"
+                 onclick="event.preventDefault();
+                 document.getElementById('student-order-complete').submit();">
+                  Complete <span class="badge badge-primary badge-pill"><b>{{App\Models\CompleteAssingment::newStdComOrder(Auth::id())}}</b></span>
                  </a>
 
 
@@ -160,6 +209,9 @@
        @csrf
      </form>
      <form id="student-order-form" action="{{ route('student.order') }}" method="GET" style="display: none;">
+       @csrf
+     </form>
+     <form id="student-order-form" action="{{ route('student.order.complete') }}" method="GET" style="display: none;">
        @csrf
      </form>
      <form id="writer-message-form" action="{{ route('writer.message.view') }}" method="GET" style="display: none;">

@@ -236,8 +236,7 @@
                               <tr>
                                   <th>#</th>
                                   <th >DESCRIPTION</th>
-                                  <th >SUBJECT</th>
-                                  <th >TYPE</th>
+
                                   <th class="text-right">PRICE</th>
                               </tr>
                           </thead>
@@ -252,19 +251,18 @@
                                     {{$deal->order->assingment['assingment_details']}}
 
                                   </td>
-                                  <td >{{$deal->order->assingment->subject['name']}}</td>
-                                  <td >{{$deal->order->assingment->type['name']}}</td>
 
-                                  <td class="total">{{$deal->price}}</td>
+
+                                  <td class="total">{{$deal->price}} {{ $deal->currency->font_arial }}</td>
                               </tr>
 
                           </tbody>
                           <tfoot>
 
                               <tr>
+
                                   <td></td>
-                                  <td></td>
-                                  <td colspan="2">GRAND TOTAL</td>
+                                  <td>GRAND TOTAL</td>
                                   <td>{{$deal->price}}</td>
                               </tr>
 
@@ -293,7 +291,7 @@
 
                                   </td>
 
-                                  <td class="total">{{$deal->price}}</td>
+                                  <td class="total">{{$deal->price}} {{ $deal->currency->font_arial }}</td>
                               </tr>
 
                           </tbody>
@@ -302,7 +300,7 @@
                               <tr>
                                   <td colspan="2"></td>
                                   <td colspan="1">GRAND TOTAL</td>
-                                  <td>{{$deal->price}}</td>
+                                  <td>{{$deal->price}} {{ $deal->currency->font_arial }}</td>
                               </tr>
 
                           </tfoot>

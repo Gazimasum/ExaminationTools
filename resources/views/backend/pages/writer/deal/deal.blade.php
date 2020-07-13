@@ -1,7 +1,9 @@
 @extends('backend.layouts.master')
 
 @section('content')
-
+@php
+  $currency = App\Models\Currency::get();
+@endphp
 {{-- <link href="{{ asset('public/css/style.css') }}" rel="stylesheet"> --}}
 <aside class="right-side">
 <section class="content-header">
@@ -45,7 +47,16 @@
                             </select>
                         </div>
                         <div class="form-group">
-                          <label for="price">Price</label>
+                            <label for="assingment_id">Currency </label>
+                            <select class="form-control" name="currency_id" id="Currency_id" required >
+                                @foreach ($currency as $c)
+                                  <option value="{{ $c->id }}" >{{$c->name }} - {{ $c->font_arial }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                          <label for="price" id="price">Price</label>
                         <input class="form-control" type="number" name="price" required>
                         </div>
 
@@ -63,34 +74,26 @@
   </aside>
 
 
-  {{-- <div class="col-md-6">
-    <select class="form-control" name="division_id" id="division_id">
-      <option value="">@lang('home.select_division')</option>
-      @foreach ($divisions as $division)
-        <option value="{{ $division->id }}">{{ $division->name }}</option>
-      @endforeach
-    </select>
-  </div> --}}
-  {{-- <script>
+ <script>
 
-    $("#assingment_id").change(function(){
-        var assingment_id = $("#assingment_id").val();
+    $("#Currency_id").change(function(){
+        var Currency_id = $("#Currency_id").val();
         // Send an ajax request to server with this division
-        console.log(assingment_id);
-        $("#order_details").html("");
+        console.log(Currency_id);
+        $("#price").html("");
         var option = "";
         var url = "{{ url('admin/') }}";
-        $.get( url+"get-order/"+assingment_id, function( data ) {
+        $.get( url+"/currency/"+Currency_id, function( data ) {
 
             data = JSON.parse(data);
             // data.forEach( function(element) {
-              option =  data.id + data.status ;
+              option =  data;
             // });
-
-          $("#order_details").html(option);
+            console.log(data);
+          // $("#price").html(data);
+          document.getElementById("price").innerHTML = 'Price ('+data.code+'-'+data.font_arial+')';
 
         });
     })
 
-  </script> --}}
-  @endsection
+  </script>  @endsection

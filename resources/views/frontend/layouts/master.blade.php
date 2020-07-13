@@ -11,7 +11,7 @@
 @php
   $headerstyle = App\Models\Style::where('name','header')->first();
   $footerstyle = App\Models\Style::where('name','footer')->first();
-  $sliderstyle = App\Models\Style::where('name','slider')->first();
+  
 @endphp
 <div class="site-wrap">
 

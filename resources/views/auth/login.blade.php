@@ -4,19 +4,19 @@
 
 <div class="intro-section" id="home-section" >
 
-  <div class="slide-1" style="background-image: url('home-asset/images/hero_1.jpg');" data-stellar-background-ratio="0.5">
+  <div class="slide-1" style="background-image: url('home-asset/images/img_4.jpg');" data-stellar-background-ratio="0.5">
     <div class="container">
       <div class="row align-items-center">
         <div class="col-12">
           <div class="row align-items-center">
             <div class="col-lg-6 mb-4">
-              <h1  data-aos="fade-up" data-aos-delay="100">Student Portal</h1>
-              <p class="mb-4"  data-aos="fade-up" data-aos-delay="200">Choose Student Portal If you are a student and if you want to done your assingment by our virtual assistent.</p>
-              <p data-aos="fade-up" data-aos-delay="300"><a href="{!! route('student.registrationForm') !!}" class="btn btn-primary py-3 px-5 btn-pill">Register Now</a></p>
+              <h1 class="text-black"  >Student Portal</h1>
+              <p class="mb-4 text-black" >Choose Student Portal If you are a student and if you want to done your assingment by our virtual assistent.</p>
+              <p ><a href="{!! route('student.registrationForm') !!}" class="btn py-3 px-5 btn-pill" style="background-color:#0072CE;color: #fff;">Register Now</a></p>
 
             </div>
 
-            <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="500">
+            <div class="col-lg-5 ml-auto" >
 
                       <form method="POST" action="{{ route('login') }}" class="form-box" aria-label="{{ __('Login') }}">
                           @csrf
@@ -50,11 +50,11 @@
                         </div>
                     </div>
                     <div class="form-group  mb-0">
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn" style="background-color:#0072CE;color:#fff;">
                             {{ __('Login') }}
                         </button>
                         @if (Route::has('password.request'))
-                            <a class="btn btn-link" href="{{ route('password.request') }}">
+                            <a class="btn" style="color: #0072CE;" href="{{ route('password.request') }}">
                                 {{ __('Forgot Your Password?') }}
                             </a>
                         @endif

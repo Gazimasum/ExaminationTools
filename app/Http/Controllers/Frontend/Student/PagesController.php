@@ -19,7 +19,7 @@ class PagesController extends Controller
 
   public function index(){
     $student = Auth::user();
-    return view('frontend.pages.student.index', compact('student'));
+    return view('frontend.pages.index', compact('student'));
 
   }
   public function dashboard(){
@@ -47,7 +47,7 @@ class PagesController extends Controller
       return view('frontend.pages.student.assingmentpost',compact('assingmenttype','subject','education_level'));
   }
 
-  
+
 
   public function profileUpdate(Request $r)
   {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth\Writer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Session;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Notifications\WriterVerification;
 use App\Models\Freelancer;
@@ -68,10 +69,11 @@ class LoginController extends Controller
             // Log Him Now
             Toastr::success('Successfully Login..', 'Success', ["positionClass" => "toast-top-right"]);
             // session()->flash('success','Successfully Login....');
+            Session::put('Writer', $writer);
             return redirect()->intended(route('writer.dashboard'));
           }else {
             // Toastr::error('Wrong Password!!', 'Error', ["positionClass" => "toast-top-center"]);
-            session()->flash('sticky_error','Wrong Password!! You have No account in this Email..');
+            session()->flash('sticky_error','Wrong Password!!');
             return back();
           }
         }
@@ -89,7 +91,7 @@ class LoginController extends Controller
           }
         }
         else {
-          
+
           session()->flash('success','Your Account is Verified.. Please Wait Until Approved Your Account !!');
           return redirect()->route('writer.login');
         }

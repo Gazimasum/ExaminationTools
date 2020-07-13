@@ -43,7 +43,7 @@ class RegisterController extends Controller
     public function __construct()
     {
       $this->middleware('guest');
-    
+
     }
     public function index()
     {
@@ -93,7 +93,7 @@ class RegisterController extends Controller
          ['name' => 'required|string|max:255',
          'email' => 'required|email|unique:users',
          'password' => 'required|confirmed|min:6',
-
+         'phone_no'=>'regex:/(01)[0-9]{9}/',
        ],
        [
        'name.required'=>"Please Provide a Full Name.",

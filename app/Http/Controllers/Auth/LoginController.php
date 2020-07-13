@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Brian2694\Toastr\Facades\Toastr;
 use App\Notifications\VerifyRegistration;
 use App\User;
 use Auth;
@@ -61,7 +62,7 @@ class LoginController extends Controller
           return redirect()->intended(route('student.dashboard'));
         }else {
           session()->flash('sticky_error', 'Invalid Login');
-          return back()->withInput($request->only('email', 'remember'));
+          return back();
         }
       }else {
         // Send him a token again
@@ -73,7 +74,7 @@ class LoginController extends Controller
         }else {
 
           session()->flash('sticky_error', 'Please login first !!');
-          return back()->withInput($request->only('email', 'remember'));
+          return back();
         }
       }}
       else {

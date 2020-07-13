@@ -105,7 +105,7 @@
     $assingment_no = App\Models\Order::where('student_id',$student->id)->count();
     $assingment = App\Models\Order::where('student_id',$student->id)->get();
   @endphp
-  <div class="intro-section single-cover" id="home-section">
+{{--   <div class="intro-section single-cover" id="home-section">
                 <div class="slide-1 " style="background-image: url({!! asset('home-asset/images/img_2.jpg') !!});" data-stellar-background-ratio="0.5">
                   <div class="container">
                     <div class="row align-items-center">
@@ -115,23 +115,22 @@
                             <h1 data-aos="fade-up" data-aos-delay="0">{{$student->name}} Profile</h1>
                             <p data-aos="fade-up" data-aos-delay="100">{{$assingment_no}} Assingment </p>
                           </div>
-                          {{-- @include('frontend.partials.messages') --}}
-
+                         
                         </div>
                       </div>
 
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> --}}
                @include('frontend.partials.messages')
-               <div class="container" style="margin-top:20px">
+               <div class="container" style="margin-top:120px;margin-bottom:100px;">
                  <div class="row">
                    <div class="col-md-12">
                      <div class="col-lg-12 ml-auto" data-aos="fade-up" data-aos-delay="500">
                        <div class="row">
                      @include('frontend.pages.student.partials.sidebar')
-                         <div class="col-md-7">
+                         <div class="col-md-7 ">
 
                          <div class="profile-head">
                                 <h3>
@@ -161,7 +160,7 @@
 
                     <div class="col-md-7">
                         <div class="tab-content profile-tab" id="myTabContent">
-                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="" id="home" >
 
                                         <div class="row">
                                             <div class="col-md-6">

@@ -31,7 +31,7 @@
                         <form action="{!! route('admin.pages.update',$page->id) !!}" method="post">
                           @csrf
                             <textarea id="editor1"  rows="10" cols="80" name="content">
-                                {{$page->content}}
+                                {{$page->content_1}}
                             </textarea>
                             <div class="box-footer">
                                 <button type="submit" class="btn btn-warning">Update</button>
@@ -52,7 +52,7 @@
                     <div class='box-body pad'>
                       <form action="{!! route('admin.pages.update',$page->id) !!}" method="post">
                         @csrf
-                            <textarea class="textarea" name="content" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{$page->content}}</textarea>
+                            <textarea class="textarea" name="content" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{$page->content_2}}</textarea>
                             <div class="box-footer">
                                 <button type="submit" class="btn btn-warning">Update</button>
                             </div>

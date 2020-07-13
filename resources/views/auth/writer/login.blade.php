@@ -4,15 +4,15 @@
 
 <div class="intro-section" id="home-section">
 
-  <div class="slide-1" style="background-image: url('home-asset/images/hero_1.jpg');" data-stellar-background-ratio="0.5">
+  <div class="slide-1" style="background-image: url({!! asset('home-asset/images/img_4.jpg') !!});" data-stellar-background-ratio="0.5">
     <div class="container">
       <div class="row align-items-center">
         <div class="col-12">
           <div class="row align-items-center">
             <div class="col-lg-6 mb-4">
-              <h1  data-aos="fade-up" data-aos-delay="100">Writer Portal</h1>
-              <p class="mb-4"  data-aos="fade-up" data-aos-delay="200">Choose Writer Portal If you are a good Writer and if you want to assist our virtual assistent. </p>
-              <p data-aos="fade-up" data-aos-delay="300"><a href="{!! route('writer.register') !!}" class="btn btn-primary py-3 px-5 btn-pill">Join Now</a></p>
+              <h1 class="text-black"  data-aos="fade-up" data-aos-delay="100">Writer Portal</h1>
+              <p class="mb-4 text-black"  data-aos="fade-up" data-aos-delay="200">Choose Writer Portal If you are a good Writer and if you want to assist our virtual assistent. </p>
+              <p data-aos="fade-up" data-aos-delay="300"><a href="{!! route('writer.register') !!}" class="btn py-3 px-5 btn-pill" style="background-color:#0072CE;color:#fff;">Join Now</a></p>
 
             </div>
 
@@ -65,12 +65,12 @@
 
             <div class="form-group  mb-0">
 
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn" style="background-color:#0072CE;color:#fff;">
                         {{ __('Login') }}
                     </button>
 
                     @if (Route::has('password.request'))
-                        <a class="btn btn-link" href="{{ route('writer.password.request') }}">
+                        <a class="btn" style="color: #0072CE;" href="{{ route('writer.password.request') }}">
                             {{ __('Forgot Your Password?') }}
                         </a>
                     @endif

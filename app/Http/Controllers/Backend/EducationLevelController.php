@@ -27,7 +27,7 @@ class EducationLevelController extends Controller
 
   public function edit($id)
   {
-      $educationlevel = EducationLevel::find($id)->first();
+      $educationlevel = EducationLevel::where('id',$id)->first();
       return view('backend.pages.educationlevel.edit',compact('educationlevel'));
   }
   public function store(Request $request)
@@ -41,7 +41,7 @@ class EducationLevelController extends Controller
   }
   public function update(Request $request,$id)
   {
-      $educationlevel = EducationLevel::find($id)->first();
+      $educationlevel = EducationLevel::where('id',$id)->first();
       $educationlevel->name = $request->name;
       $educationlevel->priority = $request->priority;
       $educationlevel->update();
@@ -50,7 +50,7 @@ class EducationLevelController extends Controller
   }
   public function delete($id)
   {
-      $educationlevel = EducationLevel::find($id)->first();
+      $educationlevel = EducationLevel::where('id',$id)->first();
       $educationlevel->delete();
       session()->flash('success', 'Delete Successfully');
       return back();

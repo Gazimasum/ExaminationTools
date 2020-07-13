@@ -31,7 +31,7 @@
                   @csrf
                     <div class="box-body">
                       <div class="form-group">
-                        <input type="text"  value="{{$deal->price}}" readonly>
+                        <input type="text"  value="{{$deal->price}} {{ $deal->currency->font_arial }}" readonly>
                       </div>
                         <div class="form-group">
                         <textarea  rows="4" cols="80" readonly>{{$deal->writer->details->payment_details}}</textarea>

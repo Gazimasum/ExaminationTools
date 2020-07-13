@@ -26,7 +26,7 @@ class SubjectController extends Controller
 
   public function edit($id)
   {
-      $subject = Subject::find($id)->first();
+      $subject = Subject::where('id',$id)->first();
       return view('backend.pages.subject.edit',compact('subject'));
   }
   public function store(Request $request)
@@ -40,7 +40,7 @@ class SubjectController extends Controller
   }
   public function update(Request $request,$id)
   {
-      $subject = Subject::find($id)->first();
+      $subject = Subject::where('id',$id)->first();
       $subject->name = $request->name;
       $subject->priority = $request->priority;
       $subject->update();
@@ -49,7 +49,7 @@ class SubjectController extends Controller
   }
   public function delete($id)
   {
-      $subject = Subject::find($id)->first();
+      $subject = Subject::where('id',$id)->first();
       $subject->delete();
       session()->flash('success', 'Delete Successfully');
       return back();

@@ -46,7 +46,7 @@
                                         <td>{{$d->writer->name}}</td>
                                         <td>{{$d->order->assingment['assingment_name']}}</td>
                                         <td>{{$d->order->order_track_id}}</td>
-                                        <td>{{$d->price}}</td>
+                                        <td>{{$d->price}} {{ $d->currency->font_arial }}</td>
                                         <td>@if ($d->is_paid==1)
                                           Paid
                                           @else

@@ -97,10 +97,9 @@ class RegisterController extends Controller
        'email' => 'required|email|unique:freelancers',
        'password' => 'required|confirmed|min:6',
        'country_id'=>'required',
-       'city'=>'required',
        'education_level'=>'required',
        'subjects'=>'required',
-
+       'phone_no'=>'regex:/(01)[0-9]{9}/',
      ],
      [
      'name.required'=>"Please Provide Your Full Name.",

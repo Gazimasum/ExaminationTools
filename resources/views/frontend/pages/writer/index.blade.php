@@ -4,130 +4,63 @@
     @include('frontend.partials.banner')
   <!--================ End Home Banner Area =================-->
 
+  <style media="screen">
+    #home-image{
+    border-style: solid;
+  border-width: 10px 10px 10px 10px;
+  border-color: #ffffff;
+  box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.12);
+    }
+  </style>
 
-  <div class="site-section courses-title" id="courses-section">
+
+  <div class="track-section" style="background-color: #0072CE;color:#fff">
     <div class="container">
-      <div class="row mb-5 justify-content-center">
-        <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="">
-          <h2 class="section-title">Courses</h2>
-        </div>
+      <div class="row justify-content-center">
+          <div class="col align-items-center"><br>
+            <center><h4>HOW ONLINE ASSIGNMENT WRITING SERVICE WORKS</h4></center>
+          </div>
       </div>
     </div>
   </div>
-  <div class="site-section courses-entry-wrap"  data-aos="fade-up" data-aos-delay="100">
+
+  <div class="site-section courses-title" id="courses-section" style="background-color: #fff;">
+    @include('frontend.partials.advertising.top')
     <div class="container">
-      <div class="row">
-
-        <div class="owl-carousel col-12 nonloop-block-14">
-
-          <div class="course bg-white h-100 align-self-stretch">
-            <figure class="m-0">
-              <a href="course-single.html"><img src="{!! asset('home-asset/images/img_1.jpg')!!}" alt="Image" class="img-fluid"></a>
-            </figure>
-            <div class="course-inner-text py-4 px-4">
-              <span class="course-price">$20</span>
-              <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
-              <h3><a href="#">Study Law of Physics</a></h3>
-              <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
-            </div>
-            <div class="d-flex border-top stats">
-              <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
-              <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
-            </div>
-          </div>
-
-          <div class="course bg-white h-100 align-self-stretch">
-            <figure class="m-0">
-              <a href="course-single.html"><img src="{!! asset('home-asset/images/img_2.jpg')!!}" alt="Image" class="img-fluid"></a>
-            </figure>
-            <div class="course-inner-text py-4 px-4">
-              <span class="course-price">$99</span>
-              <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
-              <h3><a href="#">Logo Design Course</a></h3>
-              <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
-            </div>
-            <div class="d-flex border-top stats">
-              <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
-              <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
-            </div>
-          </div>
-
-          <div class="course bg-white h-100 align-self-stretch">
-            <figure class="m-0">
-              <a href="course-single.html"><img src="{!! asset('home-asset/images/img_3.jpg')!!}" alt="Image" class="img-fluid"></a>
-            </figure>
-            <div class="course-inner-text py-4 px-4">
-              <span class="course-price">$99</span>
-              <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
-              <h3><a href="#">JS Programming Language</a></h3>
-              <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
-            </div>
-            <div class="d-flex border-top stats">
-              <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
-              <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
-            </div>
-          </div>
-
-
-
-          <div class="course bg-white h-100 align-self-stretch">
-            <figure class="m-0">
-              <a href="course-single.html"><img src="{!! asset('home-asset/images/img_4.jpg')!!}" alt="Image" class="img-fluid"></a>
-            </figure>
-            <div class="course-inner-text py-4 px-4">
-              <span class="course-price">$20</span>
-              <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
-              <h3><a href="#">Study Law of Physics</a></h3>
-              <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
-            </div>
-            <div class="d-flex border-top stats">
-              <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
-              <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
-            </div>
-          </div>
-
-          <div class="course bg-white h-100 align-self-stretch">
-            <figure class="m-0">
-              <a href="course-single.html"><img src="{!! asset('home-asset/images/img_5.jpg')!!}" alt="Image" class="img-fluid"></a>
-            </figure>
-            <div class="course-inner-text py-4 px-4">
-              <span class="course-price">$99</span>
-              <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
-              <h3><a href="#">Logo Design Course</a></h3>
-              <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
-            </div>
-            <div class="d-flex border-top stats">
-              <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
-              <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
-            </div>
-          </div>
-
-          <div class="course bg-white h-100 align-self-stretch">
-            <figure class="m-0">
-              <a href="course-single.html"><img src="{!! asset('home-asset/images/img_6.jpg')!!}" alt="Image" class="img-fluid"></a>
-            </figure>
-            <div class="course-inner-text py-4 px-4">
-              <span class="course-price">$99</span>
-              <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
-              <h3><a href="#">JS Programming Language</a></h3>
-              <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
-            </div>
-            <div class="d-flex border-top stats">
-              <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
-              <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
-            </div>
-          </div>
-
+      {{-- <div class="row mb-5 justify-content-center">
+        <div class="col-lg-12 text-center" data-aos="fade-up" data-aos-delay="">
+          <h2 class="section-title" style="font-size:29px;">HOW ONLINE ASSIGNMENT WRITING SERVICE WORKS</h2>
         </div>
-
-
-
+      </div> --}}
+      <div class="row justify-content-center" style="color:#780932">
+        <div class="col-md-4" >
+          <center><img src="{!! asset('home-asset/images/pdf.png')!!}" height="100px" alt="Image" >
+            <h2>1st Step</h2>
+            <p>Upload your assignment for a quote. </p>
+          </center>
+        </div>
+        <div class="col-md-4">
+          <center><img src="{!! asset('home-asset/images/group.png')!!}" height="100px" alt="Image" >
+            <h2>2nd Step</h2>
+            <p>Make payment or talk to us for options.  </p>
+          </center>
+        </div>
+        <div class="col-md-4">
+          <center><i class="flaticon-users"></i><img src="{!! asset('home-asset/images/user (3).png')!!}" height="100px" alt="Image" >
+            <h2>3rd Step</h2>
+            <p>Get your work by deadline.. </p>
+          </center>
+          </div>
       </div>
+    </div>
+  </div>
+
+  <div class="track-section">
+    <div class="container">
       <div class="row justify-content-center">
-        <div class="col-7 text-center">
-          <button class="customPrevBtn btn btn-primary m-1">Prev</button>
-          <button class="customNextBtn btn btn-primary m-1">Next</button>
-        </div>
+          <div class="col align-items-center" style="margin-top:14px">
+            <center><a href="{!! route('track.order.view') !!}" class="btn btn-warning"> <h4>TRACK YOUR ORDER</h4> </a></center>
+          </div>
       </div>
     </div>
   </div>
@@ -135,255 +68,49 @@
 
   <div class="site-section" id="programs-section">
     <div class="container">
-      <div class="row mb-5 justify-content-center">
+      <div class="row mb-4 justify-content-center">
         <div class="col-lg-7 text-center"  data-aos="fade-up" data-aos-delay="">
           <h2 class="section-title">Our Programs</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam repellat aut neque! Doloribus sunt non aut reiciendis, vel recusandae obcaecati hic dicta repudiandae in quas quibusdam ullam, illum sed veniam!</p>
+          <p class="text-black">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam repellat aut neque! Doloribus sunt non aut reiciendis, vel recusandae obcaecati hic dicta repudiandae in quas quibusdam ullam, illum sed veniam!</p>
         </div>
       </div>
-      <div class="row mb-5 align-items-center">
-        <div class="col-lg-7 mb-5" data-aos="fade-up" data-aos-delay="100">
-          <img src="{!! asset('home-asset/images/undraw_youtube_tutorial.svg')!!}" alt="Image" class="img-fluid">
-        </div>
-        <div class="col-lg-4 ml-auto" data-aos="fade-up" data-aos-delay="200">
-          <h2 class="text-black mb-4">We Are Excellent In Education</h2>
-          <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem maxime nam porro possimus fugiat quo molestiae illo.</p>
-
-          <div class="d-flex align-items-center custom-icon-wrap mb-3">
-            <span class="custom-icon-inner mr-3"><span class="icon icon-graduation-cap"></span></span>
-            <div><h3 class="m-0">22,931 Yearly Graduates</h3></div>
-          </div>
-
-          <div class="d-flex align-items-center custom-icon-wrap">
-            <span class="custom-icon-inner mr-3"><span class="icon icon-university"></span></span>
-            <div><h3 class="m-0">150 Universities Worldwide</h3></div>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="row mb-5 align-items-center">
-        <div class="col-lg-7 mb-5 order-1 order-lg-2" data-aos="fade-up" data-aos-delay="100">
-          <img src="{!! asset('home-asset/images/undraw_teaching.svg')!!}" alt="Image" class="img-fluid">
-        </div>
-        <div class="col-lg-4 mr-auto order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
-          <h2 class="text-black mb-4">Strive for Excellent</h2>
-          <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem maxime nam porro possimus fugiat quo molestiae illo.</p>
-
-          <div class="d-flex align-items-center custom-icon-wrap mb-3">
-            <span class="custom-icon-inner mr-3"><span class="icon icon-graduation-cap"></span></span>
-            <div><h3 class="m-0">22,931 Yearly Graduates</h3></div>
-          </div>
-
-          <div class="d-flex align-items-center custom-icon-wrap">
-            <span class="custom-icon-inner mr-3"><span class="icon icon-university"></span></span>
-            <div><h3 class="m-0">150 Universities Worldwide</h3></div>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="row mb-5 align-items-center">
-        <div class="col-lg-7 mb-5" data-aos="fade-up" data-aos-delay="100">
-          <img src="{!! asset('home-asset/images/undraw_teacher.svg')!!}" alt="Image" class="img-fluid">
-        </div>
-        <div class="col-lg-4 ml-auto" data-aos="fade-up" data-aos-delay="200">
-          <h2 class="text-black mb-4">Education is life</h2>
-          <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem maxime nam porro possimus fugiat quo molestiae illo.</p>
-
-          <div class="d-flex align-items-center custom-icon-wrap mb-3">
-            <span class="custom-icon-inner mr-3"><span class="icon icon-graduation-cap"></span></span>
-            <div><h3 class="m-0">22,931 Yearly Graduates</h3></div>
-          </div>
-
-          <div class="d-flex align-items-center custom-icon-wrap">
-            <span class="custom-icon-inner mr-3"><span class="icon icon-university"></span></span>
-            <div><h3 class="m-0">150 Universities Worldwide</h3></div>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="site-section" id="teachers-section">
-    <div class="container">
-
-      <div class="row mb-5 justify-content-center">
-        <div class="col-lg-7 mb-5 text-center"  data-aos="fade-up" data-aos-delay="">
-          <h2 class="section-title">Our Teachers</h2>
-          <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam repellat aut neque! Doloribus sunt non aut reiciendis, vel recusandae obcaecati hic dicta repudiandae in quas quibusdam ullam, illum sed veniam!</p>
-        </div>
-      </div>
-
-      <div class="row">
-
-        <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-          <div class="teacher text-center">
-            <img src="{!! asset('home-asset/images/person_1.jpg')!!}" alt="Image" class="img-fluid w-50 rounded-circle mx-auto mb-4">
-            <div class="py-2">
-              <h3 class="text-black">Benjamin Stone</h3>
-              <p class="position">Physics Teacher</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro eius suscipit delectus enim iusto tempora, adipisci at provident.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-          <div class="teacher text-center">
-            <img src="{!! asset('home-asset/images/person_2.jpg')!!}" alt="Image" class="img-fluid w-50 rounded-circle mx-auto mb-4">
-            <div class="py-2">
-              <h3 class="text-black">Katleen Stone</h3>
-              <p class="position">Physics Teacher</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro eius suscipit delectus enim iusto tempora, adipisci at provident.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
-          <div class="teacher text-center">
-            <img src="{!! asset('home-asset/images/person_3.jpg')!!}" alt="Image" class="img-fluid w-50 rounded-circle mx-auto mb-4">
-            <div class="py-2">
-              <h3 class="text-black">Sadie White</h3>
-              <p class="position">Physics Teacher</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro eius suscipit delectus enim iusto tempora, adipisci at provident.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="site-section bg-image overlay" style="background-image: url('{!! asset('home-asset/images/hero_1.jpg')!!}')">
-    <div class="container">
-      <div class="row justify-content-center align-items-center">
-        <div class="col-md-8 text-center testimony">
-          <img src="{!! asset('home-asset/images/person_4.jpg')!!}" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
-          <h3 class="mb-4">Jerome Jensen</h3>
-          <blockquote>
-            <p>&ldquo; Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum rem soluta sit eius necessitatibus voluptate excepturi beatae ad eveniet sapiente impedit quae modi quo provident odit molestias! Rem reprehenderit assumenda &rdquo;</p>
-          </blockquote>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="site-section pb-0">
-
-    <div class="future-blobs">
-      <div class="blob_2">
-        <img src="{!! asset('home-asset/images/blob_2.svg')!!}" alt="Image">
-      </div>
-      <div class="blob_1">
-        <img src="{!! asset('home-asset/images/blob_1.svg')!!}" alt="Image">
-      </div>
-    </div>
-    <div class="container">
-      <div class="row mb-5 justify-content-center" data-aos="fade-up" data-aos-delay="">
-        <div class="col-lg-7 text-center">
-          <h2 class="section-title">Why Choose Us</h2>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-4 ml-auto align-self-start"  data-aos="fade-up" data-aos-delay="100">
-
-          <div class="p-4 rounded bg-white why-choose-us-box">
-
-            <div class="d-flex align-items-center custom-icon-wrap custom-icon-light mb-3">
-              <div class="mr-3"><span class="custom-icon-inner"><span class="icon icon-graduation-cap"></span></span></div>
-              <div><h3 class="m-0">22,931 Yearly Graduates</h3></div>
-            </div>
-
-            <div class="d-flex align-items-center custom-icon-wrap custom-icon-light mb-3">
-              <div class="mr-3"><span class="custom-icon-inner"><span class="icon icon-university"></span></span></div>
-              <div><h3 class="m-0">150 Universities Worldwide</h3></div>
-            </div>
-
-            <div class="d-flex align-items-center custom-icon-wrap custom-icon-light mb-3">
-              <div class="mr-3"><span class="custom-icon-inner"><span class="icon icon-graduation-cap"></span></span></div>
-              <div><h3 class="m-0">Top Professionals in The World</h3></div>
-            </div>
-
-            <div class="d-flex align-items-center custom-icon-wrap custom-icon-light mb-3">
-              <div class="mr-3"><span class="custom-icon-inner"><span class="icon icon-university"></span></span></div>
-              <div><h3 class="m-0">Expand Your Knowledge</h3></div>
-            </div>
-
-            <div class="d-flex align-items-center custom-icon-wrap custom-icon-light mb-3">
-              <div class="mr-3"><span class="custom-icon-inner"><span class="icon icon-graduation-cap"></span></span></div>
-              <div><h3 class="m-0">Best Online Teaching Assistant Courses</h3></div>
-            </div>
-
-            <div class="d-flex align-items-center custom-icon-wrap custom-icon-light">
-              <div class="mr-3"><span class="custom-icon-inner"><span class="icon icon-university"></span></span></div>
-              <div><h3 class="m-0">Best Teachers</h3></div>
-            </div>
-
-          </div>
-
-
-        </div>
-        <div class="col-lg-7 align-self-end"  data-aos="fade-left" data-aos-delay="200">
-          <img src="{!! asset('home-asset/images/person_transparent.png')!!}" alt="Image" class="img-fluid">
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-
-
-
-  <div class="site-section bg-light" id="contact-section">
-    <div class="container">
 
       <div class="row justify-content-center">
-        <div class="col-md-7">
-
-
-
-          <h2 class="section-title mb-3">Message Us</h2>
-          <p class="mb-5">Natus totam voluptatibus animi aspernatur ducimus quas obcaecati mollitia quibusdam temporibus culpa dolore molestias blanditiis consequuntur sunt nisi.</p>
-
-          <form method="post" data-aos="fade">
-            <div class="form-group row">
-              <div class="col-md-6 mb-3 mb-lg-0">
-                <input type="text" class="form-control" placeholder="First name">
-              </div>
-              <div class="col-md-6">
-                <input type="text" class="form-control" placeholder="Last name">
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <div class="col-md-12">
-                <input type="text" class="form-control" placeholder="Subject">
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <div class="col-md-12">
-                <input type="email" class="form-control" placeholder="Email">
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-md-12">
-                <textarea class="form-control" id="" cols="30" rows="10" placeholder="Write your message here."></textarea>
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <div class="col-md-6">
-
-                <input type="submit" class="btn btn-primary py-3 px-5 btn-block btn-pill" value="Send Message">
-              </div>
-            </div>
-
-          </form>
+        <div class="col-lg-5 mb-4" data-aos="fade-up" data-aos-delay="100">
+          <img src="{!! asset('home-asset/images/home1.png')!!}" alt="Image" class="img-fluid" id="home-image">
+        </div>
+        <div class="col-lg-5 align-items-center" data-aos="fade-up" data-aos-delay="200" style="margin-top:15px;" >
+          <h2 class="text-black mb-4">Tell Us What You Need</h2>
+          <p class="mb-4 text-black" style="text-align: justify; text-justify: inter-word; ">
+          Visit our website and provide all the details by filling up the order form. If you want customized assignment solutions, you can talk to our support team and mention your requirements.</p>
         </div>
       </div>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-5 mb-4 order-1 order-lg-2" data-aos="fade-up" data-aos-delay="100">
+          <img src="{!! asset('home-asset/images/home2.png')!!}" alt="Image" class="img-fluid" id="home-image" >
+        </div>
+        <div class="col-lg-5 order-2 order-lg-1 align-items-center" data-aos="fade-up" data-aos-delay="200" style="margin-top:15px;">
+          <h2 class="text-black mb-4">Pay For Assignment</h2>
+          <p class="mb-4 text-black" style="text-align: justify; text-justify: inter-word; ">
+            Once you submit the order form, you will receive a quote for your assignment. You can choose to pay for your order via PayPal, debit/credit cards or net banking. Following the completion of the payment, you will get an email or text that will confirm your order.</p>
+      </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-5 mb-4" data-aos="fade-up" data-aos-delay="100">
+          <img src="{!! asset('home-asset/images/home3.png')!!}" alt="Image" class="img-fluid" id="home-image">
+        </div>
+        <div class="col-lg-5 align-items-center" data-aos="fade-up" data-aos-delay="200" style="margin-top:15px;">
+          <h2 class="text-black mb-4">Receive Completed Solution</h2>
+          <p class="mb-4 text-black" style="text-align: justify; text-justify: inter-word; ">
+        Our assignment help experts start writing the papers as soon as the payment is done. The writers work fast to complete the task within the deadline. You will receive your assignment in your registered account prior to the submission deadline.</p>
+        </div>
+      </div>
+
     </div>
   </div>
+
+
 
 @endsection

@@ -40,12 +40,17 @@
 
             <section class="content">
               <!-- row -->
-              <div class="row">
+              <div class="row justify-content-center">
+
+
+
+
+
 
                       @if ($data!=null)
-                        <div class="col-md-6" style="overflow:scroll;max-height:400px;">
-                            <!-- The time line -->
-                            <ul class="timeline">
+                        <div class="col-md-8" style="overflow:auto;max-height:500px;">
+                           
+                          {{--   <ul class="timeline">
                         @foreach($data as $msg)
 
                       <li>
@@ -55,7 +60,7 @@
                                style="background:#ccc; font-weight:bold;
                                 border:1px solid #efefef" id="msg{{$msg->id}}">
 
-                               {{-- <div class="timeline-body"> --}}
+                              
                                @if ($msg->is_send_by==Auth::id())
                                  <p style="color:#3C8DBC">Admin</p>
                                  @else
@@ -83,20 +88,104 @@
                             @endif
                           </div>
                       </li>
-                      <!-- END timeline item -->
+                      
 
                     @endforeach
                   </ul>
+ --}}
 
+
+                  <div class="box box-success">
+                      <div class="box-header">
+                          <i class="fa fa-comments-o"></i>
+                          <h3 class="box-title">Chat</h3>
+                          <div class="box-tools pull-right" data-toggle="tooltip" title="Status">
+                              <div class="btn-group" data-toggle="btn-toggle" >
+                                  <button type="button" class="btn btn-default btn-sm active"><i class="fa fa-square text-green"></i></button>
+                                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-square text-red"></i></button>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="box-body chat" id="chat-box" >
+                           @foreach($data as $msg)
+                          <!-- chat item -->
+                            @if ($msg->is_send_by==Auth::id())
+                           <div class="item">
+                              <img src="{{ asset('admin-asset/img/avatar3.png')}}" alt="user image" class="offline"/>
+                              <p class="message">
+                                  <a href="#" class="name">
+                                      <small class="text-muted pull-right"><i class="fa fa-clock-o"></i>{{ $msg->created_at->format('h:i') }}</small>
+                                      Admin
+                                  </a>
+                                 {{$msg->message}}
+                              </p>
+                          </div><!-- /.item -->
+
+                           @else
+                            @if (Route::is('admin.writer.messageview'))
+
+                          <div class="item">
+                              <img src="{{ asset('admin-asset/img/avatar.png')}}" alt="user image" class="online"/>
+                              <p class="message">
+                                  <a href="#" class="name">
+                                      <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> {{ $msg->created_at->format('h:i') }}</small>
+                                      {{$msg->writer->name}}
+                                  </a>
+                                  {{$msg->message}}
+                              </p>
+                            
+                          </div><!-- /.item -->
+                          @else
+                          <!-- chat item -->
+                          <div class="item">
+                              <img src="{{ asset('admin-asset/img/avatar2.png')}}" alt="user image" class="offline"/>
+                              <p class="message">
+                                  <a href="#" class="name">
+                                      <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> {{ $msg->created_at->format('h:i') }}</small>
+                                      {{$msg->student->name}}
+                                  </a>
+                                  {{$msg->message}}
+                              </p>
+                          </div><!-- /.item -->
+                          <!-- chat item -->
+                          @endif
+                               @endif
+                           @endforeach
+                      </div><!-- /.chat -->
+                      <div class="box-footer">
+                         @if (Route::is('admin.writer.messageview'))
+                            <form role="form" method="post" action="{!! route('admin.writer.message.send',$id) !!}">
+                              @else
+                                  <form role="form" method="post" action="{!! route('admin.student.message.send',$id) !!}">
+                              @endif
+                              @csrf
+                          <div class="input-group">
+
+                              <input class="form-control" name="message" placeholder="Type message..."/>
+                              <div class="input-group-btn">
+                                  <button class="btn btn-success"><i class="fa fa-location-arrow"></i></button>
+                                   @if (Route::is('admin.writer.messageview'))
+                                    @if (App\Models\Order::where('status',0)->first())
+                                        <a href="{!! route('admin.writer.deal',$id) !!}"class="btn btn-warning" style="margin-right: 10px;">Deal</a>
+                                    @endif
+                                    @endif
+
+                              </div>
+                             
+                          </div>
+
+                        </form>
+                      </div>
+                  </div>
 
               </div><!-- /.col -->
                       @endif
 
-                  <div class="col-md-6">
+                 {{--  <div class="col-md-6">
                     <div class="box box-warning">
                         <div class="box-header">
                             <h3 class="box-title">General Elements</h3>
-                        </div><!-- /.box-header -->
+                        </div>
                         <div class="box-body">
                           @if (Route::is('admin.writer.messageview'))
                             <form role="form" method="post" action="{!! route('admin.writer.message.send',$id) !!}">
@@ -104,7 +193,7 @@
                                   <form role="form" method="post" action="{!! route('admin.student.message.send',$id) !!}">
                               @endif
                               @csrf
-                                <!-- text input -->
+                             
                                 <div class="form-group">
                                     <label>Text</label>
                                     <textarea type="text" cols="8" rows="8" class="form-control" name="message" placeholder="Enter ..."></textarea>
@@ -120,7 +209,7 @@
                             </form>
                           </div>
                         </div>
-                  </div>
+                  </div> --}}
               </div><!-- /.row -->
       </section>
       </aside>

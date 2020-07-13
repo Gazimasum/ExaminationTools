@@ -61,7 +61,7 @@
                                                   </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                  <form action="{!! route('admin.payment_method.status', $p->id) !!}"  method="post">
+                                                  <form action="{!! route('admin.payment_method.status', $p->id) !!}"  method="get">
                                                     {{ csrf_field() }}
                                                     <button type="submit" class="btn btn-danger">Yes</button>
                                                   </form>

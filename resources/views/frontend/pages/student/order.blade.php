@@ -5,7 +5,7 @@
     $assingment_no = App\Models\Order::where('student_id',$student->id)->count();
     $order = App\Models\DealWithStudent::where('student_id',$student->id)->get();
   @endphp
-  <div class="intro-section single-cover" id="home-section">
+  {{-- <div class="intro-section single-cover" id="home-section">
                 <div class="slide-1 " style="background-image: url({!! asset('home-asset/images/img_2.jpg') !!});" data-stellar-background-ratio="0.5">
                   <div class="container">
                     <div class="row align-items-center">
@@ -15,7 +15,7 @@
                             <h1 data-aos="fade-up" data-aos-delay="0">{{$student->name}} Dashboard</h1>
                             <p data-aos="fade-up" data-aos-delay="100">{{$assingment_no}} Assingment </p>
                           </div>
-                          {{-- @include('frontend.partials.messages') --}}
+                          
 
                         </div>
                       </div>
@@ -23,17 +23,17 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> --}}
                @include('frontend.partials.messages')
-                <div class="container" style="margin-top:20px">
+                <div class="container" style="margin-top:120px;margin-bottom:100px;">
                   <div class="row">
                     <div class="col-md-12">
                       <div class="col-lg-12 ml-auto" data-aos="fade-up" data-aos-delay="500">
                         <div class="row">
                       @include('frontend.pages.student.partials.sidebar')
-                          <div class="col-md-9">
+                          <div class="col-md-9 align-items-center" style="padding:20px;margin-bottom: 50px">
 
-                          <h2 style=" margin-top:20px">Assingment Order</h2><br>
+                          <h2 style=" ">Assingment Order</h2><br>
                             <div class="box-body table-responsive">
                           <table class="table table-hover" id="myTable">
                               <thead>
@@ -53,7 +53,7 @@
 
                               <td>{{$key+1}}</td>
                               <td>  <a href="{!! route('student.assingment.view',$a->order->assingment->slug) !!}">{{$a->order->assingment['assingment_name']}}</a></td>
-                              <td>{{$a->price}}</td>
+                              <td>{{$a->price}} {{ $a->currency->font_arial }}</td>
 
                               <td>@if ($a->is_paid==0)
                                 Not Paid

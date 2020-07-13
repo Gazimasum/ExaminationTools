@@ -5,13 +5,13 @@
     $country = App\Models\Country::get();
   @endphp
   <div class="intro-section single-cover" id="home-section">
-                <div class="slide-1 " style="background-image: url({!! asset('home-asset/images/img_2.jpg') !!});" data-stellar-background-ratio="0.5">
+                <div class="slide-1 " style="background-image: url({!! asset('home-asset/images/img_3.jpg') !!});" data-stellar-background-ratio="0.5">
                   <div class="container">
                     <div class="row align-items-center">
                       <div class="col-12">
                         <div class="row justify-content-center align-items-center text-center">
                           <div class="col-lg-6">
-                            <h1 data-aos="fade-up" data-aos-delay="0">Student Registration</h1>
+                            <h1 data-aos="fade-up" data-aos-delay="0" class="text-black">Student Registration</h1>
                             {{-- <p data-aos="fade-up" data-aos-delay="100">4 Lessons / 12 Week &bullet; 2,193 students &bullet; <a href="#" class="text-white">6 comments</a></p> --}}
                           </div>
 
@@ -49,7 +49,7 @@
 
                                     <div class="col-md-6">
                                       {{-- <input id="country_id" type="text" class="form-control @error('country_id') is-invalid @enderror" name="country_id" value="{{ old('country_id') }}" required autocomplete="country_id" autofocus> --}}
-                                        <select class="form-control" name="country_id" id="country_id">
+                                        <select class="form-control" name="country_id" id="country_id" required>
                                               <option value="">Select a Country</option>
                                           @foreach ($country as $c)
                                             <option value="{{ $c->id }}">{{ $c->name }}</option>
@@ -122,7 +122,7 @@
 
                               <div class="form-group row mb-0">
                                   <div class="col-md-8 offset-md-4">
-                                      <button type="submit" class="btn btn-primary">
+                                      <button type="submit" class="btn" style="background-color:#0072CE;color:#fff;">
                                           {{ __('Register') }}
                                       </button>
 

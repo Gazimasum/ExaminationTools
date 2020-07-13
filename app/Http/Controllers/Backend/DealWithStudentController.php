@@ -37,7 +37,7 @@ class DealWithStudentController extends Controller
     }
     public function action($id)
     {
-        $deal = DealWithStudent::find($id)->first();
+        $deal = DealWithStudent::where('id',$id)->first();
         $student = User::where('id',$deal->student_id)->first();
         if($deal->is_paid==0)
           {
@@ -82,8 +82,9 @@ class DealWithStudentController extends Controller
         $order->update();
       $deal =new DealWithStudent();
       $deal->student_id = $request->student_id;
-      $student = User::find($request->student_id)->first();
+      $student = User::where('id',$request->student_id)->first();
       $deal->order_id = $request->order_id;
+      $deal->currency_id = $request->currency_id;
       $deal->price = $request->price;
 
       $deal->save();

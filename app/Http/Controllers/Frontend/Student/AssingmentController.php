@@ -54,9 +54,6 @@ class AssingmentController extends Controller
 
       $this->validate($request,
          ['name' => 'required',
-         'assingmenttype' => 'required',
-         'education_level' => 'required',
-         'subject'=>'required',
          'details' =>'required',
          'deadline_date'      => 'required|date|date_format:Y-m-d|after:yesterday',
          // 'images[]' => 'mimes:jpeg,jpg,png,gif|required|max:10000'
@@ -65,26 +62,15 @@ class AssingmentController extends Controller
        ],
        [
        'name.required'=>"Please Provide a Name.",
-       // 'vehicleoverview.max'=>"Please Provide maximum 500 word.",
+
      ]);
-    //  if($request->hasfile('images'))
-    // {
-    //  foreach ($request->file('images') as $image)
-    //     {
-    //         $this->validate($request,[
-    //         'images' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-    //     ]);
-    //   }
-    // }
+
 
      $student = Auth::user();
      $a = new Assingment();
      $a->assingment_name = $request->name;
      $a->slug = Str::slug($request->name);
      $a->student_id =$student->id;
-     $a->assingment_type_id = $request->assingmenttype;
-     $a->education_level_id = $request->education_level;
-     $a->assingment_subject_id = $request->subject;
      $a->assingment_details = $request->details;
      $a->deadline_date = $request->deadline_date;
      $a->remember_token = Str::random(40);
@@ -132,7 +118,7 @@ class AssingmentController extends Controller
       }
       Toastr::success('Request Sent successfully', 'Success', ["positionClass" => "toast-top-right","closeButton"=> true,"progressBar"=> true,]);
       session()->flash('success', 'Request Sent successfully');
-      return back();
+      return redirect('student/dashboard');
 
 
     }

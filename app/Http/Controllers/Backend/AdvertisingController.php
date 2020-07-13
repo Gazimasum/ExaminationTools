@@ -68,7 +68,7 @@ class AdvertisingController extends Controller
      */
     public function edit($id)
     {
-      $advertising = Advertising::find($id)->first();
+      $advertising = Advertising::where('id',$id)->first();
         return view('backend.pages.advertising.edit',compact('advertising'));
     }
 
@@ -82,7 +82,7 @@ class AdvertisingController extends Controller
     public function update(Request $request,$id)
     {
       // dd($request);
-        $advertising = Advertising::find($id)->first();
+        $advertising = Advertising::where('id',$id)->first();
         $advertising->provider_code = $request->provider_code;
         $advertising->tracking_code_large = $request->tracking_code_large;
         $advertising->tracking_code_small = $request->tracking_code_small;

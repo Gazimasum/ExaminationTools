@@ -5,7 +5,7 @@
     $country = App\Models\Country::get();
     $education_level = App\Models\EducationLevel::get();
   @endphp
-  <div class="intro-section single-cover" id="home-section">
+ {{--  <div class="intro-section single-cover" id="home-section">
                 <div class="slide-1 " style="background-image: url({!! asset('home-asset/images/img_2.jpg') !!});" data-stellar-background-ratio="0.5">
                   <div class="container">
                     <div class="row align-items-center">
@@ -13,7 +13,7 @@
                         <div class="row justify-content-center align-items-center text-center">
                           <div class="col-lg-6">
                             <h1 data-aos="fade-up" data-aos-delay="0">Writer Profile Update</h1>
-                            {{-- <p data-aos="fade-up" data-aos-delay="100">4 Lessons / 12 Week &bullet; 2,193 writers &bullet; <a href="#" class="text-white">6 comments</a></p> --}}
+                          
                           </div>
 
 
@@ -23,9 +23,9 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> --}}
 
-                <div class="container">
+               <div class="container" style="margin-top:120px;margin-bottom:100px;">
                   <div class="row">
                     <div class="col-md-12">
                       <div class="col-lg-12 ml-auto" data-aos="fade-up" data-aos-delay="500">
@@ -122,7 +122,7 @@
 
                                 <div class="form-group row mb-0">
                                     <div class="col-md-8 offset-md-4">
-                                        <button type="submit" class="btn btn-primary">
+                                        <button type="submit" class="btn" style="background-color:#0072CE">
                                             {{ __('Update') }}
                                         </button>
 

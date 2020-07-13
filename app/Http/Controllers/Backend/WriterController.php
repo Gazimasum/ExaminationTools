@@ -34,7 +34,7 @@ class WriterController extends Controller
 
   public function status($id)
   {
-    $writer = Freelancer::findOrFail($id)->first();
+    $writer = Freelancer::where('id',$id)->first();
     if($writer->status==0){
       $writer->status = 1;
       $writer->save();
@@ -53,20 +53,20 @@ class WriterController extends Controller
   public function edit($id)
   {
       $country = Country::get();
-      $writer = Freelancer::findOrFail($id)->first();
+      $writer = Freelancer::where('id',$id)->first();
       return view('backend.pages.writer.edit',compact('writer','country'));
   }
 
   public function view($id)
   {
-      $writer = Freelancer::findOrFail($id)->first();
+      $writer = Freelancer::where('id',$id)->first();
       return view('backend.pages.writer.view',compact('writer'));
   }
 
 
   public function update(Request $request,$id)
   {
-      $writer = Freelancer::findOrFail($id)->first();
+      $writer = Freelancer::where('id',$id)->first();
       $writer->name = $request->name;
       $writer->email = $request->email;
       $writer->phone_no = $request->phone_no;
@@ -90,7 +90,7 @@ class WriterController extends Controller
   }
   public function delete($id)
   {
-      $writer = Freelancer::findOrFail($id)->first();
+      $writer = Freelancer::where('id',$id)->first();
       $writer->delete();
       session()->flash('success', 'Delete Successfully');
       return back();

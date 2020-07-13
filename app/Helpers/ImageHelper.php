@@ -14,7 +14,7 @@ class ImageHelper
     $user = User::find($id);
     $avatar_url = "";
     if (!is_null($user)) {
-      if ($user->avatar == NULL) {
+
         // Return him gravatar image
         if (GravatarHelper::validate_gravatar($user->email)) {
           $avatar_url = GravatarHelper::gravatar_image($user->email, 100);
@@ -22,10 +22,7 @@ class ImageHelper
           // When there is no gravatar image
           $avatar_url = url('home-asset/images/user.png');
         }
-      }else {
-        // Return that image
-        $avatar_url = url('files/users/'.$user->avatar);
-      }
+
     }else {
       // return redirect('/');
     }

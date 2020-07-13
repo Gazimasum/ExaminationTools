@@ -20,8 +20,8 @@
                       <span class="label label-success"> <b id="noti_number_header">0</b> </span>
                   </a>
                   <ul class="dropdown-menu">
-                      <li class="header" >You have <b id="s_noti_number_header">0</b> Student messages</li>
-                      <li class="header">You have <b id="w_noti_number_header">0</b> Writer messages</li>
+                      <li class="header" ><a href="{{ route('admin.student.message') }}">You have <b id="s_noti_number_header">0</b> Student messages</a></li>
+                      <li class="header"><a href="{{ route('admin.writer.message') }}">You have <b id="w_noti_number_header">0</b> Writer messages</a></li>
                   </ul>
                 </li>
                 <!-- User Account: style can be found in dropdown.less -->

@@ -75,18 +75,14 @@
                       <table class="table table-striped">
                           <thead>
                               <tr>
-                                  <th>Type</th>
-                                  <th>Subject</th>
-                                  <th>Education Level</th>
+
                                   <th>Description</th>
 
                               </tr>
                           </thead>
                           <tbody>
                               <tr>
-                                  <td>{{$assingment->type->name}}</td>
-                                  <td>{{$assingment->subject->name}}</td>
-                                  <td>{{$assingment->education_level->name}}</td>
+
                                   <td>{{$assingment->assingment_details}}</td>
 
                               </tr>
@@ -102,7 +98,8 @@
                   <div class="col-md-6">
                       <p class="lead">Assingment Images :</p>
                         @foreach($assingment->images as $image)
-                      <img src="{!! asset('files/images/'.$image->image) !!}" alt="" /><br><br>
+                      <img src="{!! asset('files/images/'.$image->image) !!}" alt="" width="300px" height="300px" /><br>
+                      <a href="{!! asset('files/images/'.$image->image) !!}" class="btn btn-primary" style="margin-top:10px">View Image</a>
 
                     @endforeach
 

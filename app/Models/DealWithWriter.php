@@ -11,6 +11,11 @@ class DealWithWriter extends Model
     return $this->belongsTo('App\Models\Freelancer','client_id');
     // return user::where('id',$this->student_id)->first()->name;
   }
+  public function currency()
+  {
+    return $this->belongsTo('App\Models\Currency','currency_id');
+    // return user::where('id',$this->student_id)->first()->name;
+  }
 
   public function order()
   {
@@ -22,6 +27,13 @@ class DealWithWriter extends Model
   {
 
   return Order::where('deal_wrt',0)->count();
+
+  }
+
+  public static function newStdDeal()
+  {
+
+  return DealWithWriter::where('writer_id',Auth::id())->where('transection_id',null)->count();
 
   }
 }

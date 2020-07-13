@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
 
 @section('content')
-  <div class="intro-section single-cover" id="home-section">
+{{--   <div class="intro-section single-cover" id="home-section">
                 <div class="slide-1 " style="background-image: url({!! asset('home-asset/images/img_2.jpg') !!});" data-stellar-background-ratio="0.5">
                   <div class="container">
                     <div class="row align-items-center">
@@ -9,7 +9,7 @@
                         <div class="row justify-content-center align-items-center text-center">
                           <div class="col-lg-6">
                             <h1 data-aos="fade-up" data-aos-delay="0">Writer Chat</h1>
-                            {{-- <p data-aos="fade-up" data-aos-delay="100">4 Lessons / 12 Week &bullet; 2,193 students &bullet; <a href="#" class="text-white">6 comments</a></p> --}}
+                            
                           </div>
 
                             @include('frontend.partials.messages')
@@ -19,9 +19,9 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> --}}
                 {{-- @include('frontend.partials.messages') --}}
-                <div class="container" style="margin-top:20px">
+                <div class="container" style="margin-top:120px;margin-bottom:100px;">
                   <div class="row">
                     <div class="col-md-12">
                       <div class="col-lg-12 ml-auto" data-aos="fade-up" data-aos-delay="500">
@@ -33,9 +33,9 @@
                             <ul  class="list-group" id="scroll" style="width: auto; height: 300px; overflow: auto">
                             @foreach ($chat as $c)
                               @if ($c->is_send_by==$writer->id)
-                                  <li class="list-group-item list-group-item-success">Me -> {{$c->message}}</li>
+                                  <li class="list-group-item list-group-item-success">Me : {{$c->message}}</li>
                               @else
-                                  <li class="list-group-item list-group-item-primary">Admin -> {{$c->message}}</li>
+                                  <li class="list-group-item list-group-item-primary">Admin : {{$c->message}}</li>
                               @endif
                               {{-- @if ($c->reply!=null)
                                   @if ($c->is_send_by==$writer->id)
@@ -60,7 +60,7 @@
                                       @enderror
                                   </div>
                                   <div class="form-group  mb-0">
-                                      <button type="submit" class="btn btn-primary">
+                                      <button type="submit" class="btn" style="background-color:#0072CE">
                                           {{ __('Send') }}
                                       </button>
                                   </div>

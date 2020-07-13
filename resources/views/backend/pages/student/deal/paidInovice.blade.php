@@ -1,18 +1,21 @@
-
 <!------ Include the above in your HEAD tag ---------->
-
 <!--Author      : @arboshiki-->
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  </head>
-  <style media="screen">
-  #invoice{
+<html dir="ltr" lang="en">
+    <head>
+        <meta charset="utf-8">
+            <title>
+            </title>
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" id="bootstrap-css" rel="stylesheet">
+                <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js">
+                </script>
+                <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+                </script>
+            </link>
+        </meta>
+    </head>
+    <style media="screen">
+        #invoice{
   padding: 30px;
 }
 
@@ -183,150 +186,221 @@
       page-break-before: always
   }
 }
-  </style>
-  <body>
-    <div class="container">
-      <div id="invoice">
-
-          <div class="toolbar hidden-print">
-              <div class="text-right">
-                  <button id="printInvoice" class="btn btn-info"><i class="fa fa-print"></i> Print</button>
-                  {{-- <button class="btn btn-info"><i class="fa fa-file-pdf-o"></i> Export as PDF</button> --}}
-              </div>
-              <hr>
-          </div>
-          <div class="invoice overflow-auto">
-              <div style="min-width: 600px">
-                  <header>
-                      <div class="row">
-                          <div class="col">
-                              <a target="_blank" href="https://examinationtools.com">
-                                  {{-- <img src="http://lobianijs.com/lobiadmin/version/1.0/ajax/img/logo/lobiadmin-logo-text-64.png" data-holder-rendered="true" /> --}}
-                                  <h2>ExaminationTools</h2>
-                                  </a>
-                          </div>
-                          <div class="col company-details">
-                              <h2 class="name">
-                                  <a target="_blank" href="https://examinationtools.com">
-                                  {{Auth::user()->name}}
-                                  </a>
-                              </h2>
-                              {{-- <div>455 Foggy Heights, AZ 85004, US</div>
-                              <div>(123) 456-789</div> --}}
-                              <div>{{Auth::user()->email}}</div>
-                          </div>
-                      </div>
-                  </header>
-                  <main>
-                      <div class="row contacts">
-                          <div class="col invoice-to">
-                              <div class="text-gray-light">INVOICE TO:</div>
-                              <h2 class="to">{{$deal->student->name}}</h2>
-                              <div class="address">{{$deal->student->details->city}},{{$deal->student->details->country['name']}}</div>
-                              <div class="email"><a href="#">{{$deal->student->email}}</a></div>
-                          </div>
-                          <div class="col invoice-details">
-                              <h1 class="invoice-id">INVOICE {{$deal->order->order_track_id}}</h1>
-
-                              {{-- <div class="date">Due Date: 30/10/2018</div> --}}
-                          </div>
-                      </div>
-                      <table border="0" cellspacing="0" cellpadding="0">
-                          <thead>
-                              <tr>
-                                  <th>#</th>
-                                  <th >DESCRIPTION</th>
-                                  <th >SUBJECT</th>
-                                  <th >TYPE</th>
-                                  <th class="text-right">PRICE</th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                              <tr>
-                                  <td class="no">01</td>
-                                  <td ><h3>
-                                      <a target="_blank" href="#">
-                                      {{$deal->order->assingment['assingment_name']}}
-                                      </a>
-                                      </h3>
-                                    {{$deal->order->assingment['assingment_details']}}
-
-                                  </td>
-                                  <td >{{$deal->order->assingment->subject['name']}}</td>
-                                  <td >{{$deal->order->assingment->type['name']}}</td>
-
-                                  <td class="total">{{$deal->price}}</td>
-                              </tr>
-
-                          </tbody>
-                          <tfoot>
-
-                              <tr>
-                                  <td></td>
-                                  <td></td>
-                                  <td colspan="2">GRAND TOTAL</td>
-                                  <td>{{$deal->price}}</td>
-                              </tr>
-
-                          </tfoot>
-                      </table>
-                      <h3>Transection</h3>
-                      <table border="0" cellspacing="0" cellpadding="0">
-                          <thead>
-                              <tr>
-                                <th>#</th>
-                                  <th class="text-left">Transection Date</th>
-                                  <th class="text-left">Transection Id</th>
-                                  <th class="text-right">PRICE</th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                              <tr>
-                                <td class="no">01</td>
-                                  <td class="text-left"><h3>
-                                      <a target="_blank" href="#">
-                                      {{$deal->payment_date}}
-                                      </a>
-                                    </h3> </td>
-                                    <td class="text-left">
-                                    {{$deal->transection_id}}
-
-                                  </td>
-
-                                  <td class="total">{{$deal->price}}</td>
-                              </tr>
-
-                          </tbody>
-                          <tfoot>
-
-                              <tr>
-                                  <td colspan="2"></td>
-                                  <td colspan="1">GRAND TOTAL</td>
-                                  <td>{{$deal->price}}</td>
-                              </tr>
-
-                          </tfoot>
-                      </table>
-                      <div class="paid">PAID</div>
-                      <div class="thanks">Thank you!</div>
-                      <div class="notices">
-                          <div>NOTICE:</div>
-                          <div class="notice">Invoice was created on a computer and is valid without the signature and seal.</div>
-                      </div>
-                  </main>
-                  <footer>
-                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
-                  </footer>
-              </div>
-              <!--DO NOT DELETE THIS div. IT is responsible for showing footer always at the bottom-->
-              <div></div>
-          </div>
-      </div>
-
-    </div>
-  </body>
-  <script type="text/javascript">
-  $('#printInvoice').click(function(){
+    </style>
+    <body>
+        <div class="container">
+            <div id="invoice">
+                <div class="toolbar hidden-print">
+                    <div class="text-right">
+                        <button class="btn btn-info" id="printInvoice">
+                            <i class="fa fa-print">
+                            </i>
+                            Print
+                        </button>
+                        {{--
+                        <button class="btn btn-info">
+                            <i class="fa fa-file-pdf-o">
+                            </i>
+                            Export as PDF
+                        </button>
+                        --}}
+                    </div>
+                    <hr>
+                    </hr>
+                </div>
+                <div class="invoice overflow-auto">
+                    <div style="min-width: 600px">
+                        <header>
+                            <div class="row">
+                                <div class="col">
+                                    <a href="https://examinationtools.com" target="_blank">
+                                        {{--
+                                        <img data-holder-rendered="true" src="http://lobianijs.com/lobiadmin/version/1.0/ajax/img/logo/lobiadmin-logo-text-64.png"/>
+                                        --}}
+                                        <h2>
+                                            ExaminationTools
+                                        </h2>
+                                    </a>
+                                </div>
+                                <div class="col company-details">
+                                    <h2 class="name">
+                                        <a href="https://examinationtools.com" target="_blank">
+                                            {{Auth::user()->name}}
+                                        </a>
+                                    </h2>
+                                    {{--
+                                    <div>
+                                        455 Foggy Heights, AZ 85004, US
+                                    </div>
+                                    <div>
+                                        (123) 456-789
+                                    </div>
+                                    --}}
+                                    <div>
+                                        {{Auth::user()->email}}
+                                    </div>
+                                </div>
+                            </div>
+                        </header>
+                        <main>
+                            <div class="row contacts">
+                                <div class="col invoice-to">
+                                    <div class="text-gray-light">
+                                        INVOICE TO:
+                                    </div>
+                                    <h2 class="to">
+                                        {{$deal->student->name}}
+                                    </h2>
+                                    <div class="address">
+                                        {{$deal->student->details->city}},{{$deal->student->details->country['name']}}
+                                    </div>
+                                    <div class="email">
+                                        <a href="#">
+                                            {{$deal->student->email}}
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col invoice-details">
+                                    <h1 class="invoice-id">
+                                        INVOICE {{$deal->order->order_track_id}}
+                                    </h1>
+                                    {{--
+                                    <div class="date">
+                                        Due Date: 30/10/2018
+                                    </div>
+                                    --}}
+                                </div>
+                            </div>
+                            <table border="0" cellpadding="0" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            #
+                                        </th>
+                                        <th>
+                                            DESCRIPTION
+                                        </th>
+                                        <th class="text-right">
+                                            PRICE
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="no">
+                                            01
+                                        </td>
+                                        <td>
+                                            <h3>
+                                                <a href="#" target="_blank">
+                                                    {{$deal->order->assingment['assingment_name']}}
+                                                </a>
+                                            </h3>
+                                            {{$deal->order->assingment['assingment_details']}}
+                                        </td>
+                                        <td class="total">
+                                            {{$deal->price}} {{ $deal->currency->font_arial }}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td>
+                                        </td>
+                                        <td>
+                                            GRAND TOTAL
+                                        </td>
+                                        <td>
+                                            {{$deal->price}} {{ $deal->currency->font_arial }}
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <h3>
+                                Transection
+                            </h3>
+                            <table border="0" cellpadding="0" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            #
+                                        </th>
+                                        <th class="text-left">
+                                            Transection Date
+                                        </th>
+                                        <th class="text-left">
+                                            Transection Id
+                                        </th>
+                                        <th class="text-right">
+                                            PRICE
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="no">
+                                            01
+                                        </td>
+                                        <td class="text-left">
+                                            <h3>
+                                                <a href="#" target="_blank">
+                                                    {{$deal->payment_date}}
+                                                </a>
+                                            </h3>
+                                        </td>
+                                        <td class="text-left">
+                                            {{$deal->transection_id}}
+                                        </td>
+                                        <td class="total">
+                                            {{$deal->price}} {{ $deal->currency->font_arial }}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="1">
+                                        </td>
+                                        <td colspan="2">
+                                            GRAND TOTAL
+                                        </td>
+                                        <td>
+                                            {{$deal->price}} {{ $deal->currency->font_arial }}
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <div class="paid">
+                                PAID
+                            </div>
+                            <div class="thanks">
+                                Thank you!
+                            </div>
+                            <div class="notices">
+                                <div>
+                                    NOTICE:
+                                </div>
+                                <div class="notice">
+                                    Invoice was created on a computer and is valid without the signature and seal.
+                                </div>
+                            </div>
+                        </main>
+                        <footer>
+                            Copyright ©
+                            <script>
+                                document.write(new Date().getFullYear());
+                            </script>
+                            All rights reserved
+                        </footer>
+                    </div>
+                    <!--DO NOT DELETE THIS div. IT is responsible for showing footer always at the bottom-->
+                    <div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">
+        $('#printInvoice').click(function(){
          Popup($('.invoice')[0].outerHTML);
          function Popup(data)
          {
@@ -334,5 +408,5 @@
              return true;
          }
      });
-  </script>
+    </script>
 </html>

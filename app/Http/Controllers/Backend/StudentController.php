@@ -29,16 +29,16 @@ class StudentController extends Controller
 
   public function status($id)
   {
-    $student = User::findOrFail($id)->first();
+    $student = User::where('id',$id)->first();
     if($student->status==0){
       $student->status = 1;
-      $student->save();
+      $student->update();
       session()->flash('success', 'Status Change Successfully');
       return back();
     }
     else {
       $student->status = 0;
-      $student->save();
+      $student->update();
       session()->flash('success', 'Status Change Successfully');
         return back();
     }
@@ -47,19 +47,19 @@ class StudentController extends Controller
   public function edit($id)
   {
       $country = Country::get();
-      $student = User::findOrFail($id)->first();
+      $student = User::where('id',$id)->first();
       return view('backend.pages.student.edit',compact('student','country'));
   }
 
   public function view($id)
   {
-      $student = User::findOrFail($id)->first();
+      $student = User::where('id',$id)->first();
       return view('backend.pages.student.view',compact('student'));
   }
 
   public function update(Request $request,$id)
   {
-      $student = User::findOrFail($id)->first();
+      $student = User::where('id',$id)->first();
       $student->name = $request->name;
       $student->phone_no = $request->phone_no;
       $student->email = $request->email;
@@ -77,7 +77,7 @@ class StudentController extends Controller
   }
   public function delete($id)
   {
-      $student = User::findOrFail($id)->first();
+      $student = User::where('id',$id)->first();
       $student->delete();
       session()->flash('success', 'Delete Successfully');
       return back();

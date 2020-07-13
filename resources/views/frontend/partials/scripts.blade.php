@@ -11,6 +11,10 @@
 <script src="{!! asset('home-asset/js/aos.js')!!}"></script>
 <script src="{!! asset('home-asset/js/jquery.fancybox.min.js')!!}"></script>
 <script src="{!! asset('home-asset/js/jquery.sticky.js')!!}"></script>
+<script src="{{ asset('admin-asset//js/plugins/input-mask/jquery.inputmask.js') }}" type="text/javascript"></script>
+{{-- <script src="{{ asset('home-asset/js/jquery.multi-select.js') }}"></script> --}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" />
 <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 {{-- <script src="{!! asset('admin-asset/js/plugins/datatables/jquery.dataTables.js')!!}" type="text/javascript"></script>
 <script src="{!! asset('admin-asset/js/plugins/datatables/dataTables.bootstrap.js')!!}" type="text/javascript"></script> --}}
@@ -38,30 +42,8 @@ $(document).ready( function () {
   document.getElementById('scroll').scrollTop =  document.getElementById('scroll').scrollHeight
   } );
 </script>
-@if (Auth::guard('web')->check())
-<script type="text/javascript">
- function loadDoc() {
-
-
-  setInterval(function(){
-
-   var xhttp = new XMLHttpRequest();
-   xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-     document.getElementById("noti_number_header").innerHTML = this.responseText;
-     document.getElementById("noti_number_sidebar").innerHTML = this.responseText;
-    }
-   };
-   xhttp.open("GET", "{!! route('student.message.count') !!}", true);
-   xhttp.send();
-
- },5000);
-
-
- }
- loadDoc();
-</script>
-@else
+{{-- @if (!Route::is('login')&&!Route::is('writer.login')&&Route::is('student.register')&&Route::is('writer.register')) --}}
+@auth ('web')
   <script type="text/javascript">
    function loadDoc() {
 
@@ -73,16 +55,40 @@ $(document).ready( function () {
       if (this.readyState == 4 && this.status == 200) {
        document.getElementById("noti_number_header").innerHTML = this.responseText;
        document.getElementById("noti_number_sidebar").innerHTML = this.responseText;
+      }
+     };
+     xhttp.open("GET", "{!! route('student.message.count') !!}", true);
+     xhttp.send();
+
+   },8000);
+
+
+   }
+   loadDoc();
+  </script>
+@endauth
+@auth ('writer')
+  <script type="text/javascript">
+   function loadDoc() {
+    setInterval(function(){
+     var xhttp = new XMLHttpRequest();
+     xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+       document.getElementById("noti_number_header").innerHTML = this.responseText;
+       document.getElementById("noti_number_sidebar").innerHTML = this.responseText;
 
       }
      };
      xhttp.open("GET", "{!! route('writer.message.count') !!}", true);
      xhttp.send();
 
-   },4000);
+   },8000);
 
 
    }
    loadDoc();
   </script>
-@endif
+@endauth
+
+
+{{-- @endif --}}
